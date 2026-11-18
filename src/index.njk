@@ -1,0 +1,78 @@
+---
+layout: base.njk
+title: "Brignais Cycle · Atelier vélo à Brignais, sur rendez-vous"
+description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vous. Prix affichés : révision dès 40 €, crevaison 10 €. Dépose, réparation et restitution dans le même créneau."
+---
+{%- from "velo.njk" import carte -%}
+{%- set tel = site.telephone | telHref -%}
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-card">
+      <h1>{{ site.slogan }}</h1>
+      <p class="lead">Route, gravel, VTT : je répare et j'entretiens ton vélo dans mon atelier, à Brignais. Tu déposes, je répare, tu repars avec ton vélo dans le même créneau.</p>
+      <div class="btn-row">
+        <a class="btn btn-cta" href="tel:{{ tel }}">Appeler {{ site.telephone }}</a>
+        <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
+      </div>
+      <p class="small">Uniquement sur rendez-vous · {{ site.lieu_public }}</p>
+    </div>
+  </div>
+</div>
+
+<section class="wrap" aria-labelledby="pourquoi">
+  <h2 id="pourquoi">Pourquoi venir ici</h2>
+  <div class="grid grid-3">
+    <div class="card argument">
+      <h3><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 11.6 12.4 2.6A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7c0 .55.22 1.05.59 1.42l9 9a2 2 0 0 0 2.82 0l7-7a2 2 0 0 0 0-2.82ZM6.5 8A1.5 1.5 0 1 1 6.5 5a1.5 1.5 0 0 1 0 3Z"/></svg>Des prix clairs</h3>
+      <p>Les tarifs sont affichés avant de venir. Main-d'œuvre à {{ tarifs.main_oeuvre.prix_tranche | euros }} les {{ tarifs.main_oeuvre.minutes }} minutes, pièces sur une ligne à part, devis gratuit sur demande.</p>
+    </div>
+    <div class="card argument">
+      <h3><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21.35 10.55 20C5.4 15.36 2 12.28 2 8.5A5.42 5.42 0 0 1 7.5 3c1.74 0 3.41.81 4.5 2.09A6 6 0 0 1 16.5 3 5.42 5.42 0 0 1 22 8.5c0 3.78-3.4 6.86-8.55 11.54Z"/></svg>Un mécanicien passionné</h3>
+      <p>Un seul interlocuteur : celui qui te répond au téléphone est celui qui répare ton vélo. Pas de comptoir, pas d'intermédiaire.</p>
+    </div>
+    <div class="card argument">
+      <h3><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>Rapide</h3>
+      <p>Dépose, réparation et restitution dans le même créneau : pas besoin de laisser ton vélo une semaine. Seule une révision complète demande une récupération le lendemain.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="phares">
+  <h2 id="phares">Les prestations les plus demandées</h2>
+  <div class="grid grid-3">
+    {%- for cat in tarifs.categories %}{% for p in cat.prestations %}{% if p.phare %}
+    <div class="card card-accent">
+      <h3>{{ p.nom }}</h3>
+      {%- if p.detail %}<p class="small">{{ p.detail }}</p>{% endif %}
+      <p class="velo-prix">{{ p.prix | euros }}</p>
+    </div>
+    {%- endif %}{% endfor %}{% endfor %}
+  </div>
+  <p>Pièces facturées en plus, au prix affiché. <a href="/prestations-tarifs/">Voir toute la grille tarifaire</a></p>
+</section>
+
+{%- if site.SHOW_BIKES and bikes.velos.length %}
+<section class="wrap" aria-labelledby="velos">
+  <h2 id="velos">Envie d'un nouveau vélo ?</h2>
+  <p>Une sélection de vélos en promo chez notre partenaire BikeStocks, que je peux monter et régler à réception.</p>
+  <div class="velos">
+    {%- for v in bikes.velos.slice(0, 3) %}
+    {{ carte(v, site.velos.mention_vendeur) }}
+    {%- endfor %}
+  </div>
+  <p><a class="btn btn-cta-alt" href="/velos-a-vendre/">Voir toute la sélection</a></p>
+</section>
+{%- endif %}
+
+<section class="wrap" aria-labelledby="rdv">
+  <h2 id="rdv">Prendre rendez-vous</h2>
+  <div class="card">
+    <p>Appelle ou envoie un SMS au <a href="tel:{{ tel }}">{{ site.telephone }}</a>, ou écris à <a href="mailto:{{ site.email }}">{{ site.email }}</a>. On fixe un créneau ensemble :</p>
+    <ul>
+      {%- for c in site.creneaux %}
+      <li><strong>{{ c.jours }}</strong> : {{ c.horaires }}{% if c.note %}, {{ c.note }}{% endif %}</li>
+      {%- endfor %}
+    </ul>
+    <p><a href="/comment-ca-marche/">Comment se passe un rendez-vous ?</a></p>
+  </div>
+</section>

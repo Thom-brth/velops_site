@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: "Contact & rendez-vous"
+description: "Prendre rendez-vous à l'atelier vélo Brignais Cycle par téléphone, SMS ou e-mail. Brignais et alentours : Chaponost, Vourles, Millery, Saint-Genis-Laval, Soucieu-en-Jarrest."
+---
+{%- set tel = site.telephone | telHref -%}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Contact & rendez-vous</h1>
+    <p class="lead">Pas de réservation en ligne : un appel ou un SMS, et on cale un créneau.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="btn-row contact-actions">
+    <a class="btn btn-cta" href="tel:{{ tel }}">Appeler {{ site.telephone }}</a>
+    <a class="btn btn-cta-alt" href="sms:{{ tel }}">SMS</a>
+    <a class="btn btn-cta-alt" href="mailto:{{ site.email }}">E-mail</a>
+  </div>
+  <p class="small">E-mail : <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h2 style="margin-top:0">Créneaux</h2>
+      <ul>
+        {%- for c in site.creneaux %}
+        <li><strong>{{ c.jours }}</strong> : {{ c.horaires }}{% if c.note %}, {{ c.note }}{% endif %}</li>
+        {%- endfor %}
+      </ul>
+      <p>Uniquement sur rendez-vous. Pour gagner du temps, dis-moi dans ton message quel vélo tu as et ce qui ne va pas.</p>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">Où ?</h2>
+      <p><strong>{{ site.lieu_public }}.</strong></p>
+      <p>Zone desservie : {{ site.zone | join(", ") }} et alentours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="carte">
+  <h2 id="carte">Brignais sur la carte</h2>
+  {#- Carte chargée seulement au clic : aucune requête vers un tiers tant que le visiteur ne l'a pas demandée.
+      Cadre = commune de Brignais, sans épingle. -#}
+  <div class="map-box" id="map-box">
+    <p>La carte est fournie par OpenStreetMap et n'est chargée que si tu la demandes.</p>
+    <button class="btn btn-cta-alt" type="button" id="map-btn"
+      data-src="https://www.openstreetmap.org/export/embed.html?bbox=4.705%2C45.650%2C4.800%2C45.700&amp;layer=mapnik">Afficher la carte de Brignais</button>
+  </div>
+  <p class="small">© les contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+  <script>
+    document.getElementById("map-btn").addEventListener("click", (e) => {
+      const f = document.createElement("iframe");
+      f.src = e.currentTarget.dataset.src;
+      f.title = "Carte de la commune de Brignais (OpenStreetMap)";
+      f.loading = "lazy";
+      document.getElementById("map-box").replaceChildren(f);
+    });
+  </script>
+</section>

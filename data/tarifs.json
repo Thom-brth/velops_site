@@ -1,0 +1,68 @@
+{
+  "_lisez_moi": "Grille tarifaire. « prix » : un nombre (en euros, prix net) ou un texte [À COMPLÉTER]. « phare » : true = affiché sur l'accueil.",
+
+  "main_oeuvre": {
+    "prix_tranche": 7.5,
+    "minutes": 10,
+    "taux_horaire": 45
+  },
+
+  "categories": [
+    {
+      "nom": "Entretien",
+      "prestations": [
+        { "nom": "Révision basique", "prix": 40, "phare": true },
+        { "nom": "Révision Plus", "detail": "complète : roulements, boîtier de pédalier, direction, transmission, freins. Récupération le lendemain.", "prix": 120, "phare": true },
+        { "nom": "Pose de guidoline", "prix": 12 }
+      ]
+    },
+    {
+      "nom": "Pneus & tubeless",
+      "prestations": [
+        { "nom": "Réparation crevaison", "detail": "hors chambre à air", "prix": 10, "phare": true },
+        { "nom": "Passage en tubeless (tubelisation)", "detail": "par roue", "prix": 25, "phare": true },
+        { "nom": "Ajout / remplacement de liquide tubeless", "detail": "hors liquide", "prix": 10 },
+        { "nom": "Changement de pneu", "prix": "[À COMPLÉTER]" }
+      ]
+    },
+    {
+      "nom": "Freins",
+      "prestations": [
+        { "nom": "Changement de disque de frein", "prix": 8 },
+        { "nom": "Réglage des freins", "prix": "[À COMPLÉTER]" }
+      ]
+    },
+    {
+      "nom": "Transmission",
+      "prestations": [
+        { "nom": "Changement de cassette", "prix": 15 },
+        { "nom": "Réglage du dérailleur", "prix": "[À COMPLÉTER]" },
+        { "nom": "Changement de chaîne", "prix": "[À COMPLÉTER]" }
+      ]
+    },
+    {
+      "nom": "Câbles",
+      "prestations": [
+        { "nom": "Changement de câbles et gaines", "prix": "[À COMPLÉTER]" }
+      ]
+    },
+    {
+      "nom": "Nettoyage",
+      "prestations": [
+        { "nom": "Nettoyage / lavage", "prix": 15, "phare": true }
+      ]
+    }
+  ],
+
+  "non_proposees": [
+    "Vélos électriques",
+    "Suspensions (fourches et amortisseurs)",
+    "Vélos pliants et cargos",
+    "Rayonnage et montage de roues",
+    "Purge de freins hydrauliques",
+    "Dévoilage de roues",
+    "Ajustement de patte de dérailleur"
+  ],
+
+  "consommables": "Chambres à air, câbles, plaquettes, liquide tubeless…"
+}

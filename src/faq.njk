@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: "Questions fréquentes"
+description: "Délais, stockage, pièces, paiement, garantie, vélos électriques : les réponses aux questions qu'on me pose le plus sur l'atelier vélo Brignais Cycle."
+---
+<div class="page-head">
+  <div class="wrap">
+    <h1>Questions fréquentes</h1>
+    <p class="lead">Les questions qu'on me pose le plus. Une autre question ? <a href="/contact/">Appelle-moi ou envoie un SMS</a>.</p>
+  </div>
+</div>
+
+<section class="wrap narrow faq">
+  {%- for item in faq.questions %}
+  <details>
+    <summary>{{ item.q }}</summary>
+    <div><p>{{ item.r | fill | safe }}</p></div>
+  </details>
+  {%- endfor %}
+</section>

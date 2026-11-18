@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture SYNTHÉTIQUE (pas un vrai export BikeStocks) au format Google Merchant, pour tester la source « flux ». -->
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Flux de test</title>
+    <item>
+      <g:id>900-M</g:id>
+      <g:item_group_id>900</g:item_group_id>
+      <g:title>Vélo ORBEA Terra H40 2026</g:title>
+      <g:description>Gravel aluminium, Shimano GRX.</g:description>
+      <g:link>https://www.bikestocks.es/fr/velo-orbea-terra-h40-2026-900.html#/m</g:link>
+      <g:image_link>https://www.bikestocks.es/1-thickbox_default/terra.jpg</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>1999.00 EUR</g:price>
+      <g:sale_price>1699.00 EUR</g:sale_price>
+      <g:brand>Orbea</g:brand>
+      <g:product_type>Des vélos &gt; Gravier</g:product_type>
+      <g:size>M</g:size>
+    </item>
+    <item>
+      <g:id>900-L</g:id>
+      <g:item_group_id>900</g:item_group_id>
+      <g:title>Vélo ORBEA Terra H40 2026</g:title>
+      <g:link>https://www.bikestocks.es/fr/velo-orbea-terra-h40-2026-900.html#/l</g:link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>1999.00 EUR</g:price>
+      <g:sale_price>1699.00 EUR</g:sale_price>
+      <g:product_type>Des vélos &gt; Gravier</g:product_type>
+      <g:size>L</g:size>
+    </item>
+    <item>
+      <g:id>901</g:id>
+      <g:title>Vélo SCOTT Scale 970 2026</g:title>
+      <g:link>https://www.bikestocks.es/fr/velo-scott-scale-970-2026-901.html</g:link>
+      <g:availability>in_stock</g:availability>
+      <g:price>1199.00 EUR</g:price>
+      <g:product_type>Des vélos &gt; VTT &gt; Rigide 29</g:product_type>
+    </item>
+    <item>
+      <g:id>902</g:id>
+      <g:title>Vélo MONDRAKER Prime 2025</g:title>
+      <g:description>Moteur Bosch Performance Line CX, batterie 750 Wh.</g:description>
+      <g:link>https://www.bikestocks.es/fr/velo-mondraker-prime-2025-902.html</g:link>
+      <g:availability>in_stock</g:availability>
+      <g:price>3999.00 EUR</g:price>
+      <g:product_type>Des vélos &gt; VTT</g:product_type>
+    </item>
+    <item>
+      <g:id>903</g:id>
+      <g:title>Casque KASK Protone</g:title>
+      <g:link>https://www.bikestocks.es/fr/casque-903.html</g:link>
+      <g:availability>in_stock</g:availability>
+      <g:price>199.00 EUR</g:price>
+      <g:product_type>Casques</g:product_type>
+    </item>
+  </channel>
+</rss>

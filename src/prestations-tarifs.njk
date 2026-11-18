@@ -1,0 +1,81 @@
+---
+layout: base.njk
+title: "Prestations & tarifs"
+description: "Tarifs de l'atelier vélo Brignais Cycle : révision 40 €, Révision Plus 120 €, crevaison 10 €, tubeless 25 € par roue. Main-d'œuvre 7,50 € les 10 minutes. Devis gratuit."
+---
+{%- set tel = site.telephone | telHref -%}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Prestations & tarifs</h1>
+    <p class="lead">Les prix sont affichés avant que tu viennes, pour ne pas avoir de surprise.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="card card-accent mo">
+    <p>Main-d'œuvre : <strong>{{ tarifs.main_oeuvre.prix_tranche | euros }} par tranche de {{ tarifs.main_oeuvre.minutes }} minutes</strong> ({{ tarifs.main_oeuvre.taux_horaire | euros }}/h). Les pièces sont facturées en plus, sur une ligne séparée.</p>
+  </div>
+
+  <h2>La grille</h2>
+  <div class="tarifs-wrap">
+    {%- for cat in tarifs.categories %}
+    <table class="tarifs">
+      <caption>{{ cat.nom }}</caption>
+      <thead><tr><th scope="col">Prestation</th><th scope="col" class="prix">Prix</th></tr></thead>
+      <tbody>
+        {%- for p in cat.prestations %}
+        <tr>
+          <th scope="row">{{ p.nom }}{% if p.detail %}<span class="detail">{{ p.detail }}</span>{% endif %}</th>
+          <td class="prix">{{ p.prix | euros }}</td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+    {%- endfor %}
+  </div>
+  <p><strong>Les pièces sont facturées en plus, au prix affiché. Devis gratuit sur demande avant toute intervention.</strong></p>
+</section>
+
+<section class="wrap" aria-labelledby="creneau">
+  <h2 id="creneau">Le principe du créneau</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Tout se fait pendant le rendez-vous</h3>
+      <p>Tu déposes ton vélo, je le répare, tu repars avec. Je n'ai pas de place pour stocker des vélos : pas de « repassez dans trois jours ».</p>
+    </div>
+    <div class="card">
+      <h3>Interventions longues</h3>
+      <p>Pour une révision complète (Révision Plus), on convient ensemble d'une récupération le lendemain.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="non">
+  <h2 id="non">Ce que je ne fais pas (encore)</h2>
+  <div class="card">
+    <ul class="non-list">
+      {%- for n in tarifs.non_proposees %}
+      <li>{{ n }}</li>
+      {%- endfor %}
+    </ul>
+    <p class="small">Pour ces interventions, mieux vaut un atelier équipé pour : je préfère te le dire tout de suite.</p>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="autres">
+  <h2 id="autres">Aussi à l'atelier</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Consommables</h3>
+      <p>{{ tarifs.consommables }} Facturés au prix affiché.</p>
+    </div>
+    <div class="card">
+      <h3>Montage de vélos achetés sur BikeStocks</h3>
+      <p>Tu as commandé un vélo chez BikeStocks ? Je le monte et je le règle à réception : {{ site.velos.prix_montage }}.</p>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-cta" href="tel:{{ tel }}">Appeler pour un rendez-vous</a>
+    <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
+  </div>
+</section>

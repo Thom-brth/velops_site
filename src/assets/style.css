@@ -1,0 +1,178 @@
+/* Brignais Cycle — piste graphique 1 « Atelier » : vert sapin, crème, orange brûlé.
+   Mobile-first : les règles de base visent 360 px, les @media élargissent.
+   Contrastes vérifiés AA (texte ≥ 4,5:1). Polices système : aucune requête tierce. */
+
+:root {
+  --vert: #1d4a3a;
+  --vert-fonce: #143428;
+  --vert-pale: #e6efe9;
+  --orange: #b93d0b;       /* CTA : 5,6:1 sur blanc */
+  --orange-fonce: #93300a;
+  --encre: #1c1f1e;
+  --gris: #555c59;         /* texte secondaire : 6,6:1 sur --fond */
+  --fond: #fbfaf6;
+  --blanc: #fff;
+  --bord: #d9ddd8;
+  --todo: #fff3bf;
+  --rayon: 12px;
+  --ombre: 0 1px 2px rgb(0 0 0 / .06), 0 4px 16px rgb(0 0 0 / .06);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--encre);
+  background: var(--fond);
+  padding-bottom: 4.5rem; /* place pour la barre d'appel mobile */
+}
+img { max-width: 100%; height: auto; }
+[hidden] { display: none !important; }
+a { color: var(--vert); text-underline-offset: .15em; }
+a:hover { color: var(--orange-fonce); }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+h1, h2, h3 { line-height: 1.2; color: var(--vert-fonce); text-wrap: balance; }
+h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); margin: 0 0 .6rem; }
+h2 { font-size: clamp(1.4rem, 4.5vw, 1.9rem); margin: 2.5rem 0 1rem; }
+h3 { font-size: 1.15rem; margin: 0 0 .4rem; }
+.wrap { width: 100%; max-width: 70rem; margin: 0 auto; padding: 0 1rem; }
+.narrow { max-width: 46rem; }
+.lead { font-size: 1.15rem; color: var(--gris); }
+.small { font-size: .9rem; color: var(--gris); }
+.plain { list-style: none; padding: 0; margin: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--blanc); padding: .6rem 1rem; z-index: 99; }
+.skip:focus { left: .5rem; top: .5rem; }
+
+/* Boutons : cibles tactiles ≥ 44 px */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-height: 2.9rem; padding: .6rem 1.2rem; border-radius: 999px;
+  font-weight: 650; text-decoration: none; border: 2px solid transparent; cursor: pointer;
+  font-size: 1rem;
+}
+.btn-cta { background: var(--orange); color: var(--blanc); }
+.btn-cta:hover { background: var(--orange-fonce); color: var(--blanc); }
+.btn-cta-alt { background: var(--blanc); color: var(--vert); border-color: var(--vert); }
+.btn-cta-alt:hover { background: var(--vert-pale); color: var(--vert-fonce); }
+.btn-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0; }
+
+/* En-tête et menu */
+.site-header { background: var(--vert); color: var(--blanc); }
+.header-inner { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; padding-top: .6rem; padding-bottom: .6rem; }
+.logo { display: inline-flex; align-items: center; gap: .5rem; color: var(--blanc); text-decoration: none; font-size: 1.25rem; margin-right: auto; min-height: 2.75rem; }
+.logo:hover { color: var(--blanc); }
+.logo b { color: #ffb48a; }
+.nav-toggle { display: none; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .1rem .3rem; }
+.nav a { display: block; padding: .55rem .6rem; color: var(--blanc); text-decoration: none; border-radius: 8px; }
+.nav a:hover, .nav a[aria-current="page"] { background: var(--vert-fonce); color: var(--blanc); }
+.nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 #ffb48a; }
+/* Avec JS, sur mobile : menu replié derrière le bouton */
+@media (max-width: 899px) {
+  .js .nav-toggle { display: inline-flex; min-height: 2.75rem; padding: .4rem 1rem; background: transparent; color: var(--blanc); border: 2px solid rgb(255 255 255 / .6); border-radius: 999px; font: inherit; font-weight: 650; cursor: pointer; }
+  .js .nav { display: none; width: 100%; }
+  .js .nav.open { display: block; }
+  .js .nav ul { flex-direction: column; padding-bottom: .5rem; }
+  .js .nav a { padding: .75rem .6rem; }
+}
+
+/* Sections */
+.hero { background: linear-gradient(180deg, var(--vert) 0, var(--vert) 35%, var(--fond) 35%); padding: 1.5rem 0 0; }
+.hero-card { background: var(--blanc); border-radius: var(--rayon); box-shadow: var(--ombre); padding: 1.5rem 1.2rem; }
+.page-head { background: var(--vert-pale); padding: 2rem 0 1.5rem; margin-bottom: 1rem; }
+.page-head h1 { margin: 0; }
+.page-head p { margin: .5rem 0 0; }
+section { padding: .5rem 0 1rem; }
+
+.grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+.card { background: var(--blanc); border: 1px solid var(--bord); border-radius: var(--rayon); padding: 1.2rem; }
+.card > :last-child { margin-bottom: 0; }
+.card-accent { border-left: 6px solid var(--orange); }
+.argument h3 { display: flex; gap: .5rem; align-items: center; }
+.argument svg { flex: none; color: var(--orange); }
+
+/* Tarifs : tableau qui reste lisible à 360 px (2 colonnes, détail sous le nom) */
+.tarifs { width: 100%; border-collapse: collapse; background: var(--blanc); border-radius: var(--rayon); overflow: hidden; border: 1px solid var(--bord); }
+.tarifs caption { text-align: left; font-weight: 700; font-size: 1.15rem; color: var(--vert-fonce); padding: 0 0 .5rem; }
+.tarifs th, .tarifs td { padding: .75rem .9rem; border-top: 1px solid var(--bord); text-align: left; vertical-align: top; }
+.tarifs thead th { background: var(--vert-pale); border-top: 0; font-size: .9rem; }
+.tarifs td.prix, .tarifs th.prix { text-align: right; font-weight: 700; width: 6.5rem; } /* « 120 € » ne se coupe pas : espace insécable */
+.tarifs .detail { display: block; font-size: .9rem; color: var(--gris); font-weight: 400; }
+.tarifs-wrap { display: grid; gap: 1.5rem; }
+@media (min-width: 800px) { .tarifs-wrap { grid-template-columns: repeat(2, 1fr); align-items: start; } }
+.mo { font-size: 1.1rem; }
+.mo strong { color: var(--orange-fonce); }
+
+/* Liste « ce que je ne fais pas » */
+.non-list { columns: 1; padding-left: 1.2rem; }
+@media (min-width: 640px) { .non-list { columns: 2; } }
+
+/* Étapes */
+.etapes { counter-reset: e; list-style: none; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 800px) { .etapes { grid-template-columns: repeat(4, 1fr); } }
+.etapes li { counter-increment: e; background: var(--blanc); border: 1px solid var(--bord); border-radius: var(--rayon); padding: 1.1rem 1.1rem 1.1rem 3.6rem; position: relative; }
+.etapes li::before { content: counter(e); position: absolute; left: 1rem; top: 1rem; width: 2rem; height: 2rem; border-radius: 50%; background: var(--orange); color: var(--blanc); font-weight: 700; display: grid; place-items: center; }
+
+/* FAQ */
+.faq details { background: var(--blanc); border: 1px solid var(--bord); border-radius: var(--rayon); margin-bottom: .6rem; }
+.faq summary { cursor: pointer; padding: 1rem 1.1rem; font-weight: 650; min-height: 2.75rem; }
+.faq details > div { padding: 0 1.1rem 1rem; }
+
+/* Contact */
+.contact-actions .btn { flex: 1 1 9rem; }
+.map-box { background: var(--vert-pale); border-radius: var(--rayon); padding: 1rem; text-align: center; }
+.map-box iframe { width: 100%; height: 320px; border: 0; border-radius: 8px; display: block; }
+
+/* Placeholder image (pas de photo inventée) */
+.placeholder-img { aspect-ratio: 4 / 3; background: var(--vert-pale); border: 2px dashed var(--vert); border-radius: var(--rayon); display: grid; place-items: center; text-align: center; padding: 1rem; color: var(--vert-fonce); font-weight: 600; }
+
+/* Pages légales (Markdown) */
+.prose h2 { font-size: 1.3rem; margin-top: 2rem; }
+.prose li { margin-bottom: .3rem; }
+
+/* Vélos BikeStocks */
+.mention-vendeur { background: var(--todo); border: 1px solid #e6cf6a; border-radius: var(--rayon); padding: .8rem 1rem; font-weight: 600; }
+.filtres { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: 1rem 0; }
+.filtres [aria-pressed] { min-height: 2.75rem; padding: .4rem 1rem; border-radius: 999px; border: 2px solid var(--vert); background: var(--blanc); color: var(--vert); font: inherit; font-weight: 600; cursor: pointer; }
+.filtres [aria-pressed="true"] { background: var(--vert); color: var(--blanc); }
+.filtres label { margin-left: auto; display: flex; gap: .4rem; align-items: center; }
+.filtres select { min-height: 2.75rem; font: inherit; padding: .3rem .5rem; border-radius: 8px; border: 2px solid var(--vert); background: var(--blanc); max-width: 100%; }
+.velos { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .velos { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .velos { grid-template-columns: repeat(3, 1fr); } }
+.velo { background: var(--blanc); border: 1px solid var(--bord); border-radius: var(--rayon); overflow: hidden; display: flex; flex-direction: column; }
+.velo-img {
+  aspect-ratio: 560 / 655; position: relative;
+  /* visuel neutre si l'image ne charge pas (img masquée par onerror) */
+  background: var(--vert-pale) url("velo-neutre.svg") center / 55% no-repeat;
+}
+.velo-img img { width: 100%; height: 100%; object-fit: contain; background: var(--blanc); display: block; }
+.badge { display: inline-block; background: var(--orange); color: var(--blanc); font-weight: 700; border-radius: 999px; padding: .1rem .6rem; font-size: .9rem; }
+.velo-img .badge { position: absolute; top: .6rem; left: .6rem; }
+.velo-body { padding: 1rem; display: flex; flex-direction: column; gap: .35rem; flex: 1; }
+.velo-body p { margin: 0; }
+.velo-cat { font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; color: var(--gris); font-weight: 700; }
+.velo-prix { font-size: 1.3rem; font-weight: 800; color: var(--vert-fonce); }
+.velo-prix s { font-size: .95rem; color: var(--gris); font-weight: 400; margin-left: .3rem; }
+.velo .vendeur { font-size: .82rem; color: var(--gris); }
+.velo .btn { margin-top: auto; }
+
+/* Pied de page */
+.site-footer { background: var(--vert-fonce); color: #e9efeb; margin-top: 3rem; padding: 2rem 0; }
+.site-footer a { color: var(--blanc); }
+.footer-grid { display: grid; gap: 1.5rem; }
+@media (min-width: 800px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+.footer-title { font-weight: 700; color: var(--blanc); margin: 0 0 .4rem; }
+.site-footer p { margin: 0 0 .6rem; }
+.site-footer li { margin-bottom: .3rem; }
+
+/* Barre d'appel fixe (mobile uniquement) */
+.callbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; gap: .5rem; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: rgb(251 250 246 / .97); border-top: 1px solid var(--bord); }
+.callbar .btn { flex: 1; }
+@media (min-width: 900px) { .callbar { display: none; } body { padding-bottom: 0; } }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }

@@ -1,0 +1,56 @@
+---
+layout: base.njk
+title: "Vélos à vendre"
+description: "Sélection de vélos route, gravel et VTT en promotion chez BikeStocks, que Brignais Cycle peut monter et régler à réception."
+scripts: ["/assets/velos.js"]
+---
+{#- Page générée uniquement si data/site.json > SHOW_BIKES = true (voir eleventy.config.js). -#}
+{%- from "velo.njk" import carte -%}
+{%- set tel = site.telephone | telHref -%}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Vélos à vendre</h1>
+    <p class="lead">Une sélection de vélos intéressants chez notre partenaire BikeStocks.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <p class="mention-vendeur">{{ site.velos.mention_vendeur }}</p>
+  <p class="small">Sélection mise à jour le {{ bikes.date_maj | dateFr }}. Prix et disponibilités indicatifs, relevés le {{ bikes.date_maj | dateFr }}. Seul le prix affiché sur BikeStocks fait foi.</p>
+
+  <div class="filtres" hidden>
+    <span class="sr-only" id="filtre-label">Filtrer par type</span>
+    <div role="group" aria-labelledby="filtre-label" style="display:flex;flex-wrap:wrap;gap:.5rem">
+      <button type="button" aria-pressed="true" data-filtre="">Tous</button>
+      <button type="button" aria-pressed="false" data-filtre="route">Route</button>
+      <button type="button" aria-pressed="false" data-filtre="gravel">Gravel</button>
+      <button type="button" aria-pressed="false" data-filtre="vtt">VTT</button>
+    </div>
+    <label>Trier
+      <select id="tri">
+        <option value="score">Notre sélection</option>
+        <option value="prix-asc">Prix croissant</option>
+        <option value="prix-desc">Prix décroissant</option>
+        <option value="remise">Plus grosse remise</option>
+      </select>
+    </label>
+  </div>
+  <p class="sr-only" aria-live="polite" id="compte"></p>
+
+  <div class="velos" id="velos">
+    {%- for v in bikes.velos %}
+    {{ carte(v, site.velos.mention_vendeur) }}
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="card card-accent">
+    <h2 style="margin-top:0">Acheté sur BikeStocks ?</h2>
+    <p>Je peux le monter et le régler à l'atelier : {{ site.velos.prix_montage }}.</p>
+    <div class="btn-row">
+      <a class="btn btn-cta" href="tel:{{ tel }}">Appeler</a>
+      <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
+    </div>
+  </div>
+</section>

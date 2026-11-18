@@ -1,0 +1,22 @@
+{
+  "name": "brignais-cycle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine de l'atelier Brignais Cycle + module « Vélos à vendre » (BikeStocks)",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "check": "node scripts/check-site.mjs",
+    "collect": "node scripts/collect.mjs",
+    "collect:dry": "node scripts/collect.mjs --dry-run",
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=20.18"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8",
+    "cheerio": "^1.2.0"
+  }
+}

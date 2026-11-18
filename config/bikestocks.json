@@ -1,0 +1,131 @@
+{
+  "_doc": "Configuration de la collecte BikeStocks (scripts/collect.mjs). Rien n'est codé en dur dans le script : tout se règle ici. Détail de chaque clé dans le README, section « Module Vélos à vendre ».",
+
+  "source": "html",
+  "_source": "« html » = lecture des pages du site (plan B). « flux » = flux produits fourni par BikeStocks au format Google Merchant XML (plan A, voir « flux » plus bas).",
+
+  "base_url": "https://www.bikestocks.es",
+  "user_agent": "BrignaisCycleBot/1.0 (+[À COMPLÉTER : e-mail])",
+  "delai_ms": 2000,
+  "timeout_ms": 20000,
+  "max_requetes": 150,
+  "max_pages_par_categorie": 15,
+  "max_fiches": 36,
+  "_max_fiches": "Nombre de fiches produits ouvertes pour contrôle (JSON-LD, fil d'Ariane, specs) parmi les meilleurs candidats.",
+
+  "categories": [
+    { "url": "https://www.bikestocks.es/fr/aluminium-2010", "type": "route", "libelle": "Route aluminium" },
+    { "url": "https://www.bikestocks.es/fr/de-carbone-2011", "type": "route", "libelle": "Route carbone" },
+    { "url": "https://www.bikestocks.es/fr/gravier-2016", "type": "gravel", "libelle": "Gravel" },
+    { "url": "https://www.bikestocks.es/fr/rigide-275-2002", "type": "vtt", "libelle": "VTT semi-rigide 27,5" },
+    { "url": "https://www.bikestocks.es/fr/double-suspension-2755-2004", "type": "vtt", "libelle": "VTT tout-suspendu 27,5" },
+    { "url": "https://www.bikestocks.es/fr/rigide-29-2006", "type": "vtt", "libelle": "VTT semi-rigide 29" },
+    { "url": "https://www.bikestocks.es/fr/double-suspension-29-2007", "type": "vtt", "libelle": "VTT tout-suspendu 29" }
+  ],
+
+  "_categories_exclues": "Comparées par identifiant numérique (le nombre final) au fil d'Ariane de chaque fiche. Électriques : obligatoires. Enfants / urbains / pliants : [À COMPLÉTER : à confirmer], repris de l'exemple de la consigne.",
+  "categories_exclues": [
+    "bicicletas-electricas-1655", "route-1657", "velo-de-montagne-1658", "gravier-2335", "urbain-2336",
+    "les-enfants-1983", "urbain-1972", "pliant-1976"
+  ],
+
+  "_mots_electriques": "Recherchés (sans accents ni casse, mot entier) dans le nom, le fil d'Ariane, la description et les specs de la fiche. Ne pas y mettre de mots trop courts ou ambigus.",
+  "mots_electriques": [
+    "electrique", "electrica", "electric", "e-bike", "ebike", "emtb", "e-mtb", "vae", "et-velos", "pedelec",
+    "bosch", "shimano ep", "shimano steps", "steps e", "fazua", "mahle", "brose", "bafang",
+    "yamaha pw", "polini", "specialized turbo", "orbea rise", "moteur"
+  ],
+  "_regex_electriques": "Motifs : capacité de batterie en Wh, moteurs TQ HPR, Shimano EP8/EP801, Shimano E8000/E6100… « batterie » seul n'y est pas : les groupes Di2/AXS en ont une.",
+  "regex_electriques": ["\\b\\d{3,4} ?wh\\b", "\\btq[- ]?hpr", "\\bep ?[0-9]{1,3}\\b", "\\be[0-9]{4}\\b"],
+  "specs_electriques": ["motor", "bateria", "display"],
+
+  "selection": {
+    "max_velos": 12,
+    "_gamme": "[À COMPLÉTER : gamme de prix cible] Valeurs reprises de l'exemple de la consigne (600 à 3 500 €). Hors gamme = exclu, sauf vélo épinglé.",
+    "prix_min": 600,
+    "prix_max": 3500,
+    "poids": {
+      "remise_par_point": 2,
+      "par_taille_dispo": 5,
+      "max_tailles_comptees": 4,
+      "marque_reconnue": 10
+    },
+    "_marques_bonus": "[À COMPLÉTER : liste des marques reconnues] Exemple de la consigne.",
+    "marques_bonus": ["BH", "Orbea", "Scott", "Cannondale"],
+    "quotas": [
+      { "types": ["route", "gravel"], "min": 3 },
+      { "types": ["vtt"], "min": 3 }
+    ],
+    "_epingles_bannis": "Identifiants produit BikeStocks (le nombre à la fin de l'URL de la fiche, ex. ...-50538.html). Épinglé = toujours affiché s'il est trouvé, en stock et non électrique.",
+    "epingles": [],
+    "bannis": []
+  },
+
+  "_marques": "Sert à reconnaître la marque dans le nom du produit (« Vélo MERIDA Silex 400 » -> MERIDA). Ajouter ici une marque manquante.",
+  "marques": [
+    "BH", "Orbea", "Scott", "Cannondale", "Merida", "Giant", "Liv", "Conor", "Bianchi", "Focus", "Marin", "Mondraker",
+    "Trek", "Specialized", "Cube", "Lapierre", "Megamo", "Kross", "Ridley", "Wilier", "Pinarello", "Cervelo", "Look",
+    "Santa Cruz", "Commencal", "KTM", "Ghost", "Massi", "Coluer", "MMR", "Felt", "Fuji", "Kona", "Lombardo", "Polygon",
+    "Rose", "Canyon", "Factor", "Basso", "Colnago", "De Rosa", "Time", "BMC", "Niner", "Yeti", "Pivot", "Transition",
+    "Rocky Mountain", "Norco", "Nukeproof", "Vitus", "Ducati", "Berria", "Olympia", "Bergamont", "Haibike", "Moustache"
+  ],
+
+  "_materiaux": "Libellé affiché selon le premier mot trouvé dans la ligne « cadre » de la fiche (sinon rien n'est affiché).",
+  "materiaux": [
+    { "contient": "carbon", "libelle": "Carbone" },
+    { "contient": "titan", "libelle": "Titane" },
+    { "contient": "alu", "libelle": "Aluminium" },
+    { "contient": "acier", "libelle": "Acier" },
+    { "contient": "steel", "libelle": "Acier" },
+    { "contient": "cromo", "libelle": "Acier" }
+  ],
+
+  "_variantes":"Expressions retirées du nom pour reconnaître deux variantes du même modèle (année, taille, couleur).",
+  "variantes_regex": [
+    "\\b(19|20)\\d{2}\\b",
+    "\\bt\\. ?\\w{1,4}\\b",
+    "\\btaille \\w+\\b",
+    "\\b(xxs|xs|s|m|l|xl|xxl)\\b",
+    "\\b(noir|noire|blanc|blanche|rouge|bleu|bleue|vert|verte|gris|grise|jaune|orange|beige|violet|rose|black|white|red|blue|green|grey)\\b"
+  ],
+
+  "selecteurs": {
+    "_doc": "Sélecteurs CSS (cheerio) relevés sur bikestocks.es le 18/11/2026. Si le site change, c'est ici qu'on les corrige ; les tests (npm test) échouent clairement si la structure ne correspond plus.",
+    "liste": {
+      "produit": "article.js-product-miniature",
+      "attribut_id": "data-id-product",
+      "lien": ".product-title a",
+      "image": ".product-thumbnail img",
+      "prix": ".product-price-and-shipping .price",
+      "prix_barre": ".product-price-and-shipping .regular-price-dis",
+      "taille": ".bonattribute-btn.radio",
+      "attribut_taille_nom": "title",
+      "attribut_taille_stock": "data-quantity",
+      "page_suivante": "a[rel=next]"
+    },
+    "fiche": {
+      "json_ld": "script[type=\"application/ld+json\"]",
+      "fil_ariane": "ol.breadcrumbs a",
+      "prix_barre": ".product-prices .regular-price",
+      "description": "#description",
+      "spec_cellule": "#description td",
+      "spec_icone_regex": "/productos/([\\w-]+)\\.png",
+      "spec_materiau": "cuadros",
+      "spec_transmission": "cambio"
+    }
+  },
+
+  "flux": {
+    "_doc": "Plan A : flux fourni par BikeStocks (export Google Merchant XML de PrestaShop). Mettre « source »: « flux » et l'URL ci-dessous. Le robots.txt ne s'applique pas à un flux transmis par le partenaire.",
+    "url": "",
+    "types": [
+      { "contient": "gravier", "type": "gravel" },
+      { "contient": "gravel", "type": "gravel" },
+      { "contient": "route", "type": "route" },
+      { "contient": "carretera", "type": "route" },
+      { "contient": "montagne", "type": "vtt" },
+      { "contient": "vtt", "type": "vtt" },
+      { "contient": "mtb", "type": "vtt" }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "_lisez_moi": "Coordonnées et réglages du site. Tout texte « [À COMPLÉTER : …] » doit être remplacé avant la mise en ligne (npm run check les liste).",
+
+  "SHOW_BIKES": false,
+
+  "nom": "Brignais Cycle",
+  "url": "[À COMPLÉTER : https://nom-de-domaine.fr]",
+  "slogan": "Ton atelier vélo à Brignais, sur rendez-vous",
+  "description": "Atelier de réparation et d'entretien vélo à Brignais (69530), sur rendez-vous. Prix affichés, réparation dans le créneau. Route, gravel, VTT.",
+
+  "exploitant": "Thomas BERTHILLOT",
+  "statut": "entrepreneur individuel (EI) sous le régime de la micro-entreprise, artisan",
+  "ape": "9529Z",
+  "siren": "[À COMPLÉTER : SIREN]",
+  "adresse_legale": "[À COMPLÉTER : adresse ou domiciliation]",
+  "ville": "Brignais",
+  "code_postal": "69530",
+  "lieu_public": "Brignais – adresse communiquée lors de la prise de rendez-vous",
+
+  "telephone": "[À COMPLÉTER : numéro]",
+  "email": "[À COMPLÉTER : e-mail]",
+  "assureur": "[À COMPLÉTER : assureur]",
+
+  "mediateur": {
+    "nom": "[À COMPLÉTER : nom du médiateur de la consommation]",
+    "adresse": "[À COMPLÉTER : adresse postale du médiateur]",
+    "site": "[À COMPLÉTER : site web du médiateur]"
+  },
+
+  "hebergeur": {
+    "nom": "GitHub, Inc. (service GitHub Pages)",
+    "adresse": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
+    "site": "https://github.com",
+    "telephone": "[À COMPLÉTER : téléphone de l'hébergeur, à vérifier sur github.com]",
+    "confidentialite": "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement"
+  },
+
+  "creneaux": [
+    {
+      "jours": "Soirs de semaine",
+      "horaires": "17h30 – 19h",
+      "note": "une semaine sur deux ([À COMPLÉTER : semaines paires/impaires ou calendrier])"
+    },
+    {
+      "jours": "Samedi et dimanche",
+      "horaires": "10h – 12h et 14h – 18h",
+      "note": "",
+      "_jsonld": "Horaires lus par Google (données structurées). Les soirs « une semaine sur deux » ne sont pas exprimables : ils restent dans le texte.",
+      "jsonld": [
+        { "jours": ["Saturday", "Sunday"], "ouverture": "10:00", "fermeture": "12:00" },
+        { "jours": ["Saturday", "Sunday"], "ouverture": "14:00", "fermeture": "18:00" }
+      ]
+    }
+  ],
+
+  "paiements": ["Virement instantané", "Wero", "Lydia", "Espèces"],
+  "paiement_refuse": "Pas de carte bancaire.",
+
+  "zone": ["Brignais", "Chaponost", "Vourles", "Millery", "Saint-Genis-Laval", "Soucieu-en-Jarrest"],
+
+  "a_propos": "[À COMPLÉTER : texte de présentation, 3-5 lignes]",
+  "a_propos_pourquoi": "[À COMPLÉTER : pourquoi cet atelier, 2-3 lignes]",
+
+  "pieces_client": "[À COMPLÉTER : pièces fournies par le client acceptées ou non]",
+  "garantie_reparations": "[À COMPLÉTER : garantie des réparations (durée, conditions)]",
+  "velo_non_recupere": "[À COMPLÉTER : politique en cas de vélo non récupéré]",
+
+  "velos": {
+    "utm": "utm_source=brignaiscycle&utm_medium=referral",
+    "prix_montage": "[À COMPLÉTER : prix du montage]",
+    "mention_vendeur": "Vendu et expédié par BikeStocks (Espagne). Brignais Cycle peut assurer le montage et le réglage à réception."
+  },
+
+  "_goatcounter": "Mesure d'audience sans cookie, désactivée. Pour l'activer : mettre le code GoatCounter (ex. « brignaiscycle » pour brignaiscycle.goatcounter.com).",
+  "goatcounter": ""
+}
