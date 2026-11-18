@@ -50,7 +50,8 @@ data/
 config/
   bikestocks.json    tout le réglage de la collecte : catégories, exclusions, poids, sélecteurs…
 src/
-  _includes/         gabarits (base.njk, legal.njk, velo.njk = carte vélo)
+  _includes/         gabarits : base.njk (en-tête, pied), page-tete.njk, bande-rdv.njk,
+                     tarifs.njk (lignes de prix), velo.njk (carte vélo), plan-velo.svg, icones.njk
   *.njk              pages
   mentions-legales.md, cgv.md, confidentialite.md   pages juridiques (Markdown)
   assets/            CSS, JS, favicon, image de partage Facebook (og.png)
@@ -73,7 +74,9 @@ Tout se fait dans `data/`, puis commit et push : le site se redéploie tout seul
 | Les créneaux | `data/site.json` | `creneaux[]`. Pense à `jsonld` (horaires lus par Google). |
 | Téléphone, e-mail, assureur, SIREN… | `data/site.json` | `telephone`, `email`, `assureur`, `siren`… |
 | La FAQ | `data/faq.json` | `questions[]`. `{site.cle}` est remplacé par la valeur de `site.json`. |
-| Une photo « À propos » | `src/a-propos.njk` | remplacer le bloc `placeholder-img` par une balise `<img>` |
+| L'accroche de l'accueil | `data/site.json` | `accroche` (passage surligné entre `*étoiles*`) |
+| Les légendes du dessin de l'accueil | `data/tarifs.json` | `"repere"` : `cadre`, `cassette`, `roue` ou `disque` |
+| Une photo « À propos » | `src/a-propos.njk` | remplacer le bloc `photo-cadre` par une balise `<img>` |
 | Les textes juridiques | `src/mentions-legales.md`, `src/cgv.md`, `src/confidentialite.md` | Markdown. **À relire avant mise en ligne.** |
 
 Les prix s'affichent toujours en net, sans « HT/TTC » (TVA non applicable, art. 293 B du CGI).
@@ -201,11 +204,25 @@ BikeStocks tourne sous PrestaShop. Le plus simple et le plus fiable est de lui d
 
 ## Design
 
-**Piste 1 « Atelier » (implémentée)** : vert sapin `#1d4a3a`, fond crème `#fbfaf6`, appels à l'action orange brûlé `#b93d0b` (contraste 5,6:1 sur blanc). Polices système, donc aucun appel à Google Fonts et un affichage instantané. Cartes arrondies, barre « Appeler / SMS » fixe en bas d'écran sur mobile.
+Direction artistique **« fiche d'atelier »** : un plan technique et un ticket de réparation plutôt qu'un modèle de site générique. Toutes les règles sont dans `src/assets/style.css`, variables en tête de fichier.
 
-**Piste 2 « Maillot » (non implémentée)** : anthracite `#1f1f1f` et blanc, accent jaune maillot `#ffd23f` réservé aux boutons (texte noir dessus), titres en capitales serrées, photos d'atelier en noir et blanc. Plus « sport », moins chaleureux. Pour la tester, changer les variables `--vert`, `--orange`… en tête de `src/assets/style.css`.
+| Élément | Choix |
+|---|---|
+| Couleurs | papier `#f3efe7`, encre `#141518`, un seul signal orange `#ff5a1f`. L'orange n'est **jamais** une couleur de texte sur fond clair (contraste insuffisant) : il sert de fond (texte encre dessus, 6,4:1), de trait ou de point. |
+| Titres | **Archivo** condensée (axe de largeur variable), en capitales serrées |
+| Étiquettes, prix, boutons | **Martian Mono** |
+| Polices | Auto-hébergées, aucun appel à Google Fonts. Copiées depuis les paquets npm `@fontsource-variable/*` au build (`eleventy.config.js`), environ 110 Ko au total. |
+| Signature | Dessin technique du vélo sur l'accueil (`src/_includes/plan-velo.svg`, généré par script) : il se trace à l'ouverture, avec de vrais tarifs en légende. Grille tarifaire avec points de conduite, ticket main-d'œuvre, bande orange « rendez-vous », très grand nom en contour en pied de page. |
+| Mouvement | Tracé du vélo, bandeau défilant, blocs qui glissent en place au défilement, pédalier qui tourne avec la page (CSS natif, sans bibliothèque). Tout est coupé si le visiteur a demandé à réduire les animations, et le contenu reste visible sans JavaScript. |
+| Typographie française | Espaces fines insécables avant `: ; ! ?` et dans les guillemets, apostrophes courbes. Ajoutées automatiquement au build (transformation `typo-fr`). |
 
-Logo : pour l'instant un pictogramme de roue + le nom en texte (`src/_includes/base.njk`, `src/assets/favicon.svg`). Image de partage Facebook : `src/assets/og.png` (1200×630), à remplacer par une vraie photo de l'atelier si possible.
+Mesures Lighthouse (18/11/2026, 6 pages principales, mobile et bureau, site servi en gzip comme sur GitHub Pages) : **100** en performance, accessibilité, bonnes pratiques et SEO. Le SEO n'atteint 100 que parce que les balises canoniques sont masquées tant que `url` n'est pas renseignée. Elles réapparaissent dès qu'elle l'est.
+
+**Modifier l'accroche** : `data/site.json > accroche`. Le passage entre `*étoiles*` est surligné en orange.
+
+**Modifier les légendes du dessin** : clé `"repere"` dans `data/tarifs.json`, avec les valeurs `cadre`, `cassette`, `roue` ou `disque` (une prestation par repère). Le prix affiché suit la grille. La position des étiquettes se règle dans `src/index.njk` (`positions`).
+
+Logo : pédalier + nom en texte (`src/_includes/icones.njk`, `src/assets/favicon.svg`). Image de partage Facebook : `src/assets/og.png` (1200×630), à remplacer par une vraie photo de l'atelier si possible.
 
 ## À compléter avant la mise en ligne
 

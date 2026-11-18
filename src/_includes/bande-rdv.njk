@@ -1,0 +1,26 @@
+{#- Bande orange « rendez-vous » : appel, SMS, e-mail et créneaux. Incluse en bas des pages principales. -#}
+{%- from "icones.njk" import fleche -%}
+{%- set tel = site.telephone | telHref -%}
+<section class="bande-rdv" aria-labelledby="rdv-titre">
+  <div class="wrap bande-grid">
+    <div>
+      <p class="label"><span class="section-num">RDV</span></p>
+      <h2 id="rdv-titre">Un appel, un créneau, c'est réparé.</h2>
+      <div class="actions">
+        <a class="btn btn-encre" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
+        <a class="btn btn-ligne" href="sms:{{ tel }}">SMS</a>
+        <a class="btn btn-ligne" href="mailto:{{ site.email }}">E-mail</a>
+      </div>
+      <p class="label">{{ site.lieu_public }}</p>
+    </div>
+    <dl class="horaires">
+      {%- for c in site.creneaux %}
+      <div>
+        <dt class="label">{{ c.jours }}</dt>
+        <dd>{{ c.horaires }}{% if c.note %} <span class="note">{{ c.note }}</span>{% endif %}</dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </div>
+  {% include "pignon.svg" %}
+</section>

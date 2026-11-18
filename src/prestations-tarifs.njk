@@ -1,81 +1,87 @@
 ---
 layout: base.njk
 title: "Prestations & tarifs"
+surtitre: "Tarifs atelier"
+chapo: "Les prix sont affichés avant que tu viennes : pas de surprise sur la facture."
 description: "Tarifs de l'atelier vélo Brignais Cycle : révision 40 €, Révision Plus 120 €, crevaison 10 €, tubeless 25 € par roue. Main-d'œuvre 7,50 € les 10 minutes. Devis gratuit."
 ---
-{%- set tel = site.telephone | telHref -%}
-<div class="page-head">
-  <div class="wrap">
-    <h1>Prestations & tarifs</h1>
-    <p class="lead">Les prix sont affichés avant que tu viennes, pour ne pas avoir de surprise.</p>
-  </div>
-</div>
+{%- from "tarifs.njk" import lignes -%}
+{%- set mo = tarifs.main_oeuvre -%}
+{% include "page-tete.njk" %}
 
-<section class="wrap">
-  <div class="card card-accent mo">
-    <p>Main-d'œuvre : <strong>{{ tarifs.main_oeuvre.prix_tranche | euros }} par tranche de {{ tarifs.main_oeuvre.minutes }} minutes</strong> ({{ tarifs.main_oeuvre.taux_horaire | euros }}/h). Les pièces sont facturées en plus, sur une ligne séparée.</p>
+<section class="section wrap" aria-label="Main-d'œuvre">
+  <div class="ticket apparait">
+    <div class="ticket-prix">
+      <p class="label">Main-d'œuvre</p>
+      <b>{{ mo.prix_tranche | euros }}</b>
+      <p class="label">par tranche de {{ mo.minutes }} minutes</p>
+    </div>
+    <ul class="ticket-infos">
+      <li>soit {{ mo.taux_horaire | euros }} de l'heure, pour tout ce qui n'est pas dans la grille</li>
+      <li>pièces facturées en plus, sur une ligne séparée</li>
+      <li>devis gratuit sur demande, avant toute intervention</li>
+    </ul>
   </div>
+</section>
 
-  <h2>La grille</h2>
-  <div class="tarifs-wrap">
+<section class="section wrap" aria-labelledby="grille">
+  <header class="section-tete">
+    <span class="section-num label">01 — La grille</span>
+    <h2 id="grille">Prix par prestation.</h2>
+  </header>
+  <div class="tableau">
     {%- for cat in tarifs.categories %}
-    <table class="tarifs">
-      <caption>{{ cat.nom }}</caption>
-      <thead><tr><th scope="col">Prestation</th><th scope="col" class="prix">Prix</th></tr></thead>
-      <tbody>
-        {%- for p in cat.prestations %}
-        <tr>
-          <th scope="row">{{ p.nom }}{% if p.detail %}<span class="detail">{{ p.detail }}</span>{% endif %}</th>
-          <td class="prix">{{ p.prix | euros }}</td>
-        </tr>
-        {%- endfor %}
-      </tbody>
-    </table>
+    <section class="tableau-cat apparait" aria-labelledby="cat-{{ loop.index }}">
+      <h3 id="cat-{{ loop.index }}"><span class="label">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>{{ cat.nom }}</h3>
+      {{ lignes(cat.prestations) }}
+    </section>
     {%- endfor %}
   </div>
-  <p><strong>Les pièces sont facturées en plus, au prix affiché. Devis gratuit sur demande avant toute intervention.</strong></p>
+  <p class="note-tarifs">Les pièces sont facturées en plus, au prix affiché. Devis gratuit sur demande avant toute intervention.</p>
 </section>
 
-<section class="wrap" aria-labelledby="creneau">
-  <h2 id="creneau">Le principe du créneau</h2>
-  <div class="grid grid-2">
-    <div class="card">
-      <h3>Tout se fait pendant le rendez-vous</h3>
-      <p>Tu déposes ton vélo, je le répare, tu repars avec. Je n'ai pas de place pour stocker des vélos : pas de « repassez dans trois jours ».</p>
-    </div>
-    <div class="card">
-      <h3>Interventions longues</h3>
-      <p>Pour une révision complète (Révision Plus), on convient ensemble d'une récupération le lendemain.</p>
-    </div>
-  </div>
+<section class="section wrap" aria-labelledby="creneau">
+  <header class="section-tete">
+    <span class="section-num label">02 — Le créneau</span>
+    <h2 id="creneau">Tout se joue au même rendez-vous.</h2>
+    <p class="chapo">L'atelier n'a pas de place pour stocker des vélos : pas de « repassez dans trois jours ».</p>
+  </header>
+  <ol class="creneau-schema apparait">
+    <li><b>Dépose</b></li>
+    <li><b>Réparation</b></li>
+    <li><b>Restitution</b></li>
+  </ol>
+  <p class="creneau-accolade label">Le même créneau. Seule exception : la Révision Plus, récupérée le lendemain.</p>
 </section>
 
-<section class="wrap" aria-labelledby="non">
-  <h2 id="non">Ce que je ne fais pas (encore)</h2>
-  <div class="card">
-    <ul class="non-list">
-      {%- for n in tarifs.non_proposees %}
-      <li>{{ n }}</li>
-      {%- endfor %}
-    </ul>
-    <p class="small">Pour ces interventions, mieux vaut un atelier équipé pour : je préfère te le dire tout de suite.</p>
-  </div>
+<section class="section wrap" aria-labelledby="hors">
+  <header class="section-tete">
+    <span class="section-num label">03 — Hors atelier</span>
+    <h2 id="hors">Ce que je ne fais pas (encore).</h2>
+    <p class="chapo">Pour ces interventions, mieux vaut un atelier équipé pour : je préfère te le dire tout de suite.</p>
+  </header>
+  <ul class="hors apparait">
+    {%- for n in tarifs.non_proposees %}
+    <li>{{ n }}</li>
+    {%- endfor %}
+  </ul>
 </section>
 
-<section class="wrap" aria-labelledby="autres">
-  <h2 id="autres">Aussi à l'atelier</h2>
-  <div class="grid grid-2">
-    <div class="card">
+<section class="section wrap" aria-labelledby="aussi">
+  <header class="section-tete">
+    <span class="section-num label">04 — Aussi à l'atelier</span>
+    <h2 id="aussi">Pièces et montage.</h2>
+  </header>
+  <div class="grille grille-2">
+    <div class="bloc apparait">
       <h3>Consommables</h3>
       <p>{{ tarifs.consommables }} Facturés au prix affiché.</p>
     </div>
-    <div class="card">
+    <div class="bloc apparait">
       <h3>Montage de vélos achetés sur BikeStocks</h3>
       <p>Tu as commandé un vélo chez BikeStocks ? Je le monte et je le règle à réception : {{ site.velos.prix_montage }}.</p>
     </div>
   </div>
-  <div class="btn-row">
-    <a class="btn btn-cta" href="tel:{{ tel }}">Appeler pour un rendez-vous</a>
-    <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
-  </div>
 </section>
+
+{% include "bande-rdv.njk" %}

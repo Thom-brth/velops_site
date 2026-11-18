@@ -4,75 +4,122 @@ title: "Brignais Cycle · Atelier vélo à Brignais, sur rendez-vous"
 description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vous. Prix affichés : révision dès 40 €, crevaison 10 €. Dépose, réparation et restitution dans le même créneau."
 ---
 {%- from "velo.njk" import carte -%}
+{%- from "tarifs.njk" import lignes -%}
+{%- from "icones.njk" import fleche -%}
 {%- set tel = site.telephone | telHref -%}
-<div class="hero">
-  <div class="wrap">
-    <div class="hero-card">
-      <h1>{{ site.slogan }}</h1>
-      <p class="lead">Route, gravel, VTT : je répare et j'entretiens ton vélo dans mon atelier, à Brignais. Tu déposes, je répare, tu repars avec ton vélo dans le même créneau.</p>
-      <div class="btn-row">
-        <a class="btn btn-cta" href="tel:{{ tel }}">Appeler {{ site.telephone }}</a>
-        <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
+{#- Position des légendes sur le dessin (unités du viewBox 800×530) : a = point visé, l = centre de l'étiquette. -#}
+{%- set positions = {
+  cadre:    { ax: 408, ay: 153, lx: 350, ly: 40 },
+  cassette: { ax: 210, ay: 330, lx: 120, ly: 52 },
+  roue:     { ax: 683, ay: 237, lx: 672, ly: 74 },
+  disque:   { ax: 608, ay: 348, lx: 600, ly: 506 }
+} -%}
+{%- set reperes = [] -%}
+{%- set phares = [] -%}
+{%- for cat in tarifs.categories %}{% for p in cat.prestations %}
+  {%- if p.phare %}{% set _ = phares.push(p) %}{% endif %}
+  {%- if positions[p.repere] %}{% set _ = reperes.push({ p: p, pos: positions[p.repere] }) %}{% endif %}
+{%- endfor %}{% endfor -%}
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>
+        <span class="surtitre label">{{ site.slogan }}</span>
+        <span class="accroche">{{ site.accroche | surligne | safe }}</span>
+      </h1>
+      <p class="chapo">Route, gravel, VTT : entretien et réparation dans le même créneau. Prix affichés, devis gratuit, pièces facturées à part.</p>
+      <div class="actions">
+        <a class="btn btn-signal" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
+        <a class="btn btn-ligne" href="sms:{{ tel }}">Envoyer un SMS</a>
       </div>
-      <p class="small">Uniquement sur rendez-vous · {{ site.lieu_public }}</p>
+      <p class="label gris">{{ site.lieu_public }}</p>
     </div>
+
+    <figure class="plan">
+      <div class="plan-dessin">
+        <svg viewBox="0 0 800 530" aria-hidden="true" focusable="false">
+          {% include "plan-velo.svg" %}
+          {%- for r in reperes %}
+          <line class="leader" x1="{{ r.pos.ax }}" y1="{{ r.pos.ay }}" x2="{{ r.pos.lx }}" y2="{{ r.pos.ly }}"/>
+          <circle class="onde" cx="{{ r.pos.ax }}" cy="{{ r.pos.ay }}" r="7"/>
+          <circle class="point" cx="{{ r.pos.ax }}" cy="{{ r.pos.ay }}" r="6"/>
+          {%- endfor %}
+        </svg>
+        <ul class="reperes">
+          {%- for r in reperes %}
+          <li class="repere" style="--x:{{ r.pos.lx / 8 }}%;--y:{{ r.pos.ly / 5.3 }}%;--i:{{ loop.index0 }}">
+            <span class="label">{{ r.p.nom }}</span><b>{{ r.p.prix | euros }}</b>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <figcaption class="label"><span>Fig. 01 — Vélo de route, côté transmission</span><span>Main-d'œuvre seule, pièces en sus</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="defile" aria-hidden="true">
+  <div class="defile-piste">
+    {%- for i in [1, 2] %}{% for cat in tarifs.categories %}<span>{{ cat.nom }}</span>{% endfor %}<span>Route</span><span>Gravel</span><span>VTT</span>{% endfor %}
   </div>
 </div>
 
-<section class="wrap" aria-labelledby="pourquoi">
-  <h2 id="pourquoi">Pourquoi venir ici</h2>
-  <div class="grid grid-3">
-    <div class="card argument">
-      <h3><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 11.6 12.4 2.6A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7c0 .55.22 1.05.59 1.42l9 9a2 2 0 0 0 2.82 0l7-7a2 2 0 0 0 0-2.82ZM6.5 8A1.5 1.5 0 1 1 6.5 5a1.5 1.5 0 0 1 0 3Z"/></svg>Des prix clairs</h3>
-      <p>Les tarifs sont affichés avant de venir. Main-d'œuvre à {{ tarifs.main_oeuvre.prix_tranche | euros }} les {{ tarifs.main_oeuvre.minutes }} minutes, pièces sur une ligne à part, devis gratuit sur demande.</p>
-    </div>
-    <div class="card argument">
-      <h3><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21.35 10.55 20C5.4 15.36 2 12.28 2 8.5A5.42 5.42 0 0 1 7.5 3c1.74 0 3.41.81 4.5 2.09A6 6 0 0 1 16.5 3 5.42 5.42 0 0 1 22 8.5c0 3.78-3.4 6.86-8.55 11.54Z"/></svg>Un mécanicien passionné</h3>
-      <p>Un seul interlocuteur : celui qui te répond au téléphone est celui qui répare ton vélo. Pas de comptoir, pas d'intermédiaire.</p>
-    </div>
-    <div class="card argument">
-      <h3><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>Rapide</h3>
-      <p>Dépose, réparation et restitution dans le même créneau : pas besoin de laisser ton vélo une semaine. Seule une révision complète demande une récupération le lendemain.</p>
-    </div>
-  </div>
+<section class="section wrap" aria-labelledby="maison">
+  <header class="section-tete">
+    <span class="section-num label">01 — La maison</span>
+    <h2 id="maison">Un atelier, trois règles.</h2>
+    <p class="chapo">Pas de comptoir, pas de vélo qui dort au fond d'un garage : un rendez-vous, une réparation, un prix connu d'avance.</p>
+  </header>
+  <ol class="faits">
+    <li class="apparait">
+      <p class="fait-chiffre">{{ tarifs.main_oeuvre.prix_tranche | euros }}</p>
+      <p class="fait-titre label">Des prix clairs</p>
+      <p>les {{ tarifs.main_oeuvre.minutes }} minutes de main-d'œuvre ({{ tarifs.main_oeuvre.taux_horaire | euros }}/h). Pièces sur une ligne à part, devis gratuit avant toute intervention.</p>
+    </li>
+    <li class="apparait">
+      <p class="fait-chiffre">1 créneau</p>
+      <p class="fait-titre label">Rapide</p>
+      <p>Dépose, réparation et restitution au même rendez-vous. Seule la révision complète se récupère le lendemain.</p>
+    </li>
+    <li class="apparait">
+      <p class="fait-chiffre">1 mécano</p>
+      <p class="fait-titre label">Un mécanicien passionné</p>
+      <p>Celui qui te répond au téléphone est celui qui répare ton vélo. Pas d'intermédiaire.</p>
+    </li>
+  </ol>
 </section>
 
-<section class="wrap" aria-labelledby="phares">
-  <h2 id="phares">Les prestations les plus demandées</h2>
-  <div class="grid grid-3">
-    {%- for cat in tarifs.categories %}{% for p in cat.prestations %}{% if p.phare %}
-    <div class="card card-accent">
-      <h3>{{ p.nom }}</h3>
-      {%- if p.detail %}<p class="small">{{ p.detail }}</p>{% endif %}
-      <p class="velo-prix">{{ p.prix | euros }}</p>
-    </div>
-    {%- endif %}{% endfor %}{% endfor %}
+<section class="section wrap" aria-labelledby="tarifs-titre">
+  <header class="section-tete">
+    <span class="section-num label">02 — Tarifs</span>
+    <h2 id="tarifs-titre">Les plus demandés.</h2>
+    <p class="chapo">Les prix de main-d'œuvre, affichés avant de venir. Les pièces sont facturées en plus, au prix affiché.</p>
+  </header>
+  <div class="tableau-accueil apparait">
+    {{ lignes(phares) }}
   </div>
-  <p>Pièces facturées en plus, au prix affiché. <a href="/prestations-tarifs/">Voir toute la grille tarifaire</a></p>
+  <div class="actions">
+    <a class="btn btn-ligne" href="/prestations-tarifs/">Toute la grille tarifaire {{ fleche() }}</a>
+  </div>
 </section>
 
 {%- if site.SHOW_BIKES and bikes.velos.length %}
-<section class="wrap" aria-labelledby="velos">
-  <h2 id="velos">Envie d'un nouveau vélo ?</h2>
-  <p>Une sélection de vélos en promo chez notre partenaire BikeStocks, que je peux monter et régler à réception.</p>
+<section class="section wrap" aria-labelledby="velos-titre">
+  <header class="section-tete">
+    <span class="section-num label">03 — Vélos à vendre</span>
+    <h2 id="velos-titre">Envie d'un vélo neuf ?</h2>
+    <p class="chapo">Une sélection de vélos en promotion chez notre partenaire BikeStocks, que je peux monter et régler à réception.</p>
+  </header>
   <div class="velos">
     {%- for v in bikes.velos.slice(0, 3) %}
     {{ carte(v, site.velos) }}
     {%- endfor %}
   </div>
-  <p><a class="btn btn-cta-alt" href="/velos-a-vendre/">Voir toute la sélection</a></p>
+  <div class="actions">
+    <a class="btn btn-ligne" href="/velos-a-vendre/">Toute la sélection {{ fleche() }}</a>
+  </div>
 </section>
 {%- endif %}
 
-<section class="wrap" aria-labelledby="rdv">
-  <h2 id="rdv">Prendre rendez-vous</h2>
-  <div class="card">
-    <p>Appelle ou envoie un SMS au <a href="tel:{{ tel }}">{{ site.telephone }}</a>, ou écris à <a href="mailto:{{ site.email }}">{{ site.email }}</a>. On fixe un créneau ensemble :</p>
-    <ul>
-      {%- for c in site.creneaux %}
-      <li><strong>{{ c.jours }}</strong> : {{ c.horaires }}{% if c.note %}, {{ c.note }}{% endif %}</li>
-      {%- endfor %}
-    </ul>
-    <p><a href="/comment-ca-marche/">Comment se passe un rendez-vous ?</a></p>
-  </div>
-</section>
+{% include "bande-rdv.njk" %}

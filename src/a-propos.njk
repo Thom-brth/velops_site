@@ -1,25 +1,28 @@
 ---
 layout: base.njk
 title: "À propos"
+surtitre: "L'atelier"
 description: "Brignais Cycle, l'atelier vélo de Thomas Berthillot à Brignais : un artisan, un garage, des prix affichés et des réparations faites dans le créneau."
 ---
-<div class="page-head">
-  <div class="wrap">
-    <h1>À propos</h1>
-  </div>
-</div>
+{% include "page-tete.njk" %}
 
-<section class="wrap">
-  <div class="grid grid-2">
+<section class="section wrap">
+  <div class="grille grille-2">
     <div>
-      <h2 style="margin-top:0">Qui je suis</h2>
-      <p>Je m'appelle {{ site.exploitant }}.</p>
-      <p>{{ site.a_propos }}</p>
-      <h2>Pourquoi cet atelier</h2>
-      <p>{{ site.a_propos_pourquoi }}</p>
-      <p>L'atelier est installé dans un garage privé à Brignais et fonctionne uniquement sur rendez-vous. Je suis artisan, inscrit au Registre national des entreprises, et assuré en responsabilité civile professionnelle ({{ site.assureur }}).</p>
+      <div class="bloc apparait">
+        <p class="label">Qui je suis</p>
+        <p class="texte-long">Je m'appelle {{ site.exploitant }}.</p>
+        <p class="texte-long">{{ site.a_propos }}</p>
+      </div>
+      <div class="bloc apparait" style="margin-top:2.5rem">
+        <p class="label">Pourquoi cet atelier</p>
+        <p class="texte-long">{{ site.a_propos_pourquoi }}</p>
+        <p>L'atelier est installé dans un garage privé à Brignais et fonctionne uniquement sur rendez-vous. Je suis artisan, inscrit au Registre national des entreprises, et assuré en responsabilité civile professionnelle ({{ site.assureur }}).</p>
+      </div>
     </div>
     {#- Pas de photo inventée : remplacer ce bloc par <img src="/assets/photo-atelier.jpg" alt="…" width="…" height="…"> -#}
-    <div class="placeholder-img" role="img" aria-label="Emplacement pour une photo de l'atelier">[À COMPLÉTER : photo de l'atelier ou de l'exploitant]</div>
+    <div class="photo-cadre label" role="img" aria-label="Emplacement pour une photo de l'atelier">[À COMPLÉTER : photo de l'atelier ou de l'exploitant]</div>
   </div>
 </section>
+
+{% include "bande-rdv.njk" %}

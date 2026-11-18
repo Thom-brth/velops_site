@@ -14,7 +14,9 @@ const sortie = path.join(racine, "_site");
 if (!fs.existsSync(sortie)) throw new Error("Lancer d'abord npm run build");
 
 const fichiers = fs.readdirSync(sortie, { recursive: true }).map(String).filter((f) => /\.(html|xml|txt|js)$/.test(f));
-const lire = (f) => fs.readFileSync(path.join(sortie, f), "utf8");
+// Annule la typographie française du build (espaces fines, apostrophes) pour comparer avec les textes de data/*.json.
+const brut = (s) => s.replaceAll(" ", " ").replaceAll("’", "'");
+const lire = (f) => brut(fs.readFileSync(path.join(sortie, f), "utf8"));
 const erreurs = [];
 const todos = {};
 const externe = (u) => /^(https?:)?\/\//.test(u);
@@ -38,8 +40,8 @@ const pageVelos = path.join(sortie, "velos-a-vendre", "index.html");
 if (site.SHOW_BIKES) {
   if (!fs.existsSync(pageVelos)) erreurs.push("SHOW_BIKES=true mais la page vélos n'est pas générée");
   else {
-    const html = fs.readFileSync(pageVelos, "utf8");
-    const cartes = html.split('<article class="velo"').slice(1);
+    const html = brut(fs.readFileSync(pageVelos, "utf8"));
+    const cartes = html.split(/<article class="velo[ "]/).slice(1);
     if (cartes.length > 12) erreurs.push(`page vélos : ${cartes.length} cartes (> 12)`);
     if (cartes.length !== bikes.velos.length) erreurs.push(`page vélos : ${cartes.length} cartes pour ${bikes.velos.length} vélos dans bikes.json`);
     cartes.forEach((c, i) => {

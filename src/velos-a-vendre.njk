@@ -1,32 +1,30 @@
 ---
 layout: base.njk
 title: "Vélos à vendre"
+surtitre: "Partenaire BikeStocks"
+chapo: "Une sélection de vélos intéressants chez notre partenaire BikeStocks, que je peux monter et régler à réception."
 description: "Sélection de vélos route, gravel et VTT en promotion chez BikeStocks, que Brignais Cycle peut monter et régler à réception."
 scripts: ["/assets/velos.js"]
 ---
 {#- Page générée uniquement si data/site.json > SHOW_BIKES = true (voir velos-a-vendre.11tydata.js). -#}
 {%- from "velo.njk" import carte -%}
+{%- from "icones.njk" import fleche -%}
 {%- set tel = site.telephone | telHref -%}
-<div class="page-head">
-  <div class="wrap">
-    <h1>Vélos à vendre</h1>
-    <p class="lead">Une sélection de vélos intéressants chez notre partenaire BikeStocks.</p>
-  </div>
-</div>
+{% include "page-tete.njk" %}
 
-<section class="wrap">
+<section class="section wrap" aria-label="Sélection de vélos">
   <p class="mention-vendeur">{{ site.velos.mention_vendeur }}</p>
-  <p class="small">Sélection mise à jour le {{ bikes.date_maj | dateFr }}. Prix et disponibilités indicatifs, relevés le {{ bikes.date_maj | dateFr }}. Seul le prix affiché sur BikeStocks fait foi.</p>
+  <p class="label gris">Sélection mise à jour le {{ bikes.date_maj | dateFr }}. Prix et disponibilités indicatifs, relevés le {{ bikes.date_maj | dateFr }}. Seul le prix affiché sur BikeStocks fait foi.</p>
 
   <div class="filtres" hidden>
     <span class="sr-only" id="filtre-label">Filtrer par type</span>
-    <div role="group" aria-labelledby="filtre-label" style="display:flex;flex-wrap:wrap;gap:.5rem">
+    <div class="filtres-groupe" role="group" aria-labelledby="filtre-label">
       <button type="button" aria-pressed="true" data-filtre="">Tous</button>
       <button type="button" aria-pressed="false" data-filtre="route">Route</button>
       <button type="button" aria-pressed="false" data-filtre="gravel">Gravel</button>
       <button type="button" aria-pressed="false" data-filtre="vtt">VTT</button>
     </div>
-    <label>Trier
+    <label class="label">Trier
       <select id="tri">
         <option value="score">Notre sélection</option>
         <option value="prix-asc">Prix croissant</option>
@@ -36,6 +34,7 @@ scripts: ["/assets/velos.js"]
     </label>
   </div>
   <p class="sr-only" aria-live="polite" id="compte"></p>
+  <h2 class="sr-only">La sélection</h2>
 
   <div class="velos" id="velos">
     {%- for v in bikes.velos %}
@@ -44,13 +43,16 @@ scripts: ["/assets/velos.js"]
   </div>
 </section>
 
-<section class="wrap">
-  <div class="card card-accent">
-    <h2 style="margin-top:0">Acheté sur BikeStocks ?</h2>
-    <p>Je peux le monter et le régler à l'atelier : {{ site.velos.prix_montage }}.</p>
-    <div class="btn-row">
-      <a class="btn btn-cta" href="tel:{{ tel }}">Appeler</a>
-      <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
+<section class="section wrap" aria-labelledby="montage">
+  <div class="montage">
+    <div>
+      <p class="label">Montage &amp; réglage</p>
+      <h2 id="montage">Acheté sur BikeStocks ?</h2>
+      <p>Je peux le monter et le régler à l'atelier : {{ site.velos.prix_montage }}.</p>
+    </div>
+    <div class="actions" style="margin:0">
+      <a class="btn btn-encre" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
+      <a class="btn btn-ligne" href="sms:{{ tel }}">SMS</a>
     </div>
   </div>
 </section>

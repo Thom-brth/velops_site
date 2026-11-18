@@ -1,50 +1,32 @@
 ---
 layout: base.njk
 title: "Comment ça marche"
-description: "Prendre rendez-vous à l'atelier vélo Brignais Cycle : un appel ou un SMS, un créneau, la réparation pendant que tu attends ou presque, et tu repars avec ton vélo et ta facture."
+surtitre: "Prise de rendez-vous"
+chapo: "Quatre étapes, zéro paperasse."
+description: "Prendre rendez-vous à l'atelier vélo Brignais Cycle : un appel ou un SMS, un créneau, la réparation au même rendez-vous, et tu repars avec ton vélo et ta facture."
 ---
-{%- set tel = site.telephone | telHref -%}
-<div class="page-head">
-  <div class="wrap">
-    <h1>Comment ça marche</h1>
-    <p class="lead">Quatre étapes, zéro paperasse.</p>
-  </div>
-</div>
+{% include "page-tete.njk" %}
 
-<section class="wrap">
+<section class="section wrap" aria-label="Les étapes">
   <ol class="etapes">
-    <li><h3>Tu m'appelles ou tu m'écris</h3><p>Par téléphone, SMS ou e-mail. Dis-moi quel vélo tu as et ce qui ne va pas.</p></li>
-    <li><h3>On fixe un créneau</h3><p>En semaine le soir (une semaine sur deux) ou le week-end. Je te donne l'adresse de l'atelier à ce moment-là.</p></li>
-    <li><h3>Tu déposes, je répare</h3><p>Dans le même créneau. Si une pièce doit être changée, je te le dis avant et tu décides.</p></li>
-    <li><h3>Tu repars avec ton vélo</h3><p>Et avec ta facture. Pour une révision complète, on convient d'une récupération le lendemain.</p></li>
+    <li class="apparait"><span class="etape-num" aria-hidden="true">01</span><h2>Tu m'appelles ou tu m'écris</h2><p>Par téléphone, SMS ou e-mail. Dis-moi quel vélo tu as et ce qui ne va pas.</p></li>
+    <li class="apparait"><span class="etape-num" aria-hidden="true">02</span><h2>On fixe un créneau</h2><p>Le soir en semaine (une semaine sur deux) ou le week-end. Je te donne l'adresse de l'atelier à ce moment-là.</p></li>
+    <li class="apparait"><span class="etape-num" aria-hidden="true">03</span><h2>Tu déposes, je répare</h2><p>Dans le même créneau. Si une pièce doit être changée, je te le dis avant et tu décides.</p></li>
+    <li class="apparait"><span class="etape-num" aria-hidden="true">04</span><h2>Tu repars avec ton vélo</h2><p>Et avec ta facture. Pour une révision complète, on convient d'une récupération le lendemain.</p></li>
   </ol>
 </section>
 
-<section class="wrap" aria-labelledby="paiement">
-  <h2 id="paiement">Paiement</h2>
-  <div class="card">
-    <p>À la restitution du vélo, par :</p>
-    <ul>
-      {%- for p in site.paiements %}
-      <li>{{ p }}</li>
-      {%- endfor %}
-    </ul>
-    <p><strong>{{ site.paiement_refuse }}</strong></p>
-  </div>
+<section class="section wrap" aria-labelledby="paiement">
+  <header class="section-tete">
+    <span class="section-num label">Paiement</span>
+    <h2 id="paiement">À la restitution du vélo.</h2>
+    <p class="chapo">{{ site.paiement_refuse }}</p>
+  </header>
+  <ul class="paiements apparait">
+    {%- for p in site.paiements %}
+    <li>{{ p }}</li>
+    {%- endfor %}
+  </ul>
 </section>
 
-<section class="wrap" aria-labelledby="creneaux">
-  <h2 id="creneaux">Les créneaux</h2>
-  <div class="card">
-    <ul>
-      {%- for c in site.creneaux %}
-      <li><strong>{{ c.jours }}</strong> : {{ c.horaires }}{% if c.note %}, {{ c.note }}{% endif %}</li>
-      {%- endfor %}
-    </ul>
-    <p>Uniquement sur rendez-vous.</p>
-  </div>
-  <div class="btn-row">
-    <a class="btn btn-cta" href="tel:{{ tel }}">Appeler</a>
-    <a class="btn btn-cta-alt" href="sms:{{ tel }}">Envoyer un SMS</a>
-  </div>
-</section>
+{% include "bande-rdv.njk" %}

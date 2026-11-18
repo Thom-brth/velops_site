@@ -1,0 +1,9 @@
+{#- En-tête des pages intérieures. Variables (front matter) : surtitre, title, chapo. -#}
+<header class="page-tete">
+  <div class="wrap">
+    <p class="label">{{ surtitre }}</p>
+    <h1>{{ title }}</h1>
+    {%- if chapo %}<p class="chapo">{{ chapo }}</p>{% endif %}
+  </div>
+  {% include "pignon.svg" %}
+</header>

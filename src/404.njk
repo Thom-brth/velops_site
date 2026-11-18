@@ -4,12 +4,13 @@ title: "Page introuvable"
 permalink: /404.html
 sitemap: false
 ---
-<div class="page-head">
-  <div class="wrap">
-    <h1>Crevaison : page introuvable</h1>
-    <p class="lead">Cette page n'existe pas ou plus. Pas de panique, ça se répare.</p>
+{%- from "icones.njk" import fleche -%}
+<section class="section wrap">
+  <p class="erreur-code" aria-hidden="true">404</p>
+  <h1>Crevaison.</h1>
+  <p class="chapo" style="margin-top:1.25rem">Cette page n'existe pas ou plus. Pas de panique, ça se répare.</p>
+  <div class="actions">
+    <a class="btn btn-signal" href="/">Retour à l'accueil {{ fleche() }}</a>
+    <a class="btn btn-ligne" href="/prestations-tarifs/">Voir les tarifs</a>
   </div>
-</div>
-<section class="wrap">
-  <p class="btn-row"><a class="btn btn-cta" href="/">Retour à l'accueil</a> <a class="btn btn-cta-alt" href="/prestations-tarifs/">Voir les tarifs</a></p>
 </section>

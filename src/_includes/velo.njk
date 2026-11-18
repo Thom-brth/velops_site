@@ -1,20 +1,24 @@
-{#- Carte d'un vélo BikeStocks. Paramètres : v (un élément de data/bikes.json > velos), reglages (data/site.json > velos). -#}
+{#- Carte d'un vélo BikeStocks, façon fiche technique.
+    Paramètres : v (un élément de data/bikes.json > velos), reglages (data/site.json > velos). -#}
+{%- from "icones.njk" import externe -%}
 {% macro carte(v, reglages) %}
-<article class="velo" data-type="{{ v.categorie }}" data-prix="{{ v.prix }}" data-remise="{{ v.remise_pct }}" data-score="{{ v.score }}">
+<article class="velo apparait" data-type="{{ v.categorie }}" data-prix="{{ v.prix }}" data-remise="{{ v.remise_pct }}" data-score="{{ v.score }}">
   <div class="velo-img">
     {%- if v.url_image %}
     <img src="{{ v.url_image }}" alt="Vélo {{ v.categorie | typeVelo }} {{ v.marque }} {{ v.nom }}" width="560" height="655" loading="lazy" decoding="async" onerror="this.hidden=true">
     {%- endif %}
-    {%- if v.remise_pct > 0 %}<span class="badge">-{{ v.remise_pct }} %</span>{% endif %}
+    {%- if v.remise_pct > 0 %}<span class="velo-remise">-{{ v.remise_pct }} %</span>{% endif %}
   </div>
-  <div class="velo-body">
-    <p class="velo-cat">{{ v.categorie | typeVelo }}{% if v.materiau_cadre %} · {{ v.materiau_cadre }}{% endif %}</p>
-    <h3>{% if v.marque %}{{ v.marque }} {% endif %}{{ v.nom }}</h3>
-    {%- if v.groupe_transmission %}<p class="small">Transmission : {{ v.groupe_transmission }}</p>{% endif %}
-    <p class="small">Tailles dispo : {{ v.tailles_disponibles | join(", ") }}</p>
+  <div class="velo-corps">
+    <p class="velo-cat label">{{ v.categorie | typeVelo }}{% if v.materiau_cadre %} · {{ v.materiau_cadre }}{% endif %}</p>
+    <h3 class="velo-nom">{% if v.marque %}<span>{{ v.marque }}</span>{% endif %}{{ v.nom }}</h3>
+    <dl class="velo-specs">
+      <div><dt>Tailles en stock</dt><dd>{{ v.tailles_disponibles | join(", ") }}</dd></div>
+      {%- if v.groupe_transmission %}<div><dt>Transmission</dt><dd>{{ v.groupe_transmission }}</dd></div>{% endif %}
+    </dl>
     <p class="velo-prix">{{ v.prix | euros }}{% if v.prix_barre and v.prix_barre > v.prix %} <s><span class="sr-only">au lieu de </span>{{ v.prix_barre | euros }}</s>{% endif %}</p>
     <p class="vendeur">{{ reglages.mention_vendeur }}</p>
-    <a class="btn btn-cta" href="{{ v.url_fiche | lienBikestocks(reglages.utm) }}" target="_blank" rel="noopener">Voir sur BikeStocks ↗<span class="sr-only"> (nouvel onglet)</span></a>
+    <a class="btn btn-encre btn-bloc" href="{{ v.url_fiche | lienBikestocks(reglages.utm) }}" target="_blank" rel="noopener">Voir sur BikeStocks {{ externe() }}<span class="sr-only"> (nouvel onglet)</span></a>
   </div>
 </article>
 {% endmacro %}

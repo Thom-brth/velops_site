@@ -4,5 +4,6 @@ eleventyExcludeFromCollections: true
 ---
 User-agent: *
 Allow: /
-
+{% if not (site.url | isTodo) %}
 Sitemap: {{ site.url }}/sitemap.xml
+{% endif %}

@@ -1,59 +1,71 @@
 ---
 layout: base.njk
 title: "Contact & rendez-vous"
+surtitre: "Rendez-vous"
+chapo: "Pas de réservation en ligne : un appel ou un SMS, et on cale un créneau."
 description: "Prendre rendez-vous à l'atelier vélo Brignais Cycle par téléphone, SMS ou e-mail. Brignais et alentours : Chaponost, Vourles, Millery, Saint-Genis-Laval, Soucieu-en-Jarrest."
 ---
+{%- from "icones.njk" import fleche -%}
 {%- set tel = site.telephone | telHref -%}
-<div class="page-head">
-  <div class="wrap">
-    <h1>Contact & rendez-vous</h1>
-    <p class="lead">Pas de réservation en ligne : un appel ou un SMS, et on cale un créneau.</p>
-  </div>
-</div>
+{% include "page-tete.njk" %}
 
-<section class="wrap">
-  <div class="btn-row contact-actions">
-    <a class="btn btn-cta" href="tel:{{ tel }}">Appeler {{ site.telephone }}</a>
-    <a class="btn btn-cta-alt" href="sms:{{ tel }}">SMS</a>
-    <a class="btn btn-cta-alt" href="mailto:{{ site.email }}">E-mail</a>
+<section class="section wrap" aria-label="Téléphone et messages">
+  <p class="label">Téléphone et SMS</p>
+  <a class="tel-geant" href="tel:{{ tel }}">{{ site.telephone }}</a>
+  <div class="actions">
+    <a class="btn btn-signal" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
+    <a class="btn btn-ligne" href="sms:{{ tel }}">Envoyer un SMS</a>
+    <a class="btn btn-ligne" href="mailto:{{ site.email }}">Écrire un e-mail</a>
   </div>
-  <p class="small">E-mail : <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  <p class="label gris">E-mail : <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+</section>
 
-  <div class="grid grid-2">
-    <div class="card">
-      <h2 style="margin-top:0">Créneaux</h2>
-      <ul>
+<section class="section wrap" aria-label="Infos pratiques">
+  <div class="grille grille-3">
+    <div class="bloc apparait">
+      <h2 class="label">Créneaux</h2>
+      <ul class="horaires-liste">
         {%- for c in site.creneaux %}
         <li><strong>{{ c.jours }}</strong> : {{ c.horaires }}{% if c.note %}, {{ c.note }}{% endif %}</li>
         {%- endfor %}
       </ul>
-      <p>Uniquement sur rendez-vous. Pour gagner du temps, dis-moi dans ton message quel vélo tu as et ce qui ne va pas.</p>
+      <p>Uniquement sur rendez-vous. Dis-moi dans ton message quel vélo tu as et ce qui ne va pas.</p>
     </div>
-    <div class="card">
-      <h2 style="margin-top:0">Où ?</h2>
-      <p><strong>{{ site.lieu_public }}.</strong></p>
-      <p>Zone desservie : {{ site.zone | join(", ") }} et alentours.</p>
+    <div class="bloc apparait">
+      <h2 class="label">Où ?</h2>
+      <p class="texte-long"><strong>{{ site.lieu_public }}.</strong></p>
+    </div>
+    <div class="bloc apparait">
+      <h2 class="label">Zone desservie</h2>
+      <ul class="zone label">
+        {%- for z in site.zone %}<li>{{ z }}</li>{% endfor %}
+        <li>et alentours</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="wrap" aria-labelledby="carte">
-  <h2 id="carte">Brignais sur la carte</h2>
+<section class="section wrap" aria-labelledby="carte-titre">
+  <header class="section-tete">
+    <span class="section-num label">Carte</span>
+    <h2 id="carte-titre">Brignais.</h2>
+  </header>
   {#- Carte chargée seulement au clic : aucune requête vers un tiers tant que le visiteur ne l'a pas demandée.
       Cadre = commune de Brignais, sans épingle. -#}
-  <div class="map-box" id="map-box">
-    <p>La carte est fournie par OpenStreetMap et n'est chargée que si tu la demandes.</p>
-    <button class="btn btn-cta-alt" type="button" id="map-btn"
-      data-src="https://www.openstreetmap.org/export/embed.html?bbox=4.705%2C45.650%2C4.800%2C45.700&amp;layer=mapnik">Afficher la carte de Brignais</button>
+  <div class="carte" id="carte">
+    <p>La carte de la commune est fournie par OpenStreetMap et n'est chargée que si tu la demandes.</p>
+    <button class="btn btn-encre" type="button" id="carte-btn"
+      data-src="https://www.openstreetmap.org/export/embed.html?bbox=4.705%2C45.650%2C4.800%2C45.700&amp;layer=mapnik">Afficher la carte</button>
   </div>
-  <p class="small">© les contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+  <p class="label gris" style="margin-top:.75rem">© les contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></p>
   <script>
-    document.getElementById("map-btn").addEventListener("click", (e) => {
+    document.getElementById("carte-btn").addEventListener("click", (e) => {
       const f = document.createElement("iframe");
       f.src = e.currentTarget.dataset.src;
       f.title = "Carte de la commune de Brignais (OpenStreetMap)";
-      f.loading = "lazy";
-      document.getElementById("map-box").replaceChildren(f);
+      const boite = document.getElementById("carte");
+      boite.classList.add("chargee");
+      boite.replaceChildren(f);
     });
   </script>
 </section>

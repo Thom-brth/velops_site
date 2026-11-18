@@ -2,12 +2,9 @@
 layout: base.njk
 ---
 {#- Gabarit des pages juridiques (Markdown). Ces textes DOIVENT être relus par l'exploitant avant mise en ligne. -#}
-<div class="page-head">
-  <div class="wrap narrow">
-    <h1>{{ title }}</h1>
-    <p class="small">Dernière mise à jour : {{ page.date | dateFr }}</p>
-  </div>
-</div>
-<div class="wrap narrow prose">
+{%- set surtitre = "Informations légales" -%}
+{%- set chapo = "Dernière mise à jour : " + (page.date | dateFr) -%}
+{% include "page-tete.njk" %}
+<div class="wrap prose">
 {{ content | safe }}
 </div>

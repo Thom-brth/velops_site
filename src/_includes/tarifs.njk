@@ -1,0 +1,12 @@
+{#- Lignes de tarifs avec points de conduite. Usage : {% from "tarifs.njk" import lignes %} {{ lignes(prestations) }} -#}
+{% macro lignes(prestations) %}
+<dl class="tarifs">
+  {%- for p in prestations %}
+  <div class="ligne">
+    <dt>{{ p.nom }}</dt>
+    <dd class="prix">{{ p.prix | euros }}</dd>
+    {%- if p.detail %}<dd class="detail">{{ p.detail }}</dd>{% endif %}
+  </div>
+  {%- endfor %}
+</dl>
+{% endmacro %}
