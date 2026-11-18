@@ -4,7 +4,7 @@ title: "Vélos à vendre"
 description: "Sélection de vélos route, gravel et VTT en promotion chez BikeStocks, que Brignais Cycle peut monter et régler à réception."
 scripts: ["/assets/velos.js"]
 ---
-{#- Page générée uniquement si data/site.json > SHOW_BIKES = true (voir eleventy.config.js). -#}
+{#- Page générée uniquement si data/site.json > SHOW_BIKES = true (voir velos-a-vendre.11tydata.js). -#}
 {%- from "velo.njk" import carte -%}
 {%- set tel = site.telephone | telHref -%}
 <div class="page-head">
@@ -39,7 +39,7 @@ scripts: ["/assets/velos.js"]
 
   <div class="velos" id="velos">
     {%- for v in bikes.velos %}
-    {{ carte(v, site.velos.mention_vendeur) }}
+    {{ carte(v, site.velos) }}
     {%- endfor %}
   </div>
 </section>

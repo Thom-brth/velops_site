@@ -14,7 +14,7 @@ description: "Délais, stockage, pièces, paiement, garantie, vélos électrique
   {%- for item in faq.questions %}
   <details>
     <summary>{{ item.q }}</summary>
-    <div><p>{{ item.r | fill | safe }}</p></div>
+    <div><p>{{ item.r | fill(site) | safe }}</p></div>
   </details>
   {%- endfor %}
 </section>

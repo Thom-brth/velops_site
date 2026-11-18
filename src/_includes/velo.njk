@@ -1,5 +1,5 @@
-{#- Carte d'un vélo BikeStocks. Paramètre : v (un élément de data/bikes.json > velos). -#}
-{% macro carte(v, mention) %}
+{#- Carte d'un vélo BikeStocks. Paramètres : v (un élément de data/bikes.json > velos), reglages (data/site.json > velos). -#}
+{% macro carte(v, reglages) %}
 <article class="velo" data-type="{{ v.categorie }}" data-prix="{{ v.prix }}" data-remise="{{ v.remise_pct }}" data-score="{{ v.score }}">
   <div class="velo-img">
     {%- if v.url_image %}
@@ -13,8 +13,8 @@
     {%- if v.groupe_transmission %}<p class="small">Transmission : {{ v.groupe_transmission }}</p>{% endif %}
     <p class="small">Tailles dispo : {{ v.tailles_disponibles | join(", ") }}</p>
     <p class="velo-prix">{{ v.prix | euros }}{% if v.prix_barre and v.prix_barre > v.prix %} <s><span class="sr-only">au lieu de </span>{{ v.prix_barre | euros }}</s>{% endif %}</p>
-    <p class="vendeur">{{ mention }}</p>
-    <a class="btn btn-cta" href="{{ v.url_fiche | lienBikestocks }}" target="_blank" rel="noopener">Voir sur BikeStocks ↗<span class="sr-only"> (nouvel onglet)</span></a>
+    <p class="vendeur">{{ reglages.mention_vendeur }}</p>
+    <a class="btn btn-cta" href="{{ v.url_fiche | lienBikestocks(reglages.utm) }}" target="_blank" rel="noopener">Voir sur BikeStocks ↗<span class="sr-only"> (nouvel onglet)</span></a>
   </div>
 </article>
 {% endmacro %}

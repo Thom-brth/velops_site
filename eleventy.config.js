@@ -1,17 +1,15 @@
 // Configuration Eleventy : https://www.11ty.dev/docs/config/
-import fs from "node:fs";
+// Ne pas lire data/*.json ici : ce fichier n'est chargé qu'au démarrage du serveur de dev.
+// Les filtres reçoivent les données en argument, l'interrupteur SHOW_BIKES est dans
+// src/velos-a-vendre.11tydata.js : tout se met à jour sans redémarrer.
 import { HtmlBasePlugin } from "@11ty/eleventy";
 
-const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 const TODO = "À COMPLÉTER";
 
 export default function (eleventyConfig) {
   // Chemin de base (GitHub Pages sans domaine perso : /nom-du-depot/) : fourni par le workflow via PATH_PREFIX.
   eleventyConfig.addPlugin(HtmlBasePlugin);
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-
-  // Interrupteur du module vélos : page non générée si SHOW_BIKES=false.
-  if (!site.SHOW_BIKES) eleventyConfig.ignores.add("src/velos-a-vendre.njk");
 
   // 40 -> « 40 € », 7.5 -> « 7,50 € », texte (placeholder) -> inchangé. Prix nets, jamais HT/TTC.
   eleventyConfig.addFilter("euros", (v) => {
@@ -24,8 +22,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("telHref", (v) => (String(v).includes(TODO) ? "" : String(v).replace(/[^\d+]/g, "").replace(/^0/, "+33")));
   eleventyConfig.addFilter("isTodo", (v) => String(v).includes(TODO));
 
-  // Remplace {site.cle} / {site.cle.sous_cle} dans les textes de data/*.json.
-  eleventyConfig.addFilter("fill", (str) =>
+  // {{ texte | fill(site) }} : remplace {site.cle} / {site.cle.sous_cle} dans les textes de data/*.json.
+  eleventyConfig.addFilter("fill", (str, site) =>
     String(str).replace(/\{site\.([\w.]+)\}/g, (m, path) => path.split(".").reduce((o, k) => o?.[k], site) ?? m)
   );
 
@@ -33,11 +31,8 @@ export default function (eleventyConfig) {
     iso ? new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeZone: "Europe/Paris" }).format(new Date(iso)) : ""
   );
 
-  // Lien vers la fiche BikeStocks + paramètres de suivi (data/site.json > velos.utm).
-  eleventyConfig.addFilter("lienBikestocks", (url) => {
-    const utm = site.velos.utm;
-    return utm ? url + (url.includes("?") ? "&" : "?") + utm : url;
-  });
+  // {{ url | lienBikestocks(site.velos.utm) }} : fiche BikeStocks + paramètres de suivi.
+  eleventyConfig.addFilter("lienBikestocks", (url, utm) => (utm ? url + (url.includes("?") ? "&" : "?") + utm : url));
 
   eleventyConfig.addFilter("typeVelo", (t) => ({ route: "Route", gravel: "Gravel", vtt: "VTT" })[t] || t);
 

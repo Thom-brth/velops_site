@@ -57,7 +57,7 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
   <p>Une sélection de vélos en promo chez notre partenaire BikeStocks, que je peux monter et régler à réception.</p>
   <div class="velos">
     {%- for v in bikes.velos.slice(0, 3) %}
-    {{ carte(v, site.velos.mention_vendeur) }}
+    {{ carte(v, site.velos) }}
     {%- endfor %}
   </div>
   <p><a class="btn btn-cta-alt" href="/velos-a-vendre/">Voir toute la sélection</a></p>
