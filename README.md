@@ -26,7 +26,7 @@ Site statique de l'atelier vélo **Brignais Cycle** (Thomas BERTHILLOT EI, Brign
 | **GitHub Pages** | Gratuit, HTTPS, domaine personnalisé possible. Surtout, la collecte quotidienne tourne déjà dans GitHub Actions : un seul workflow collecte, commite `bikes.json`, construit et déploie, sur une seule plateforme. Netlify ou Cloudflare Pages conviendraient aussi, mais demanderaient un 2ᵉ compte et un déclencheur entre les deux. |
 | **Collecteur en Node.js** (pas Python) | Même environnement que le build : un seul `npm ci`. `fetch` et l'exécuteur de tests `node:test` sont intégrés. Seule dépendance : `cheerio`, pour appliquer les sélecteurs CSS de la config. |
 
-Node.js ≥ 20.18 requis (24 en CI).
+Node.js ≥ 22 requis (24 en CI).
 
 ## Installation locale
 
