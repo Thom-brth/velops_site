@@ -148,7 +148,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 }
 .entete-in { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.25rem; min-height: 4rem; }
 .logo { display: inline-flex; align-items: center; gap: .6rem; margin-right: auto; text-decoration: none; min-height: 2.75rem; }
-.logo-mark { width: 2.25rem; height: 2.25rem; transition: transform .7s var(--ease); }
+.logo-mark { flex: none; width: 2.25rem; height: 2.25rem; transition: transform .7s var(--ease); }
 .logo-txt { display: flex; flex-direction: column; align-items: flex-start; font-stretch: 64%; font-weight: 850; text-transform: uppercase; font-size: 1.32rem; line-height: .86; letter-spacing: .01em; }
 .logo-txt span { background: var(--signal); padding: .06em .22em .02em; margin-top: .08em; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .1rem 1.1rem; }
@@ -160,13 +160,13 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 }
 .nav ul a:hover, .nav ul a[aria-current="page"] { background-size: 100% 3px; }
 .nav-rdv, .nav-toggle { display: none; }
-.entete-cta { display: none; min-height: 2.6rem; padding: .45rem 1rem; }
+.entete-cta { display: none; min-height: 2.6rem; padding: .45rem .8rem; white-space: nowrap; }
 
 @media (min-width: 1120px) {
   .entete-cta { display: inline-flex; }
   .entete-in { flex-wrap: nowrap; }
-  .nav ul { flex-wrap: nowrap; gap: 0 .6rem; white-space: nowrap; }
-  .nav li + li { position: relative; padding-left: .6rem; }
+  .nav ul { flex-wrap: nowrap; gap: 0 .5rem; white-space: nowrap; }
+  .nav li + li { position: relative; padding-left: .5rem; }
   .nav li + li::before { content: ""; position: absolute; left: 0; top: 50%; width: 2px; height: .75rem; margin-top: -.375rem; background: var(--encre); }
 }
 /* Mobile avec JS : menu plein écran */
@@ -263,8 +263,12 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .repere .label { font-size: .66rem; color: var(--gris); }
 .repere b { font-stretch: 70%; font-weight: 800; font-size: 1.35rem; line-height: 1; }
 .plan figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; padding: .6rem .8rem; border-top: 1px solid var(--trait-2); background: var(--papier); color: var(--gris); }
-@media (max-width: 759px) {
-  .reperes, .plan .leader, .plan .cotes text { display: none; }
+/* Dessin trop étroit pour les étiquettes (mobile, tablette, petit portable) : les prix passent en liste dessous. */
+.plan { container-type: inline-size; }
+@container (max-width: 640px) {
+  .plan .leader, .plan .point, .plan .onde, .plan .cotes text { display: none; }
+  .reperes { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75rem; border-top: 1px solid var(--trait-2); background: var(--papier); }
+  .repere { position: static; transform: none; white-space: normal; box-shadow: none; }
 }
 
 /* ---------- Bandeau défilant ---------- */

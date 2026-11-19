@@ -116,13 +116,14 @@ describe("Filtre vélos électriques", () => {
 });
 
 describe("Score et sélection", () => {
-  test("score = remise × 2 + tailles (max 4) × 5 + bonus marque 10", () => {
+  test("score = remise × poids + tailles (plafonnées) × poids + bonus marque (poids de la config)", () => {
+    const p = cfg.selection.poids;
     const a = noter(velo({ prix: 850, prix_barre: 1000, tailles_disponibles: ["M"], marque: "Merida" }), cfg.selection);
     assert.equal(a.remise_pct, 15);
-    assert.deepEqual(a.score_detail, { remise: 30, tailles: 5, marque: 0 });
-    assert.equal(a.score, 35);
+    assert.deepEqual(a.score_detail, { remise: 15 * p.remise_par_point, tailles: p.par_taille_dispo, marque: 0 });
+    assert.equal(a.score, 15 * p.remise_par_point + p.par_taille_dispo);
     const b = noter(velo({ prix: 1000, prix_barre: null, tailles_disponibles: ["XS", "S", "M", "L", "XL"], marque: "BH" }), cfg.selection);
-    assert.deepEqual(b.score_detail, { remise: 0, tailles: 20, marque: 10 });
+    assert.deepEqual(b.score_detail, { remise: 0, tailles: p.max_tailles_comptees * p.par_taille_dispo, marque: p.marque_reconnue });
     assert.equal(b.prix_barre, null);
   });
 

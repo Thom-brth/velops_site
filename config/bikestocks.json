@@ -41,17 +41,17 @@
 
   "selection": {
     "max_velos": 12,
-    "_gamme": "[À COMPLÉTER : gamme de prix cible] Valeurs reprises de l'exemple de la consigne (600 à 3 500 €). Hors gamme = exclu, sauf vélo épinglé.",
-    "prix_min": 600,
-    "prix_max": 3500,
+    "_gamme": "Tous les prix (choix de l'exploitant). Pour limiter plus tard : resserrer prix_min / prix_max. Hors gamme = exclu, sauf vélo épinglé.",
+    "prix_min": 0,
+    "prix_max": 100000,
     "poids": {
-      "remise_par_point": 2,
+      "remise_par_point": 3,
       "par_taille_dispo": 5,
       "max_tailles_comptees": 4,
-      "marque_reconnue": 10
+      "marque_reconnue": 15
     },
-    "_marques_bonus": "[À COMPLÉTER : liste des marques reconnues] Exemple de la consigne.",
-    "marques_bonus": ["BH", "Orbea", "Scott", "Cannondale"],
+    "_marques_bonus": "Objectif : le meilleur rapport qualité-prix (poids fort de la remise) et des marques peu vendues dans les magasins autour de Lyon, souvent espagnoles, pour ne pas proposer ce que tout le monde a déjà. À ajuster selon ce que vous voyez chez les concurrents.",
+    "marques_bonus": ["BH", "Orbea", "Megamo", "Mondraker", "MMR", "Massi", "Coluer", "Conor"],
     "quotas": [
       { "types": ["route", "gravel"], "min": 3 },
       { "types": ["vtt"], "min": 3 }

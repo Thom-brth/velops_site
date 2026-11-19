@@ -30,6 +30,9 @@ description: "Prendre rendez-vous à l'atelier vélo Brignais Cycle par téléph
         <li><strong>{{ c.jours }}</strong> : {{ c.horaires }}{% if c.note %}, {{ c.note }}{% endif %}</li>
         {%- endfor %}
       </ul>
+      {%- if site.creneaux_note %}
+      <p>{{ site.creneaux_note }}</p>
+      {%- endif %}
       <p>Uniquement sur rendez-vous. Indiquez dans votre message quel vélo vous avez et ce qui ne va pas : le SMS est déjà pré-rempli.</p>
     </div>
     <div class="bloc apparait">

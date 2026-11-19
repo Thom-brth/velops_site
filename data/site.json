@@ -14,16 +14,16 @@
   "statut": "entrepreneur individuel (EI) sous le régime de la micro-entreprise, artisan",
   "ape": "9529Z",
   "siren": "[À COMPLÉTER : SIREN]",
-  "adresse_legale": "[À COMPLÉTER : adresse ou domiciliation]",
+  "adresse_legale": "14 rue Paul Valéry, 69530 Brignais",
   "ville": "Brignais",
   "code_postal": "69530",
   "lieu_public": "L'atelier est installé dans un garage privé, dans le quartier [À COMPLÉTER : quartier]. Pour respecter le voisinage, l'adresse exacte vous est donnée au moment de la prise de rendez-vous.",
   "_lieu_public": "Affiché une seule fois (page Contact et FAQ). Ailleurs, le site dit simplement « Brignais (69530), sur rendez-vous ».",
 
-  "telephone": "[À COMPLÉTER : numéro]",
+  "telephone": "07 69 06 19 04",
   "email": "[À COMPLÉTER : e-mail]",
   "sms_message": "Bonjour, j'ai un vélo (route / gravel / VTT) : ... Le souci : ... Merci de me proposer un créneau.",
-  "rappel": "[À COMPLÉTER : délai de rappel, ex. Pas de réponse ? Laissez un SMS, je vous rappelle le soir même.]",
+  "rappel": "Pas de réponse ? Laissez un message ou un SMS, je vous rappelle dans la journée.",
   "delai_rdv": "[À COMPLÉTER : délai habituel pour obtenir un créneau, ex. en général dans la semaine]",
   "depose": "[À COMPLÉTER : déroulé de la dépose, ex. nous faisons ensemble le tour du vélo et je note son état avant d'intervenir]",
   "liens": {
@@ -51,31 +51,28 @@
     {
       "jours": "Soirs de semaine",
       "horaires": "17h30 – 19h",
-      "note": "une semaine sur deux ([À COMPLÉTER : semaines paires/impaires ou calendrier])"
+      "note": "deux semaines sur quatre"
     },
     {
       "jours": "Samedi et dimanche",
-      "horaires": "10h – 12h et 14h – 18h",
-      "note": "",
-      "_jsonld": "Horaires lus par Google (données structurées). Les soirs « une semaine sur deux » ne sont pas exprimables : ils restent dans le texte.",
-      "jsonld": [
-        { "jours": ["Saturday", "Sunday"], "ouverture": "10:00", "fermeture": "12:00" },
-        { "jours": ["Saturday", "Sunday"], "ouverture": "14:00", "fermeture": "18:00" }
-      ]
+      "horaires": "10h – 17h",
+      "note": "les mêmes semaines",
+      "_jsonld": "Pas d'horaires pour Google (données structurées) tant que l'atelier n'ouvre que deux semaines sur quatre : ils seraient faux une semaine sur deux. Les remettre ici (jsonld) quand les créneaux seront réguliers."
     }
   ],
+  "creneaux_note": "En alternance jusqu'en février 2027 : je suis à l'atelier deux semaines sur quatre. Ensuite, beaucoup plus de créneaux.",
 
   "paiements": ["Virement instantané", "Wero", "Lydia", "Espèces"],
   "paiement_refuse": "Pas de carte bancaire.",
 
   "zone": ["Brignais", "Chaponost", "Vourles", "Millery", "Saint-Genis-Laval", "Soucieu-en-Jarrest"],
 
-  "a_propos": "[À COMPLÉTER : texte de présentation, 3-5 lignes]",
-  "a_propos_pourquoi": "[À COMPLÉTER : pourquoi cet atelier, 2-3 lignes]",
+  "a_propos": "Étudiant en alternance, je suis passionné de vélo de route. Pendant un stage de trois mois chez BikeStocks à Barcelone, j'ai été formé comme expert Shimano : réglages, transmissions, freinage. Aujourd'hui, je mets ce savoir-faire au service des cyclistes de Brignais et des alentours.",
+  "a_propos_pourquoi": "Parce que le vélo doit rester accessible à tous les budgets. Je veux proposer un entretien sérieux à petit prix et transmettre ma passion à ceux qui roulent, ou qui veulent s'y remettre.",
 
-  "pieces_client": "[À COMPLÉTER : pièces fournies par le client acceptées ou non]",
+  "pieces_client": "acceptées. La pièce fournie par le client n'est pas garantie par l'atelier : en cas de casse ou de défaut de cette pièce, la responsabilité de Brignais Cycle ne peut pas être engagée.",
   "garantie_reparations": "[À COMPLÉTER : garantie des réparations (durée, conditions)]",
-  "velo_non_recupere": "[À COMPLÉTER : politique en cas de vélo non récupéré]",
+  "velo_non_recupere": "l'atelier est installé à mon domicile et je ne peux pas garder les vélos. Quand votre vélo est prêt, je vous préviens par SMS ou par appel. S'il n'est pas récupéré dans les 2 jours qui suivent cette relance, des frais de garde de 2 € par jour sont facturés, à régler au retrait du vélo.",
 
   "velos": {
     "utm": "utm_source=brignaiscycle&utm_medium=referral",
