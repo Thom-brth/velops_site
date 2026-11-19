@@ -60,12 +60,12 @@
   .bande-rdv, .faq details[open] summary::after, .faq summary:hover::after, .tel-geant:hover, .zone li:first-child, .velo-remise, .montage:not(.clair) {
     --encre: #141518; --encre-2: #2c2e33; --papier: #f3efe7; color: var(--encre);
   }
-  ::selection, .btn-signal { color: #141518; }
+  ::selection { color: #141518; }
   /* Pied de page, bandeau défilant et barre d'appel restent des blocs sombres. */
   .pied, .defile, .barre-appel { --encre: #0c0d0f; --papier: #f3efe7; }
   @media (max-width: 1119px) { .js .nav { --encre: #0c0d0f; --papier: #f3efe7; } }
-  .velo-img img { background: #fff; } /* photos BikeStocks sur fond blanc */
-  .page-tete .pignon-deco { opacity: .035; }
+  :root .velo-img img { background: #fff; } /* photos BikeStocks sur fond blanc */
+  :root .page-tete .pignon-deco { opacity: .035; }
 }
 
 /* ---------- Base ---------- */
@@ -130,7 +130,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   transition: transform .15s var(--ease), box-shadow .15s var(--ease), background-color .15s, color .15s;
 }
 .btn:hover { text-decoration: none; }
-.btn-signal { background: var(--signal); box-shadow: 4px 4px 0 var(--encre); }
+.btn-signal { color: #141518; background: var(--signal); box-shadow: 4px 4px 0 var(--encre); } /* texte toujours foncé sur l’orange, même en mode sombre */
 .btn-signal:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--encre); }
 .btn-ligne:hover { background: var(--encre); color: var(--papier); }
 .btn-encre { background: var(--encre); color: var(--papier); }
@@ -152,13 +152,13 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .logo-txt { display: flex; flex-direction: column; align-items: flex-start; font-stretch: 64%; font-weight: 850; text-transform: uppercase; font-size: 1.32rem; line-height: .86; letter-spacing: .01em; }
 .logo-txt span { background: var(--signal); padding: .06em .22em .02em; margin-top: .08em; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .1rem 1.1rem; }
-.nav a {
+.nav ul a {
   display: block; padding: .55rem 0; text-decoration: none;
   font-family: var(--f-mono); font-size: .7rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
   background: linear-gradient(var(--signal), var(--signal)) 0 calc(100% - .3rem) / 0 3px no-repeat;
   transition: background-size .25s var(--ease);
 }
-.nav a:hover, .nav a[aria-current="page"] { background-size: 100% 3px; }
+.nav ul a:hover, .nav ul a[aria-current="page"] { background-size: 100% 3px; }
 .nav-rdv, .nav-toggle { display: none; }
 .entete-cta { display: none; min-height: 2.6rem; padding: .45rem 1rem; }
 
@@ -196,11 +196,11 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   .js .nav.open { opacity: 1; visibility: visible; transform: none; transition: opacity .2s, transform .3s var(--ease); }
   .js .nav ul { flex-direction: column; gap: 0; }
   .js .nav li { border-bottom: 1px solid rgb(243 239 231 / .14); }
-  .js .nav a {
-    padding: .7rem 0; font-family: var(--f-texte); font-size: clamp(2rem, 10vw, 2.8rem); font-stretch: 66%; font-weight: 820; letter-spacing: 0;
-    background-position: 0 calc(100% - .45rem); background-size: 0 4px;
+  .js .nav ul a {
+    padding: .8rem 0; font-family: var(--f-texte); font-size: 1.45rem; font-stretch: 75%; font-weight: 750; letter-spacing: 0;
+    background-position: 0 calc(100% - .5rem); background-size: 0 3px;
   }
-  .js .nav a:hover, .js .nav a[aria-current="page"] { background-size: 2.5rem 4px; }
+  .js .nav ul a:hover, .js .nav ul a[aria-current="page"] { background-size: 1.75rem 3px; }
   .js .nav-rdv { display: grid; gap: .75rem; }
   .js .nav-rdv .btn-ligne { color: var(--papier); border-color: var(--papier); }
   html.menu-ouvert { overflow: hidden; }
