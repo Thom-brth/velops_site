@@ -1,7 +1,31 @@
 {
-  "date_maj": "2026-11-18T20:01:20.639Z",
+  "date_maj": "2026-11-19T16:39:12.336Z",
   "source": "html",
   "velos": [
+    {
+      "id": "47944",
+      "nom": "OIZ MPRO XO 2023 T.XL",
+      "marque": "Orbea",
+      "categorie": "vtt",
+      "prix": 3999,
+      "prix_barre": 6999,
+      "remise_pct": 43,
+      "tailles_disponibles": [
+        "XL"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bicicleta-orbea-oiz-mpro-xo-2023-txl-47944.html",
+      "url_image": "https://www.bikestocks.es/79234-thickbox_default/bicicleta-orbea-oiz-mpro-xo-2023-txl.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 149,
+      "score_detail": {
+        "remise": 129,
+        "tailles": 5,
+        "marque": 15
+      }
+    },
     {
       "id": "50495",
       "nom": "Arcadex Comp APEX XPLR 2026",
@@ -19,38 +43,12 @@
       "url_image": "https://www.bikestocks.es/85714-thickbox_default/bichi-bianchi-arcadex-comp-apex-xplr-2026.jpg",
       "materiau_cadre": null,
       "groupe_transmission": "Sram apex xplr, 12sp",
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 102,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 148,
       "score_detail": {
-        "remise": 92,
+        "remise": 138,
         "tailles": 10,
         "marque": 0
-      }
-    },
-    {
-      "id": "47054",
-      "nom": "RS1 3.5 105 DI2 2023",
-      "marque": "BH",
-      "categorie": "route",
-      "prix": 2399,
-      "prix_barre": 3899,
-      "remise_pct": 38,
-      "tailles_disponibles": [
-        "S",
-        "M",
-        "L"
-      ],
-      "en_stock": true,
-      "url_fiche": "https://www.bikestocks.es/fr/bike-bh-rs1-35-105-di2-2023-47054.html",
-      "url_image": "https://www.bikestocks.es/78025-thickbox_default/bike-bh-rs1-35-105-di2-2023.jpg",
-      "materiau_cadre": null,
-      "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 101,
-      "score_detail": {
-        "remise": 76,
-        "tailles": 15,
-        "marque": 10
       }
     },
     {
@@ -69,17 +67,17 @@
       "url_image": "https://www.bikestocks.es/80119-thickbox_default/bike-bh-rs1-40-2023.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 99,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 146,
       "score_detail": {
-        "remise": 84,
+        "remise": 126,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
       }
     },
     {
       "id": "47700",
-      "nom": "Terra M41e équipe 1x 2024",
+      "nom": "Terra M41e Team 1x 2024",
       "marque": "Orbea",
       "categorie": "gravel",
       "prix": 2199,
@@ -94,12 +92,36 @@
       "url_image": "https://www.bikestocks.es/80659-thickbox_default/velo-orbea-terra-m41e-equipe-1x-2024.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 98,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 142,
       "score_detail": {
-        "remise": 78,
+        "remise": 117,
         "tailles": 10,
-        "marque": 10
+        "marque": 15
+      }
+    },
+    {
+      "id": "51534",
+      "nom": "Infinito Up. DI2 POWERMETER 2026",
+      "marque": "Bianchi",
+      "categorie": "route",
+      "prix": 3799,
+      "prix_barre": 6899,
+      "remise_pct": 45,
+      "tailles_disponibles": [
+        "50"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bichi-bianchi-infinito-up-di2-powermeter-2026-51534.html",
+      "url_image": "https://www.bikestocks.es/88689-thickbox_default/bichi-bianchi-infinito-up-di2-powermeter-2026.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 140,
+      "score_detail": {
+        "remise": 135,
+        "tailles": 5,
+        "marque": 0
       }
     },
     {
@@ -118,36 +140,36 @@
       "url_image": "https://www.bikestocks.es/80597-thickbox_default/velo-orbea-terra-m20i-team-2024.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 95,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 140,
       "score_detail": {
-        "remise": 80,
+        "remise": 120,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
       }
     },
     {
-      "id": "47815",
-      "nom": "Lynx Race 8.5 2024",
-      "marque": "BH",
+      "id": "47933",
+      "nom": "F-PODIUM CARBON 2024 T.L",
+      "marque": "Mondraker",
       "categorie": "vtt",
-      "prix": 3499,
-      "prix_barre": 5699.9,
-      "remise_pct": 39,
+      "prix": 2998.99,
+      "prix_barre": 4998.99,
+      "remise_pct": 40,
       "tailles_disponibles": [
         "L"
       ],
       "en_stock": true,
-      "url_fiche": "https://www.bikestocks.es/fr/bike-bh-lynx-race-85-2024-47815.html",
-      "url_image": "https://www.bikestocks.es/79003-thickbox_default/bike-bh-lynx-race-85-2024.jpg",
+      "url_fiche": "https://www.bikestocks.es/fr/bicicleta-mondraker-f-podium-carbon-2024-tl-47933.html",
+      "url_image": "https://www.bikestocks.es/79221-thickbox_default/bicicleta-mondraker-f-podium-carbon-2024-tl.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 93,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 140,
       "score_detail": {
-        "remise": 78,
+        "remise": 120,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
       }
     },
     {
@@ -166,17 +188,41 @@
       "url_image": "https://www.bikestocks.es/82257-thickbox_default/velo-orbea-orca-m35i-2025.jpg",
       "materiau_cadre": "Carbone",
       "groupe_transmission": "Shimano 105 Di2 R7150",
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 93,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 137,
       "score_detail": {
-        "remise": 78,
+        "remise": 117,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
+      }
+    },
+    {
+      "id": "47815",
+      "nom": "Lynx Race 8.5 2024",
+      "marque": "BH",
+      "categorie": "vtt",
+      "prix": 3499,
+      "prix_barre": 5699.9,
+      "remise_pct": 39,
+      "tailles_disponibles": [
+        "L"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bike-bh-lynx-race-85-2024-47815.html",
+      "url_image": "https://www.bikestocks.es/79003-thickbox_default/bike-bh-lynx-race-85-2024.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 137,
+      "score_detail": {
+        "remise": 117,
+        "tailles": 5,
+        "marque": 15
       }
     },
     {
       "id": "47069",
-      "nom": "Impulse Allread GRX 600 2023 T.55",
+      "nom": "Impulse Allroad GRX 600 2023 T.55",
       "marque": "Bianchi",
       "categorie": "gravel",
       "prix": 1399,
@@ -190,10 +236,10 @@
       "url_image": "https://www.bikestocks.es/77054-thickbox_default/bichen-bianchi-impulse-allread-grx-600-2023-t55.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 93,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 137,
       "score_detail": {
-        "remise": 88,
+        "remise": 132,
         "tailles": 5,
         "marque": 0
       }
@@ -214,12 +260,12 @@
       "url_image": "https://www.bikestocks.es/79672-thickbox_default/bike-bh-gravelx-evo-30-2024-tl-et-xl.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 93,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 137,
       "score_detail": {
-        "remise": 78,
+        "remise": 117,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
       }
     },
     {
@@ -238,12 +284,109 @@
       "url_image": "https://www.bikestocks.es/75905-thickbox_default/velo-orbea-avant-h40-t49-et-57.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 91,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 134,
       "score_detail": {
-        "remise": 76,
+        "remise": 114,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
+      }
+    },
+    {
+      "id": "47959",
+      "nom": "Oltre PRO Ultegra Di2 2024 T.55",
+      "marque": "Bianchi",
+      "categorie": "route",
+      "prix": 4499,
+      "prix_barre": 7949,
+      "remise_pct": 43,
+      "tailles_disponibles": [
+        "55"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bichi-bichi-olter-pro-ultegra-di2-2024-t55-47959.html",
+      "url_image": "https://www.bikestocks.es/86569-thickbox_default/bichi-bichi-olter-pro-ultegra-di2-2024-t55.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 134,
+      "score_detail": {
+        "remise": 129,
+        "tailles": 5,
+        "marque": 0
+      }
+    },
+    {
+      "id": "49018",
+      "nom": "Carbon Arid S 2025 T.M",
+      "marque": "Mondraker",
+      "categorie": "gravel",
+      "prix": 1999,
+      "prix_barre": 3199,
+      "remise_pct": 38,
+      "tailles_disponibles": [
+        "M"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/velo-mondraker-carbon-aride-s-2025-tm-49018.html",
+      "url_image": "https://www.bikestocks.es/81782-thickbox_default/velo-mondraker-carbon-aride-s-2025-tm.jpg",
+      "materiau_cadre": "Carbone",
+      "groupe_transmission": "Shimano GRX RX-822-GS, 12S",
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 134,
+      "score_detail": {
+        "remise": 114,
+        "tailles": 5,
+        "marque": 15
+      }
+    },
+    {
+      "id": "47268",
+      "nom": "Terra m21e Team 1x T.s et m",
+      "marque": "Orbea",
+      "categorie": "gravel",
+      "prix": 3499,
+      "prix_barre": 5499,
+      "remise_pct": 36,
+      "tailles_disponibles": [
+        "S",
+        "M"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/velo-orbea-terra-m21e-equipe-1x-ts-et-m-47268.html",
+      "url_image": "https://www.bikestocks.es/77703-thickbox_default/velo-orbea-terra-m21e-equipe-1x-ts-et-m.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 133,
+      "score_detail": {
+        "remise": 108,
+        "tailles": 10,
+        "marque": 15
+      }
+    },
+    {
+      "id": "48564",
+      "nom": "Oltre XR3 105 / UL 2024",
+      "marque": "Bianchi",
+      "categorie": "route",
+      "prix": 1899,
+      "prix_barre": 3299,
+      "remise_pct": 42,
+      "tailles_disponibles": [
+        "53"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bichi-bianchi-olter-xr3-105-ul-2024-48564.html",
+      "url_image": "https://www.bikestocks.es/80823-thickbox_default/bichi-bianchi-olter-xr3-105-ul-2024.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 131,
+      "score_detail": {
+        "remise": 126,
+        "tailles": 5,
+        "marque": 0
       }
     },
     {
@@ -262,36 +405,182 @@
       "url_image": "https://www.bikestocks.es/76128-thickbox_default/velo-orbea-alma-m51-tl.jpg",
       "materiau_cadre": null,
       "groupe_transmission": null,
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 87,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 128,
       "score_detail": {
-        "remise": 72,
+        "remise": 108,
         "tailles": 5,
-        "marque": 10
+        "marque": 15
       }
     },
     {
-      "id": "50016",
-      "nom": "Bicycle Scott 2025 T.L",
-      "marque": "Scott",
-      "categorie": "vtt",
-      "prix": 2999,
-      "prix_barre": 4699,
-      "remise_pct": 36,
+      "id": "48314",
+      "nom": "IZALCO MAX 8.9 2024",
+      "marque": "Focus",
+      "categorie": "route",
+      "prix": 2669,
+      "prix_barre": 4499,
+      "remise_pct": 41,
       "tailles_disponibles": [
         "L"
       ],
       "en_stock": true,
-      "url_fiche": "https://www.bikestocks.es/fr/equipe-rc-scott-scott-bicycle-scott-2025-tl-50016.html",
-      "url_image": "https://www.bikestocks.es/84869-thickbox_default/equipe-rc-scott-scott-bicycle-scott-2025-tl.jpg",
-      "materiau_cadre": "Carbone",
-      "groupe_transmission": "SRAM S1000 Eagle Axes TRANSMISSION 12 VITESSE",
-      "date_collecte": "2026-11-18T20:01:20.639Z",
-      "score": 87,
+      "url_fiche": "https://www.bikestocks.es/fr/bicicleta-focus-izalco-max-89-2024-48314.html",
+      "url_image": "https://www.bikestocks.es/88964-thickbox_default/bicicleta-focus-izalco-max-89-2024.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 128,
       "score_detail": {
-        "remise": 72,
+        "remise": 123,
         "tailles": 5,
-        "marque": 10
+        "marque": 0
+      }
+    },
+    {
+      "id": "48930",
+      "nom": "Oltre Comp Ultegra Di2 12SP 2025",
+      "marque": "Bianchi",
+      "categorie": "route",
+      "prix": 3499,
+      "prix_barre": 5899,
+      "remise_pct": 41,
+      "tailles_disponibles": [
+        "53"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bichi-bianchi-oltre-comp-ultegra-di2-12sp-2025-48930.html",
+      "url_image": "https://www.bikestocks.es/87686-thickbox_default/bichi-bianchi-oltre-comp-ultegra-di2-12sp-2025.jpg",
+      "materiau_cadre": "Carbone",
+      "groupe_transmission": "Shimano Ultegra Di2 12SP, RD-R8150",
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 128,
+      "score_detail": {
+        "remise": 123,
+        "tailles": 5,
+        "marque": 0
+      }
+    },
+    {
+      "id": "50545",
+      "nom": "Crosshill cf 8.0 2026",
+      "marque": "Lapierre",
+      "categorie": "gravel",
+      "prix": 3599,
+      "prix_barre": 5999,
+      "remise_pct": 40,
+      "tailles_disponibles": [
+        "L"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/velo-lapierre-crosshill-cf-80-2026-50545.html",
+      "url_image": "https://www.bikestocks.es/85795-thickbox_default/velo-lapierre-crosshill-cf-80-2026.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": "Sram, forcer xplr haches e1 max 13s",
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 125,
+      "score_detail": {
+        "remise": 120,
+        "tailles": 5,
+        "marque": 0
+      }
+    },
+    {
+      "id": "50594",
+      "nom": "Propel Advanced PRO Da 2026",
+      "marque": "Giant",
+      "categorie": "route",
+      "prix": 4999,
+      "prix_barre": 7999,
+      "remise_pct": 38,
+      "tailles_disponibles": [
+        "S",
+        "M"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/velo-giant-propulser-avance-pro-da-2026-50594.html",
+      "url_image": "https://www.bikestocks.es/85952-thickbox_default/velo-giant-propulser-avance-pro-da-2026.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": "Shimano Hard-Ace Di2 ST-R9250",
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 124,
+      "score_detail": {
+        "remise": 114,
+        "tailles": 10,
+        "marque": 0
+      }
+    },
+    {
+      "id": "48696",
+      "nom": "mako PRO Xt 2025 T.S",
+      "marque": "Berria",
+      "categorie": "vtt",
+      "prix": 2499,
+      "prix_barre": 4099,
+      "remise_pct": 39,
+      "tailles_disponibles": [
+        "S"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bicyclettes-berria-mako-pro-xt-2025-ts-48696.html",
+      "url_image": "https://www.bikestocks.es/80949-thickbox_default/bicyclettes-berria-mako-pro-xt-2025-ts.jpg",
+      "materiau_cadre": "Carbone",
+      "groupe_transmission": "Shimano XT RD-M8100, Cage en aluminium, 12 Vitesse",
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 122,
+      "score_detail": {
+        "remise": 117,
+        "tailles": 5,
+        "marque": 0
+      }
+    },
+    {
+      "id": "46342",
+      "nom": "Aria 105 Di2 2023",
+      "marque": "Bianchi",
+      "categorie": "route",
+      "prix": 2699,
+      "prix_barre": 4299,
+      "remise_pct": 37,
+      "tailles_disponibles": [
+        "53",
+        "55"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bichi-bianchi-aria-105-di2-2023-46342.html",
+      "url_image": "https://www.bikestocks.es/77561-thickbox_default/bichi-bianchi-aria-105-di2-2023.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 121,
+      "score_detail": {
+        "remise": 111,
+        "tailles": 10,
+        "marque": 0
+      }
+    },
+    {
+      "id": "44575",
+      "nom": "KZ8 2022",
+      "marque": "Monty",
+      "categorie": "vtt",
+      "prix": 499,
+      "prix_barre": 799,
+      "remise_pct": 38,
+      "tailles_disponibles": [
+        "M"
+      ],
+      "en_stock": true,
+      "url_fiche": "https://www.bikestocks.es/fr/bicicleta-monty-kz8-2022-44575.html",
+      "url_image": "https://www.bikestocks.es/70034-thickbox_default/bicicleta-monty-kz8-2022.jpg",
+      "materiau_cadre": null,
+      "groupe_transmission": null,
+      "date_collecte": "2026-11-19T16:39:12.336Z",
+      "score": 119,
+      "score_detail": {
+        "remise": 114,
+        "tailles": 5,
+        "marque": 0
       }
     }
   ]

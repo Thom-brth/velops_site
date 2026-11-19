@@ -3,7 +3,7 @@
 // Une requête par jour au lieu d'une centaine. Les variantes (tailles) sont regroupées par g:item_group_id.
 // Pour l'API Webservice PrestaShop : écrire un objet { lister(cfg, http, log) } sur le même modèle (voir README).
 import * as cheerio from "cheerio";
-import { normaliser, prixDepuisTexte, reconnaitreMarque } from "./selection.mjs";
+import { corrigerNom, normaliser, prixDepuisTexte, reconnaitreMarque } from "./selection.mjs";
 
 export function lireFluxGoogle(xml, cfg) {
   const $ = cheerio.load(xml, { xml: true });
@@ -12,7 +12,7 @@ export function lireFluxGoogle(xml, cfg) {
   $("item, entry").each((_, el) => {
     const $it = $(el);
     const id = champ($it, "item_group_id") || champ($it, "id");
-    const nomSource = champ($it, "title");
+    const nomSource = corrigerNom(champ($it, "title"), cfg);
     const rayon = champ($it, "product_type");
     const type = cfg.flux.types.find((t) => normaliser(rayon).includes(normaliser(t.contient)))?.type;
     if (!id || !type) return; // rayon hors des types suivis (route / gravel / vtt)

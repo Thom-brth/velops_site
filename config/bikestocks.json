@@ -8,9 +8,9 @@
   "user_agent": "BrignaisCycleBot/1.0 (+[À COMPLÉTER : e-mail])",
   "delai_ms": 2000,
   "timeout_ms": 20000,
-  "max_requetes": 150,
+  "max_requetes": 200,
   "max_pages_par_categorie": 15,
-  "max_fiches": 36,
+  "max_fiches": 60,
   "_max_fiches": "Nombre de fiches produits ouvertes pour contrôle (JSON-LD, fil d'Ariane, specs) parmi les meilleurs candidats.",
 
   "categories": [
@@ -40,7 +40,7 @@
   "specs_electriques": ["motor", "bateria", "display"],
 
   "selection": {
-    "max_velos": 12,
+    "max_velos": 24,
     "_gamme": "Tous les prix (choix de l'exploitant). Pour limiter plus tard : resserrer prix_min / prix_max. Hors gamme = exclu, sauf vélo épinglé.",
     "prix_min": 0,
     "prix_max": 100000,
@@ -53,13 +53,24 @@
     "_marques_bonus": "Objectif : le meilleur rapport qualité-prix (poids fort de la remise) et des marques peu vendues dans les magasins autour de Lyon, souvent espagnoles, pour ne pas proposer ce que tout le monde a déjà. À ajuster selon ce que vous voyez chez les concurrents.",
     "marques_bonus": ["BH", "Orbea", "Megamo", "Mondraker", "MMR", "Massi", "Coluer", "Conor"],
     "quotas": [
-      { "types": ["route", "gravel"], "min": 3 },
-      { "types": ["vtt"], "min": 3 }
+      { "types": ["route", "gravel"], "min": 6 },
+      { "types": ["vtt"], "min": 6 }
     ],
     "_epingles_bannis": "Identifiants produit BikeStocks (le nombre à la fin de l'URL de la fiche, ex. ...-50538.html). Épinglé = toujours affiché s'il est trouvé, en stock et non électrique.",
     "epingles": [],
     "bannis": []
   },
+
+  "_corrections_noms": "Le site BikeStocks en français est traduit automatiquement (« Bichi Olter » pour Bianchi Oltre). Chaque ligne : [motif, remplacement], insensible à la casse, appliquée au nom avant la reconnaissance de la marque.",
+  "corrections_noms": [
+    ["\\b(bichi|bichen)\\b", "Bianchi"],
+    ["\\bolter\\b", "Oltre"],
+    ["\\ballread\\b", "Allroad"],
+    ["propulser avanc[ée]", "Propel Advanced"],
+    ["\\baride\\b", "Arid"],
+    ["(^|\\s)équipe(?=\\s|$)", "$1Team"],
+    ["^bicicleta\\s+", ""]
+  ],
 
   "_marques": "Sert à reconnaître la marque dans le nom du produit (« Vélo MERIDA Silex 400 » -> MERIDA). Ajouter ici une marque manquante.",
   "marques": [
@@ -67,7 +78,7 @@
     "Trek", "Specialized", "Cube", "Lapierre", "Megamo", "Kross", "Ridley", "Wilier", "Pinarello", "Cervelo", "Look",
     "Santa Cruz", "Commencal", "KTM", "Ghost", "Massi", "Coluer", "MMR", "Felt", "Fuji", "Kona", "Lombardo", "Polygon",
     "Rose", "Canyon", "Factor", "Basso", "Colnago", "De Rosa", "Time", "BMC", "Niner", "Yeti", "Pivot", "Transition",
-    "Rocky Mountain", "Norco", "Nukeproof", "Vitus", "Ducati", "Berria", "Olympia", "Bergamont", "Haibike", "Moustache"
+    "Rocky Mountain", "Norco", "Nukeproof", "Vitus", "Ducati", "Monty", "Berria", "Olympia", "Bergamont", "Haibike", "Moustache"
   ],
 
   "_materiaux": "Libellé affiché selon le premier mot trouvé dans la ligne « cadre » de la fiche (sinon rien n'est affiché).",

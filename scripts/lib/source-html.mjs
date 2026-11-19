@@ -2,7 +2,7 @@
 // Ordre de préférence sur la fiche : JSON-LD schema.org/Product > sélecteurs CSS (config > selecteurs).
 // Les microdonnées des pages listes ne sont PAS utilisées : relevées fausses (prix « 95 », faux avis).
 import * as cheerio from "cheerio";
-import { normaliser, prixDepuisTexte, reconnaitreMarque } from "./selection.mjs";
+import { corrigerNom, normaliser, prixDepuisTexte, reconnaitreMarque } from "./selection.mjs";
 
 export class ErreurStructure extends Error {}
 
@@ -25,7 +25,7 @@ export function lirePageListe(html, urlPage, cfg) {
       const $p = $(el);
       const lien = $p.find(s.lien).first();
       const href = lien.attr("href");
-      const nomSource = lien.text().trim();
+      const nomSource = corrigerNom(lien.text(), cfg);
       const tailles = $p
         .find(s.taille)
         .map((_, t) => ({ nom: ($(t).attr(s.attribut_taille_nom) ?? "").trim(), stock: Number($(t).attr(s.attribut_taille_stock)) }))

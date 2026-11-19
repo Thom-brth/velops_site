@@ -1,6 +1,6 @@
 // Contrôles du site généré (npm run build && npm run check), repris des critères de validation :
 // adresse exacte absente des pages publiques, aucun cookie/traceur/ressource tierce chargée d'office,
-// module vélos conforme (12 max, liens BikeStocks en nouvel onglet, mentions, date) ou totalement absent.
+// module vélos conforme (max_velos de config/bikestocks.json au plus, liens BikeStocks en nouvel onglet, mentions, date) ou totalement absent.
 // Affiche aussi la liste des [À COMPLÉTER] restants, page par page. Sort en code 1 si un contrôle échoue.
 import fs from "node:fs";
 import path from "node:path";
@@ -10,6 +10,7 @@ const racine = fileURLToPath(new URL("../", import.meta.url));
 const json = (f) => JSON.parse(fs.readFileSync(path.join(racine, f), "utf8"));
 const site = json("data/site.json");
 const bikes = json("data/bikes.json");
+const maxVelos = json("config/bikestocks.json").selection.max_velos;
 const sortie = path.join(racine, "_site");
 if (!fs.existsSync(sortie)) throw new Error("Lancer d'abord npm run build");
 
@@ -46,7 +47,7 @@ if (site.SHOW_BIKES) {
   else {
     const html = brut(fs.readFileSync(pageVelos, "utf8"));
     const cartes = html.split(/<article class="velo[ "]/).slice(1);
-    if (cartes.length > 12) erreurs.push(`page vélos : ${cartes.length} cartes (> 12)`);
+    if (cartes.length > maxVelos) erreurs.push(`page vélos : ${cartes.length} cartes (> ${maxVelos})`);
     if (cartes.length !== bikes.velos.length) erreurs.push(`page vélos : ${cartes.length} cartes pour ${bikes.velos.length} vélos dans bikes.json`);
     cartes.forEach((c, i) => {
       const lien = c.match(/<a [^>]*href="([^"]+)"[^>]*>Voir sur BikeStocks/);

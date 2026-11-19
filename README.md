@@ -110,9 +110,9 @@ Chaque nuit, `.github/workflows/site.yml` lance `npm run collect`, sur les serve
 2. **Filtres** (`raisonRejet`) : banni, sans prix, hors stock, électrique (mots-clés, motifs, specs), catégorie exclue, hors gamme de prix.
 3. **Pré-sélection** des `max_fiches` meilleurs candidats (même algorithme que la sélection finale).
 4. **Contrôle de chaque fiche** : le JSON-LD `schema.org/Product` fait foi pour le prix et le stock. Le fil d'Ariane, la description et le tableau de specs servent à détecter un vélo électrique **mal rangé** (lignes « motor », « bateria », capacité en Wh, moteur Bosch, Shimano EP…). On y lit aussi le matériau du cadre et le dérailleur.
-5. **Sélection finale** : 12 vélos maximum, puis **validation du schéma**, puis écriture atomique de `data/bikes.json`.
+5. **Sélection finale** : 24 vélos maximum (`max_velos`), puis **validation du schéma**, puis écriture atomique de `data/bikes.json`.
 
-**Politesse** : une requête à la fois, 2 s minimum entre deux requêtes (`delai_ms`), user-agent `BrignaisCycleBot/1.0 (+e-mail)`, `robots.txt` lu en premier et respecté (si son serveur est en erreur, la collecte s'arrête), 150 requêtes maximum (`max_requetes`). Une collecte complète fait environ 70 requêtes et dure 4 à 5 minutes (mesuré le 18/11/2026 : 69 requêtes, 4 min 35).
+**Politesse** : une requête à la fois, 2 s minimum entre deux requêtes (`delai_ms`), user-agent `BrignaisCycleBot/1.0 (+e-mail)`, `robots.txt` lu en premier et respecté (si son serveur est en erreur, la collecte s'arrête), 200 requêtes maximum (`max_requetes`). Une collecte complète fait environ 70 requêtes et dure 4 à 5 minutes (mesuré le 18/11/2026 : 69 requêtes, 4 min 35).
 
 > Les microdonnées des pages listes de BikeStocks sont fausses (prix « 95 », faux avis « asd/rty ») : elles ne sont pas utilisées.
 
@@ -146,12 +146,12 @@ Tout est dans `config/bikestocks.json > selection` :
 
 | Clé | Rôle | Défaut |
 |---|---|---|
-| `max_velos` | nombre de vélos affichés | 12 |
+| `max_velos` | nombre de vélos affichés | 24 |
 | `prix_min`, `prix_max` | gamme de prix ; hors gamme = exclu (sauf épinglé) | 600 / 3 500 € |
 | `poids.remise_par_point` | points par % de remise (poids fort) | 2 |
 | `poids.par_taille_dispo` × `max_tailles_comptees` | points par taille en stock, plafonnés | 5 × 4 max |
 | `poids.marque_reconnue` + `marques_bonus` | bonus si la marque est dans la liste | 10 |
-| `quotas` | minimum par famille si disponible | 3 route/gravel, 3 VTT |
+| `quotas` | minimum par famille si disponible | 6 route/gravel, 6 VTT |
 
 **Score** = remise (%) × 2 + min(tailles en stock, 4) × 5 + 10 si marque reconnue.
 Exemple : −25 %, 3 tailles, Orbea → 50 + 15 + 10 = **75 points**. Le détail est écrit dans `bikes.json` (`score_detail`) pour chaque vélo.
@@ -194,7 +194,7 @@ BikeStocks tourne sous PrestaShop. Le plus simple et le plus fiable est de lui d
    - `HTTP 5xx`, `timeout`, `robots.txt inaccessible` : panne passagère chez BikeStocks. Rien à faire, ça repassera la nuit suivante (ou Run workflow plus tard).
    - `interdit par robots.txt` : BikeStocks a changé son `robots.txt`. Ne pas contourner : leur demander le flux (plan A).
    - `ErreurStructure … sélecteurs « liste » à revoir` ou `pas de JSON-LD` : la mise en page a changé. Voir l'étape 3.
-   - `plafond de 150 requêtes atteint` : le catalogue a grossi. Augmenter `max_requetes` (ou baisser `max_pages_par_categorie`).
+   - `plafond de 200 requêtes atteint` : le catalogue a grossi. Augmenter `max_requetes` (ou baisser `max_pages_par_categorie`).
    - `JSON invalide : … vélo électrique` : un électrique a passé les filtres de la liste mais a été bloqué par la validation finale. Ajouter le mot ou le motif fautif dans `mots_electriques` / `regex_electriques`.
 3. **Réparer les sélecteurs** :
    1. Enregistrer une page catégorie et une fiche actuelles dans `tests/fixtures/` (voir l'en-tête des fixtures existantes).

@@ -7,7 +7,7 @@ import { valider } from "../scripts/lib/selection.mjs";
 const lire = (f) => JSON.parse(fs.readFileSync(new URL(`../${f}`, import.meta.url), "utf8"));
 const cfg = lire("config/bikestocks.json");
 
-test("data/bikes.json : schéma valide, 12 vélos max, aucun électrique, aucun modèle en double", () => {
+test("data/bikes.json : schéma valide, max_velos respecté, aucun électrique, aucun modèle en double", () => {
   assert.deepEqual(valider(lire("data/bikes.json"), cfg), []);
 });
 

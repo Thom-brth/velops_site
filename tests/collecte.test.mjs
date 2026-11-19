@@ -7,7 +7,7 @@ import path from "node:path";
 import { lireFiche, lirePageListe, resumeSpec, ErreurStructure } from "../scripts/lib/source-html.mjs";
 import { lireFluxGoogle } from "../scripts/lib/source-flux.mjs";
 import { autorise, creerClient, lireRobots } from "../scripts/lib/http.mjs";
-import { categorieExclue, cleModele, estElectrique, noter, prixDepuisTexte, raisonRejet, reconnaitreMarque, selectionner, valider } from "../scripts/lib/selection.mjs";
+import { categorieExclue, cleModele, corrigerNom, estElectrique, noter, prixDepuisTexte, raisonRejet, reconnaitreMarque, selectionner, valider } from "../scripts/lib/selection.mjs";
 import { executer } from "../scripts/collect.mjs";
 
 const cfg = JSON.parse(fs.readFileSync(new URL("../config/bikestocks.json", import.meta.url), "utf8"));
@@ -116,6 +116,14 @@ describe("Filtre vélos électriques", () => {
 });
 
 describe("Score et sélection", () => {
+  test("corrections de traduction automatique avant la marque (config > corrections_noms)", () => {
+    const nom = (n) => reconnaitreMarque(corrigerNom(n, cfg), cfg.marques);
+    assert.deepEqual(nom("Bichi Bichi Olter PRO Ultegra Di2 2024"), { marque: "Bianchi", nom: "Oltre PRO Ultegra Di2 2024" });
+    assert.deepEqual(nom("Vélo Giant Propulser avancé PRO 2026"), { marque: "Giant", nom: "Propel Advanced PRO 2026" });
+    assert.deepEqual(nom("Vélo Orbea Terra M41e équipe 1x 2024"), { marque: "Orbea", nom: "Terra M41e Team 1x 2024" });
+    assert.equal(corrigerNom("Vélo Orbea Terra M41e", { }), "Vélo Orbea Terra M41e");
+  });
+
   test("score = remise × poids + tailles (plafonnées) × poids + bonus marque (poids de la config)", () => {
     const p = cfg.selection.poids;
     const a = noter(velo({ prix: 850, prix_barre: 1000, tailles_disponibles: ["M"], marque: "Merida" }), cfg.selection);
@@ -136,12 +144,13 @@ describe("Score et sélection", () => {
     assert.equal(raisonRejet(velo({ id: "666" }), c), "banni");
   });
 
-  test("12 max, quotas route/gravel et VTT, un seul exemplaire par modèle, épinglé en tête", () => {
+  test("max_velos respecté, quotas route/gravel et VTT, un seul exemplaire par modèle, épinglé en tête", () => {
     const route = Array.from({ length: 20 }, (_, i) => noter(velo({ prix: 1000, prix_barre: 2000 - i * 10 }), cfg.selection));
     const vtt = Array.from({ length: 5 }, () => noter(velo({ categorie: "vtt", prix: 1000, prix_barre: 1050 }), cfg.selection));
     const doublon = noter(velo({ nom: `${route[0].nom.replace(" 2026", "")} 2027 Taille XL` }), cfg.selection);
     const epingle = noter(velo({ categorie: "gravel", prix: 1000, prix_barre: null }), cfg.selection);
-    const c = { ...cfg, selection: { ...cfg.selection, epingles: [epingle.id] } };
+    const quotas = [{ types: ["route", "gravel"], min: 3 }, { types: ["vtt"], min: 3 }];
+    const c = { ...cfg, selection: { ...cfg.selection, max_velos: 12, quotas, epingles: [epingle.id] } };
     const choix = selectionner([...route, ...vtt, doublon, epingle], c);
     assert.equal(choix.length, 12);
     assert.equal(choix[0].id, epingle.id);

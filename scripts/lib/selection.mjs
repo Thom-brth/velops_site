@@ -15,6 +15,10 @@ export function prixDepuisTexte(t) {
   return Number.isFinite(n) && n > 0 ? Math.round(n * 100) / 100 : null;
 }
 
+/** Corrige les traductions automatiques du site (« Bichi Olter » -> « Bianchi Oltre ») : config > corrections_noms. */
+export const corrigerNom = (nom, cfg) =>
+  (cfg.corrections_noms ?? []).reduce((s, [motif, remplacement]) => s.replace(new RegExp(motif, "gi"), remplacement), String(nom ?? "")).replace(/\s+/g, " ").trim();
+
 /** « Vélo MERIDA Silex 400 2026 » -> { marque: "Merida", nom: "Silex 400 2026" } (marque = graphie de la config). */
 export function reconnaitreMarque(nomSource, marques) {
   const original = String(nomSource ?? "").normalize("NFC").trim();
