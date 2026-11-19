@@ -209,6 +209,7 @@ Direction artistique **« fiche d'atelier »** : un plan technique et un ticket 
 | Élément | Choix |
 |---|---|
 | Couleurs | papier `#f3efe7`, encre `#141518`, un seul signal orange `#ff5a1f`. L'orange n'est **jamais** une couleur de texte sur fond clair (contraste insuffisant) : il sert de fond (texte encre dessus, 6,4:1), de trait ou de point. |
+| Mode sombre | Automatique, selon le réglage de l'ordinateur ou du téléphone (`prefers-color-scheme`), sans bouton ni mémorisation. Les couleurs sombres sont dans le bloc `@media (prefers-color-scheme: dark)` en haut de `style.css` : papier et encre s'inversent, le texte reste foncé sur l'orange. |
 | Titres | **Archivo** condensée (axe de largeur variable), en capitales serrées |
 | Étiquettes, prix, boutons | **Martian Mono** |
 | Polices | Auto-hébergées, aucun appel à Google Fonts. Copiées depuis les paquets npm `@fontsource-variable/*` au build (`eleventy.config.js`), environ 110 Ko au total. |

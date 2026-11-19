@@ -36,6 +36,36 @@
   --large: min(100% - 2rem, 76rem);
   --rayon: 3px;
   --ease: cubic-bezier(.2, .7, .2, 1);
+  --entete-fond: rgb(243 239 231 / .94);
+  color-scheme: light;
+}
+
+/* Mode sombre : suit le réglage de l'appareil (aucun bouton, donc rien à mémoriser).
+   Papier et encre s'inversent ; contrastes : encre 15:1, gris 7:1 sur --papier sombre. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papier: #17181b;
+    --papier-2: #232428;
+    --blanc: #1f2024;
+    --encre: #f1ece2;
+    --encre-2: #d4cfc5;
+    --gris: #a6a49e;
+    --trait: rgb(241 236 226 / .1);
+    --trait-2: rgb(241 236 226 / .28);
+    --entete-fond: rgb(23 24 27 / .94);
+    color-scheme: dark;
+  }
+  /* Sur l'orange, le texte reste foncé (6,4:1) : on y remet les couleurs claires. */
+  .skip, .logo-txt span, .accroche em, .tableau-cat h3 .label, .note-tarifs::before,
+  .bande-rdv, .faq details[open] summary::after, .faq summary:hover::after, .tel-geant:hover, .zone li:first-child, .velo-remise, .montage:not(.clair) {
+    --encre: #141518; --encre-2: #2c2e33; --papier: #f3efe7; color: var(--encre);
+  }
+  ::selection, .btn-signal { color: #141518; }
+  /* Pied de page, bandeau défilant et barre d'appel restent des blocs sombres. */
+  .pied, .defile, .barre-appel { --encre: #0c0d0f; --papier: #f3efe7; }
+  @media (max-width: 1119px) { .js .nav { --encre: #0c0d0f; --papier: #f3efe7; } }
+  .velo-img img { background: #fff; } /* photos BikeStocks sur fond blanc */
+  .page-tete .pignon-deco { opacity: .035; }
 }
 
 /* ---------- Base ---------- */
@@ -70,8 +100,8 @@ h1, h2 {
   line-height: .9;
   letter-spacing: -.005em;
 }
-h1 { font-size: clamp(2.9rem, 13vw, 6rem); }
-h2 { font-size: clamp(2.2rem, 8.5vw, 4.25rem); }
+h1 { font-size: clamp(2.9rem, 13vw, 4.75rem); }
+h2 { font-size: clamp(2.2rem, 8.5vw, 3.4rem); }
 h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15; }
 
 .wrap { width: var(--large); margin-left: auto; margin-right: auto; }
@@ -111,7 +141,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 /* ---------- En-tête ---------- */
 .entete {
   position: sticky; top: 0; z-index: 40;
-  background: rgb(243 239 231 / .94);
+  background: var(--entete-fond);
   -webkit-backdrop-filter: saturate(1.2) blur(10px);
   backdrop-filter: saturate(1.2) blur(10px);
   border-bottom: 1px solid var(--trait-2);
@@ -135,6 +165,9 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 @media (min-width: 1120px) {
   .entete-cta { display: inline-flex; }
   .entete-in { flex-wrap: nowrap; }
+  .nav ul { flex-wrap: nowrap; gap: 0 .6rem; white-space: nowrap; }
+  .nav li + li { position: relative; padding-left: .6rem; }
+  .nav li + li::before { content: ""; position: absolute; left: 0; top: 50%; width: 2px; height: .75rem; margin-top: -.375rem; background: var(--encre); }
 }
 /* Mobile avec JS : menu plein écran */
 @media (max-width: 1119px) {
@@ -174,7 +207,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 }
 
 /* ---------- Sections ---------- */
-.section { padding-block: clamp(2.75rem, 6vw, 5rem); }
+.section { padding-block: clamp(2.75rem, 6vw, 4.25rem); }
 .section-tete { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
 .section-num { display: inline-flex; width: max-content; background: var(--encre); color: var(--papier); padding: .3rem .55rem; }
 .section-tete .chapo { margin: 0; }
@@ -246,7 +279,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 /* ---------- Faits (accueil) ---------- */
 .faits { list-style: none; margin: 0; padding: 0; display: grid; border-top: 2px solid var(--encre); }
 .faits li { padding: 1.75rem 0 1.5rem; border-bottom: 1px solid var(--trait-2); }
-.fait-chiffre { font-stretch: 62%; font-weight: 860; font-size: clamp(3.4rem, 14vw, 5rem); line-height: .85; text-transform: uppercase; margin-bottom: 1rem; }
+.fait-chiffre { font-stretch: 62%; font-weight: 860; font-size: clamp(3.4rem, 14vw, 4.1rem); line-height: .85; text-transform: uppercase; margin-bottom: 1rem; }
 .fait-titre { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .fait-titre::before { content: ""; width: .7rem; height: .7rem; background: var(--signal); }
 .faits p:last-child { margin: 0; color: var(--encre-2); max-width: 34ch; }
@@ -278,7 +311,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 /* Ticket main-d'œuvre */
 .ticket { display: grid; border: 2px solid var(--encre); background: var(--blanc); box-shadow: 6px 6px 0 var(--encre); }
 .ticket-prix { padding: 1.5rem; border-bottom: 2px dashed var(--encre); }
-.ticket-prix b { display: block; margin: .35rem 0 .9rem; font-stretch: 62%; font-weight: 860; font-size: clamp(4rem, 18vw, 6.5rem); line-height: .85; }
+.ticket-prix b { display: block; margin: .35rem 0 .9rem; font-stretch: 62%; font-weight: 860; font-size: clamp(4rem, 18vw, 5.25rem); line-height: .85; }
 .ticket-prix p { margin: 0; }
 .ticket-infos { margin: 0; padding: 1.25rem 1.5rem; list-style: none; display: grid; gap: .6rem; }
 .ticket-infos li { display: flex; gap: .6rem; align-items: baseline; }
@@ -314,10 +347,10 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .horaires-liste li { padding: .6rem 0; border-bottom: 1px solid var(--trait-2); }
 
 /* ---------- Bande rendez-vous (orange) ---------- */
-.bande-rdv { position: relative; overflow: hidden; background: var(--signal); color: var(--encre); padding-block: clamp(3.5rem, 9vw, 6.5rem); }
+.bande-rdv { position: relative; overflow: hidden; background: var(--signal); color: var(--encre); padding-block: clamp(3.5rem, 8vw, 5rem); }
 .bande-grid { position: relative; z-index: 1; display: grid; gap: 2.5rem; }
 @media (min-width: 900px) { .bande-grid { grid-template-columns: 7fr 5fr; align-items: end; gap: 4rem; } }
-.bande-rdv h2 { font-size: clamp(2.5rem, 10vw, 5rem); max-width: 12ch; margin: 1rem 0 0; }
+.bande-rdv h2 { font-size: clamp(2.5rem, 10vw, 4rem); max-width: 12ch; margin: 1rem 0 0; }
 .bande-rdv .actions .btn-ligne:hover { background: var(--encre); color: var(--signal); }
 .bande-rdv .pignon-deco { position: absolute; right: -9rem; bottom: -11rem; width: 28rem; height: 28rem; color: var(--encre); opacity: .1; }
 .horaires { margin: 0; border-top: 2px solid var(--encre); }
@@ -346,7 +379,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   .etapes { grid-template-columns: repeat(4, 1fr); gap: 2.25rem; }
   .etapes li { grid-template-columns: 1fr; padding-top: 1.5rem; position: relative; }
   .etapes li::before { content: ""; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; background: var(--signal); border: 2px solid var(--encre); border-radius: 50%; }
-  .etape-num { font-size: 6rem; margin-bottom: 1.25rem; }
+  .etape-num { font-size: 4.75rem; margin-bottom: 1.25rem; }
 }
 .paiements { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
 .paiements li { padding: .55rem .9rem; border: 2px solid var(--encre); background: var(--blanc); font-weight: 700; }
@@ -369,7 +402,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .faq-rep p { margin: 0; }
 
 /* ---------- Contact ---------- */
-.tel-geant { display: inline-block; font-stretch: 62%; font-weight: 860; font-size: clamp(2.6rem, 12vw, 6rem); line-height: .9; text-transform: uppercase; text-decoration: none; border-bottom: 6px solid var(--signal); overflow-wrap: anywhere; }
+.tel-geant { display: inline-block; font-stretch: 62%; font-weight: 860; font-size: clamp(2.6rem, 12vw, 4.5rem); line-height: .9; text-transform: uppercase; text-decoration: none; border-bottom: 6px solid var(--signal); overflow-wrap: anywhere; }
 .tel-geant:hover { background: var(--signal); text-decoration: none; }
 .zone { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
 .zone li { padding: .3rem .65rem; border: 1.5px solid var(--encre); }
@@ -424,7 +457,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .velo .btn { margin-top: auto; }
 .montage { display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--signal); border: 2px solid var(--encre); }
 @media (min-width: 900px) { .montage { grid-template-columns: 1fr auto; align-items: center; } }
-.montage h2 { font-size: clamp(2rem, 7vw, 3.2rem); }
+.montage h2 { font-size: clamp(2rem, 7vw, 2.75rem); }
 .montage .actions { margin: 0; }
 .montage.clair { background: var(--blanc); box-shadow: 6px 6px 0 var(--signal); }
 .espace-haut { margin-top: 1.5rem; }
@@ -452,7 +485,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .pied-marque {
   margin: 0; padding-top: 1rem; border-top: 1px solid rgb(243 239 231 / .2);
   font-stretch: 62%; font-weight: 860; text-transform: uppercase; white-space: nowrap;
-  font-size: clamp(3.5rem, 16.5vw, 15rem); line-height: .78; letter-spacing: -.01em;
+  font-size: clamp(3.5rem, 16.5vw, 11rem); line-height: .78; letter-spacing: -.01em;
   color: transparent; -webkit-text-stroke: 1.5px rgb(243 239 231 / .45);
 }
 .pied-bas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; padding-block: 1.25rem; }
