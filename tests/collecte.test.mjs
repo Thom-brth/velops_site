@@ -122,6 +122,9 @@ describe("Score et sélection", () => {
     assert.deepEqual(nom("Vélo Giant Propulser avancé PRO 2026"), { marque: "Giant", nom: "Propel Advanced PRO 2026" });
     assert.deepEqual(nom("Vélo Orbea Terra M41e équipe 1x 2024"), { marque: "Orbea", nom: "Terra M41e Team 1x 2024" });
     assert.equal(corrigerNom("Vélo Orbea Terra M41e", { }), "Vélo Orbea Terra M41e");
+    assert.deepEqual(nom("Vélo BH GravelX EVO 3.0 2024 T.L et XL"), { marque: "BH", nom: "GravelX EVO 3.0 2024" });
+    assert.deepEqual(nom("Vélo Orbea Avant H40 T.49 et 57"), { marque: "Orbea", nom: "Avant H40" });
+    assert.deepEqual(nom("Vélo Orbea Alma m51 t.l"), { marque: "Orbea", nom: "Alma m51" });
   });
 
   test("score = remise × poids + tailles (plafonnées) × poids + bonus marque (poids de la config)", () => {

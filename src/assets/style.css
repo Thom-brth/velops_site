@@ -88,7 +88,7 @@ img { height: auto; }
 p { margin: 0 0 1em; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em; }
 a:hover { text-decoration-color: var(--signal); text-decoration-thickness: 2px; }
-:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--encre); outline-offset: 3px; } /* encre : 15:1 sur papier ; l'orange n'atteignait que 2,7:1 (WCAG 1.4.11) */
 .bande-rdv :focus-visible, .montage :focus-visible { outline-color: var(--encre); }
 ::selection { background: var(--signal); color: var(--encre); }
 
@@ -499,7 +499,8 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .barre-appel { position: fixed; right: 0; bottom: 0; left: 0; z-index: 30; display: flex; gap: .6rem; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: var(--encre); }
 .barre-appel .btn { flex: 1; }
 .barre-appel .btn-ligne { color: var(--papier); border-color: var(--papier); }
-@media (min-width: 1120px) { .barre-appel { display: none; } body { padding-bottom: 0; } }
+html { scroll-padding-bottom: 5.5rem; } /* le focus clavier ne passe pas sous la barre d'appel (WCAG 2.4.11) */
+@media (min-width: 1120px) { .barre-appel { display: none; } body { padding-bottom: 0; } html { scroll-padding-bottom: 0; } }
 
 /* Survols qui déplacent un élément : seulement avec une souris (sur écran tactile l'effet resterait « collé »). */
 @media (hover: hover) {

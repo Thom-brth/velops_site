@@ -4,7 +4,7 @@
   "velos": [
     {
       "id": "47944",
-      "nom": "OIZ MPRO XO 2023 T.XL",
+      "nom": "OIZ MPRO XO 2023",
       "marque": "Orbea",
       "categorie": "vtt",
       "prix": 3999,
@@ -150,7 +150,7 @@
     },
     {
       "id": "47933",
-      "nom": "F-PODIUM CARBON 2024 T.L",
+      "nom": "F-PODIUM CARBON 2024",
       "marque": "Mondraker",
       "categorie": "vtt",
       "prix": 2998.99,
@@ -222,7 +222,7 @@
     },
     {
       "id": "47069",
-      "nom": "Impulse Allroad GRX 600 2023 T.55",
+      "nom": "Impulse Allroad GRX 600 2023",
       "marque": "Bianchi",
       "categorie": "gravel",
       "prix": 1399,
@@ -246,7 +246,7 @@
     },
     {
       "id": "48057",
-      "nom": "GravelX EVO 3.0 2024 T.L et XL",
+      "nom": "GravelX EVO 3.0 2024",
       "marque": "BH",
       "categorie": "gravel",
       "prix": 1999,
@@ -270,7 +270,7 @@
     },
     {
       "id": "46623",
-      "nom": "Avant H40 T.49 et 57",
+      "nom": "Avant H40",
       "marque": "Orbea",
       "categorie": "route",
       "prix": 999,
@@ -294,7 +294,7 @@
     },
     {
       "id": "47959",
-      "nom": "Oltre PRO Ultegra Di2 2024 T.55",
+      "nom": "Oltre PRO Ultegra Di2 2024",
       "marque": "Bianchi",
       "categorie": "route",
       "prix": 4499,
@@ -318,7 +318,7 @@
     },
     {
       "id": "49018",
-      "nom": "Carbon Arid S 2025 T.M",
+      "nom": "Carbon Arid S 2025",
       "marque": "Mondraker",
       "categorie": "gravel",
       "prix": 1999,
@@ -342,7 +342,7 @@
     },
     {
       "id": "47268",
-      "nom": "Terra m21e Team 1x T.s et m",
+      "nom": "Terra m21e Team 1x",
       "marque": "Orbea",
       "categorie": "gravel",
       "prix": 3499,
@@ -391,7 +391,7 @@
     },
     {
       "id": "46529",
-      "nom": "Alma m51 t.l",
+      "nom": "Alma m51",
       "marque": "Orbea",
       "categorie": "vtt",
       "prix": 1399.01,
@@ -512,7 +512,7 @@
     },
     {
       "id": "48696",
-      "nom": "mako PRO Xt 2025 T.S",
+      "nom": "mako PRO Xt 2025",
       "marque": "Berria",
       "categorie": "vtt",
       "prix": 2499,

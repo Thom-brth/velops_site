@@ -61,7 +61,7 @@
     "bannis": []
   },
 
-  "_corrections_noms": "Le site BikeStocks en français est traduit automatiquement (« Bichi Olter » pour Bianchi Oltre). Chaque ligne : [motif, remplacement], insensible à la casse, appliquée au nom avant la reconnaissance de la marque.",
+  "_corrections_noms": "Le site BikeStocks en français est traduit automatiquement (« Bichi Olter » pour Bianchi Oltre). Chaque ligne : [motif, remplacement], insensible à la casse, appliquée au nom avant la reconnaissance de la marque. La dernière retire la taille en fin de nom (« T.55 », « T.L et XL »), déjà affichée à part.",
   "corrections_noms": [
     ["\\b(bichi|bichen)\\b", "Bianchi"],
     ["\\bolter\\b", "Oltre"],
@@ -69,7 +69,8 @@
     ["propulser avanc[ée]", "Propel Advanced"],
     ["\\baride\\b", "Arid"],
     ["(^|\\s)équipe(?=\\s|$)", "$1Team"],
-    ["^bicicleta\\s+", ""]
+    ["^bicicleta\\s+", ""],
+    ["\\s+t\\.\\s?[a-z0-9]+(\\s+et\\s+[a-z0-9]+)*$", ""]
   ],
 
   "_marques": "Sert à reconnaître la marque dans le nom du produit (« Vélo MERIDA Silex 400 » -> MERIDA). Ajouter ici une marque manquante.",

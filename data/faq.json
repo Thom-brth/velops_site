@@ -23,7 +23,7 @@
     },
     {
       "q": "Puis-je apporter mes propres pièces ?",
-      "r": "{site.pieces_client}"
+      "r": "Oui, les pièces fournies par le client sont {site.pieces_client}"
     },
     {
       "q": "Réparez-vous les vélos électriques ? Les suspensions ?",
@@ -31,7 +31,7 @@
     },
     {
       "q": "Combien coûte une réparation qui n'est pas dans la grille ?",
-      "r": "La main-d'œuvre est facturée 7,50 € par tranche de 10 minutes (45 €/h), plus les pièces sur une ligne séparée. Le devis est gratuit : demandez-le avant l'intervention."
+      "r": "La main-d'œuvre est facturée au temps passé, au tarif affiché sur la page <a href=\"/prestations-tarifs/\">Prestations & tarifs</a>, plus les pièces sur une ligne séparée. Le devis est gratuit : demandez-le avant l'intervention."
     },
     {
       "q": "Comment payer ?",
