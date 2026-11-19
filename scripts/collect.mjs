@@ -47,7 +47,8 @@ export async function collecter({ cfg, http, maintenant = new Date(), log = cons
         log(`  fiche ignorée : ${e.message}`);
       }
     }
-    if (!verifies.length && erreurs.length) throw new Error(`aucune fiche lisible (${erreurs.length} erreurs, ex. ${erreurs[0]})`);
+    // Plus de la moitié des fiches illisibles : la structure du site a probablement changé, on garde l'ancienne sélection.
+    if (erreurs.length > aVerifier.length / 2) throw new Error(`${erreurs.length}/${aVerifier.length} fiches illisibles (ex. ${erreurs[0]})`);
     candidats = verifies;
   }
 

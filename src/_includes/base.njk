@@ -1,6 +1,8 @@
-{#- Gabarit commun. Front matter des pages : title, description, et pour l'en-tête intérieur : surtitre, chapo (voir page-tete.njk). -#}
+{#- Gabarit commun. Front matter des pages : title (titre affiché), titre_seo (balise <title>, optionnel), description,
+    et pour l'en-tête intérieur : surtitre, chapo (voir page-tete.njk). -#}
 {%- from "icones.njk" import fleche, logo -%}
 {%- set tel = site.telephone | telHref -%}
+{%- set sms = site | smsHref -%}
 {%- set menu = [
   ["/", "Accueil"],
   ["/prestations-tarifs/", "Prestations & tarifs"],
@@ -14,13 +16,13 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}{% if page.url != "/" %} · {{ site.nom }}{% endif %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ titre_seo or title }}{% if page.url != "/" %} · {{ site.nom }}{% endif %}</title>
   <meta name="description" content="{{ description or site.description }}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="{{ site.nom }}">
-  <meta property="og:title" content="{{ title }}">
+  <meta property="og:title" content="{{ title }}{% if page.url != "/" %} · {{ site.nom }}{% endif %}">
   <meta property="og:description" content="{{ description or site.description }}">
   {%- if not (site.url | isTodo) %}
   {#- Adresses absolues : émises seulement quand data/site.json > url est renseignée. #}
@@ -32,6 +34,7 @@
   {%- endif %}
   <meta name="theme-color" content="#141518">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/style.css">
   <script>document.documentElement.classList.add("js")</script>
@@ -56,12 +59,12 @@
           {%- endfor %}
         </ul>
         <div class="nav-rdv">
-          <p class="label">Sur rendez-vous · {{ site.lieu_public }}</p>
+          <p class="label">Sur rendez-vous · {{ site.ville }} ({{ site.code_postal }})</p>
           <a class="btn btn-signal" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
-          <a class="btn btn-ligne" href="sms:{{ tel }}">Envoyer un SMS</a>
+          <a class="btn btn-ligne" href="{{ sms }}">Envoyer un SMS</a>
         </div>
       </nav>
-      <a class="btn btn-signal entete-cta" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
+      <a class="btn btn-signal entete-cta" href="tel:{{ tel }}">{% if site.telephone | isTodo %}Appeler{% else %}{{ site.telephone }}{% endif %} {{ fleche() }}</a>
     </div>
   </header>
 
@@ -73,7 +76,7 @@
     <div class="wrap pied-grid">
       <div>
         <p class="label">L'atelier</p>
-        <p>Réparation et entretien vélo, uniquement sur rendez-vous.<br>{{ site.lieu_public }}.</p>
+        <p>Réparation et entretien vélo, uniquement sur rendez-vous.<br>{{ site.ville }} ({{ site.code_postal }}).</p>
         <p><a href="tel:{{ tel }}">{{ site.telephone }}</a><br><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
       </div>
       <div>
@@ -113,21 +116,27 @@
 
   <div class="barre-appel">
     <a class="btn btn-signal" href="tel:{{ tel }}">Appeler</a>
-    <a class="btn btn-ligne" href="sms:{{ tel }}">SMS</a>
+    <a class="btn btn-ligne" href="{{ sms }}">SMS</a>
   </div>
 
   <script>
     // Menu mobile plein écran. Sans JS, le menu reste affiché sous le logo.
-    const b = document.querySelector(".nav-toggle"), n = document.getElementById("nav"), t = b.querySelector(".nav-toggle-txt");
-    const ouvrir = (o) => {
-      b.setAttribute("aria-expanded", o);
-      n.classList.toggle("open", o);
-      document.documentElement.classList.toggle("menu-ouvert", o);
-      t.textContent = o ? "Fermer" : "Menu";
-    };
-    b.addEventListener("click", () => ouvrir(b.getAttribute("aria-expanded") !== "true"));
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && n.classList.contains("open")) { ouvrir(false); b.focus(); } });
-    matchMedia("(min-width: 1120px)").addEventListener("change", () => ouvrir(false));
+    {
+      const b = document.querySelector(".nav-toggle"), n = document.getElementById("nav"), t = b.querySelector(".nav-toggle-txt");
+      const fond = document.querySelectorAll("main, footer, .barre-appel");
+      const ouvrir = (o) => {
+        b.setAttribute("aria-expanded", o);
+        n.classList.toggle("open", o);
+        document.documentElement.classList.toggle("menu-ouvert", o);
+        fond.forEach((el) => (el.inert = o)); // Tab reste dans le menu ouvert
+        t.textContent = o ? "Fermer" : "Menu";
+      };
+      b.addEventListener("click", () => ouvrir(b.getAttribute("aria-expanded") !== "true"));
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && n.classList.contains("open")) { ouvrir(false); b.focus(); } });
+      addEventListener("pageshow", (e) => e.persisted && ouvrir(false)); // retour arrière Safari (cache)
+      const large = matchMedia("(min-width: 1120px)");
+      large.addEventListener ? large.addEventListener("change", () => ouvrir(false)) : large.addListener(() => ouvrir(false));
+    }
   </script>
   {%- if scripts %}{% for s in scripts %}
   <script src="{{ s }}" defer></script>

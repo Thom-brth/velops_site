@@ -5,8 +5,8 @@
 
   "nom": "Brignais Cycle",
   "url": "[À COMPLÉTER : https://nom-de-domaine.fr]",
-  "slogan": "Ton atelier vélo à Brignais, sur rendez-vous",
-  "accroche": "Tu déposes. *Je répare.* Tu repars.",
+  "slogan": "Votre atelier vélo à Brignais, sur rendez-vous",
+  "accroche": "Vous déposez. *Je répare.* Vous repartez.",
   "_accroche": "Titre géant de l'accueil. Le passage entre *étoiles* est surligné en orange.",
   "description": "Atelier de réparation et d'entretien vélo à Brignais (69530), sur rendez-vous. Prix affichés, réparation dans le créneau. Route, gravel, VTT.",
 
@@ -17,10 +17,20 @@
   "adresse_legale": "[À COMPLÉTER : adresse ou domiciliation]",
   "ville": "Brignais",
   "code_postal": "69530",
-  "lieu_public": "Brignais – adresse communiquée lors de la prise de rendez-vous",
+  "lieu_public": "L'atelier est installé dans un garage privé, dans le quartier [À COMPLÉTER : quartier]. Pour respecter le voisinage, l'adresse exacte vous est donnée au moment de la prise de rendez-vous.",
+  "_lieu_public": "Affiché une seule fois (page Contact et FAQ). Ailleurs, le site dit simplement « Brignais (69530), sur rendez-vous ».",
 
   "telephone": "[À COMPLÉTER : numéro]",
   "email": "[À COMPLÉTER : e-mail]",
+  "sms_message": "Bonjour, j'ai un vélo (route / gravel / VTT) : ... Le souci : ... Merci de me proposer un créneau.",
+  "rappel": "[À COMPLÉTER : délai de rappel, ex. Pas de réponse ? Laissez un SMS, je vous rappelle le soir même.]",
+  "delai_rdv": "[À COMPLÉTER : délai habituel pour obtenir un créneau, ex. en général dans la semaine]",
+  "depose": "[À COMPLÉTER : déroulé de la dépose, ex. nous faisons ensemble le tour du vélo et je note son état avant d'intervenir]",
+  "liens": {
+    "_doc": "Fiche Google Business Profile et page Facebook : ajoutées aux données structurées (sameAs) dès qu'elles sont renseignées.",
+    "google": "",
+    "facebook": ""
+  },
   "assureur": "[À COMPLÉTER : assureur]",
 
   "mediateur": {

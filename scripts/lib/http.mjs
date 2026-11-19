@@ -63,7 +63,7 @@ export function creerClient(cfg, { fetchImpl = fetch, attendre = (ms) => new Pro
 
   async function chargerRobots() {
     const res = await requete(new URL("/robots.txt", cfg.base_url).href);
-    if (res.status >= 400 && res.status < 500) return []; // pas de robots.txt : tout est permis
+    if (res.status >= 400 && res.status < 500 && res.status !== 429) return []; // pas de robots.txt : tout est permis (429 = trop de requêtes, on s'arrête)
     if (!res.ok) throw new Error(`robots.txt inaccessible (HTTP ${res.status}) : collecte annulée par prudence`);
     return lireRobots(await res.text(), agent);
   }

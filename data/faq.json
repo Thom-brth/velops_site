@@ -3,43 +3,51 @@
   "questions": [
     {
       "q": "Combien de temps dure une réparation ?",
-      "r": "La plupart des interventions se font pendant le créneau : tu déposes ton vélo, je répare, tu repars avec. Pour une intervention longue comme la <strong>Révision Plus</strong>, on convient d'une récupération le lendemain."
+      "r": "La plupart des interventions se font pendant le créneau : vous déposez votre vélo, je le répare, vous repartez avec. Pour une intervention longue comme la <strong>Révision Plus</strong>, nous convenons d'une récupération le lendemain."
     },
     {
-      "q": "Tu peux garder mon vélo quelques jours ?",
-      "r": "Non : l'atelier est un garage privé et je n'ai pas de place pour stocker des vélos. Le principe, c'est dépose, réparation et restitution dans le même créneau (ou le lendemain pour une révision complète)."
+      "q": "Sous quel délai puis-je avoir un rendez-vous ?",
+      "r": "{site.delai_rdv} {site.rappel}"
     },
     {
-      "q": "Je peux apporter mes propres pièces ?",
+      "q": "Comment se passe la dépose ? Et si mon vélo est abîmé ?",
+      "r": "{site.depose} Aucune intervention ni pièce supplémentaire n'est faite sans votre accord. L'atelier est assuré en responsabilité civile professionnelle ({site.assureur}) : il est responsable des dommages causés à votre vélo du fait de son intervention (article 8 des <a href=\"/cgv/\">CGV</a>)."
+    },
+    {
+      "q": "Pouvez-vous garder mon vélo quelques jours ?",
+      "r": "Non : l'atelier est un garage privé, sans place pour stocker des vélos. Le principe : dépose, réparation et restitution dans le même créneau (ou le lendemain pour une révision complète)."
+    },
+    {
+      "q": "Où se trouve l'atelier ?",
+      "r": "À {site.ville}. {site.lieu_public}"
+    },
+    {
+      "q": "Puis-je apporter mes propres pièces ?",
       "r": "{site.pieces_client}"
     },
     {
-      "q": "Tu répares les vélos électriques ? Les suspensions ?",
-      "r": "Pas pour l'instant. Je ne travaille pas sur les vélos électriques, les suspensions (fourches et amortisseurs), les vélos pliants et cargos, le rayonnage et le montage de roues, la purge de freins hydrauliques, le dévoilage et l'ajustement de patte de dérailleur. Mieux vaut le dire tout de suite que de bricoler."
+      "q": "Réparez-vous les vélos électriques ? Les suspensions ?",
+      "r": "Pas pour l'instant. Je ne travaille pas sur les vélos électriques, les suspensions (fourches et amortisseurs), les vélos pliants et cargos, le rayonnage et le montage de roues, la purge de freins hydrauliques, le dévoilage et l'ajustement de patte de dérailleur. Je préfère vous le dire tout de suite plutôt que de bricoler."
     },
     {
       "q": "Combien coûte une réparation qui n'est pas dans la grille ?",
-      "r": "La main-d'œuvre est facturée 7,50 € par tranche de 10 minutes (45 €/h), plus les pièces sur une ligne séparée. Le devis est gratuit : demande-le avant l'intervention."
+      "r": "La main-d'œuvre est facturée 7,50 € par tranche de 10 minutes (45 €/h), plus les pièces sur une ligne séparée. Le devis est gratuit : demandez-le avant l'intervention."
     },
     {
-      "q": "Comment je paie ?",
-      "r": "Par virement instantané, Wero, Lydia ou en espèces, à la restitution du vélo. Pas de carte bancaire. Tu repars avec ta facture."
+      "q": "Comment payer ?",
+      "r": "Par virement instantané, Wero, Lydia ou en espèces, à la restitution du vélo. Pas de carte bancaire. Vous repartez avec votre facture."
     },
     {
       "q": "Les réparations sont-elles garanties ?",
       "r": "{site.garantie_reparations} Les pièces vendues bénéficient en plus de la garantie légale de conformité (2 ans) et de la garantie des vices cachés."
     },
     {
-      "q": "Tu es assuré ?",
+      "q": "L'atelier est-il assuré ?",
       "r": "Oui, l'atelier est couvert par une assurance responsabilité civile professionnelle ({site.assureur})."
     },
     {
-      "q": "Où se trouve l'atelier ?",
-      "r": "À Brignais, dans un garage privé. L'adresse exacte t'est communiquée quand on fixe le rendez-vous."
-    },
-    {
-      "q": "J'ai acheté un vélo sur BikeStocks, tu peux le monter ?",
-      "r": "Oui : je peux assurer le montage et le réglage à réception ({site.velos.prix_montage}). Appelle-moi ou envoie un SMS pour fixer un créneau."
+      "q": "J'ai acheté un vélo sur BikeStocks, pouvez-vous le monter ?",
+      "r": "Oui : je peux assurer le montage et le réglage à réception ({site.velos.prix_montage}). Appelez-moi ou envoyez un SMS pour fixer un créneau."
     }
   ]
 }

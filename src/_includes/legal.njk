@@ -1,7 +1,8 @@
 ---
 layout: base.njk
 ---
-{#- Gabarit des pages juridiques (Markdown). Ces textes DOIVENT être relus par l'exploitant avant mise en ligne. -#}
+{#- Gabarit des pages juridiques (Markdown). Ces textes DOIVENT être relus par l'exploitant avant mise en ligne.
+    Mettre à jour « date: » dans le fichier .md à chaque modification du texte (sinon ce serait la date du build). -#}
 {%- set surtitre = "Informations légales" -%}
 {%- set chapo = "Dernière mise à jour : " + (page.date | dateFr) -%}
 {% include "page-tete.njk" %}

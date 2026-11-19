@@ -1,5 +1,6 @@
 ---
 layout: legal.njk
+date: 2026-11-18
 title: "Politique de confidentialité"
 description: "Politique de confidentialité de Brignais Cycle : aucun cookie, aucune collecte en ligne, données de rendez-vous utilisées uniquement pour la prestation et la facture."
 ---
@@ -38,18 +39,18 @@ Ces données ne sont ni vendues, ni cédées, ni utilisées à des fins publicit
 
 L'hébergeur ({{ site.hebergeur.nom }}) enregistre, comme tout serveur web, des journaux techniques (adresse IP, page demandée, date) pour assurer la sécurité et le fonctionnement du service. L'exploitant n'y a pas accès. Voir la [politique de confidentialité de l'hébergeur]({{ site.hebergeur.confidentialite }}).
 
-La carte de la page Contact n'est chargée depuis OpenStreetMap que si tu cliques sur « Afficher la carte » ; ton adresse IP est alors transmise à la fondation OpenStreetMap.
+La carte de la page Contact n'est chargée depuis OpenStreetMap que si vous cliquez sur « Afficher la carte » ; votre adresse IP est alors transmise à la fondation OpenStreetMap.
 {%- if site.SHOW_BIKES %}
 
-Sur la page « Vélos à vendre », les photos des vélos sont chargées directement depuis le site de BikeStocks (bikestocks.es), qui reçoit à cette occasion ton adresse IP. Les liens « Voir sur BikeStocks » contiennent un paramètre indiquant que tu viens de ce site ; une fois sur bikestocks.es, c'est la politique de confidentialité de BikeStocks qui s'applique.
+Sur la page « Vélos à vendre » (et uniquement sur celle-ci), les photos des vélos sont chargées directement depuis le site de BikeStocks (bikestocks.es), qui reçoit à cette occasion votre adresse IP. Les liens « Voir sur BikeStocks » contiennent un paramètre indiquant que vous venez de ce site ; une fois sur bikestocks.es, c'est la politique de confidentialité de BikeStocks qui s'applique.
 {%- endif %}
 {%- if site.goatcounter %}
 
-Mesure d'audience : le site utilise GoatCounter, un outil de statistiques sans cookie qui ne permet pas de t'identifier (pages vues agrégées), exempté de consentement selon les recommandations de la CNIL.
+Mesure d'audience : le site utilise GoatCounter, un outil de statistiques sans cookie qui ne permet pas de vous identifier (pages vues agrégées), exempté de consentement selon les recommandations de la CNIL.
 {%- endif %}
 
-## Tes droits
+## Vos droits
 
-Tu peux demander à accéder à tes données, les faire rectifier ou effacer, en limiter le traitement, t'y opposer ou en obtenir la portabilité, en écrivant à {{ site.email }}. Réponse sous un mois au plus.
+Vous pouvez demander à accéder à vos données, les faire rectifier ou effacer, en limiter le traitement, vous y opposer ou en obtenir la portabilité, en écrivant à {{ site.email }}. Réponse sous un mois au plus.
 
-Si tu estimes que tes droits ne sont pas respectés, tu peux adresser une réclamation à la CNIL : [www.cnil.fr](https://www.cnil.fr/fr/plaintes), 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.
+Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL : [www.cnil.fr](https://www.cnil.fr/fr/plaintes), 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.

@@ -40,7 +40,7 @@ export function lirePageListe(html, urlPage, cfg) {
         tailles_disponibles: dispo,
         en_stock: dispo.length > 0,
         url_fiche: href ? sansFragment(new URL(href, urlPage).href) : null,
-        url_image: $p.find(s.image).first().attr("src") || null,
+        url_image: $p.find(s.image).first().attr("src") ? new URL($p.find(s.image).first().attr("src"), urlPage).href : null,
       };
     })
     .get();

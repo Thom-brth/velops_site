@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 title: "Vélos à vendre"
+titre_seo: "Vélos route, gravel et VTT à vendre, montage à Brignais"
 surtitre: "Partenaire BikeStocks"
 chapo: "Une sélection de vélos intéressants chez notre partenaire BikeStocks, que je peux monter et régler à réception."
 description: "Sélection de vélos route, gravel et VTT en promotion chez BikeStocks, que Brignais Cycle peut monter et régler à réception."
@@ -50,9 +51,9 @@ scripts: ["/assets/velos.js"]
       <h2 id="montage">Acheté sur BikeStocks ?</h2>
       <p>Je peux le monter et le régler à l'atelier : {{ site.velos.prix_montage }}.</p>
     </div>
-    <div class="actions" style="margin:0">
+    <div class="actions">
       <a class="btn btn-encre" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
-      <a class="btn btn-ligne" href="sms:{{ tel }}">SMS</a>
+      <a class="btn btn-ligne" href="{{ site | smsHref }}">SMS</a>
     </div>
   </div>
 </section>

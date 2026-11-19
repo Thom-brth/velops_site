@@ -1,5 +1,6 @@
 ---
 layout: legal.njk
+date: 2026-11-18
 title: "Mentions légales"
 description: "Mentions légales du site Brignais Cycle (Thomas BERTHILLOT EI)."
 ---

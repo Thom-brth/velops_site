@@ -48,7 +48,7 @@ body {
   line-height: 1.6;
   color: var(--encre);
   background: var(--papier);
-  padding-bottom: 4.75rem; /* barre d'appel mobile */
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom)); /* barre d'appel mobile */
   -webkit-font-smoothing: antialiased;
   font-kerning: normal;
 }
@@ -59,10 +59,11 @@ p { margin: 0 0 1em; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em; }
 a:hover { text-decoration-color: var(--signal); text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+.bande-rdv :focus-visible, .montage :focus-visible { outline-color: var(--encre); }
 ::selection { background: var(--signal); color: var(--encre); }
 
 h1, h2, h3 { margin: 0; text-wrap: balance; }
-h1, h2, .display {
+h1, h2 {
   font-stretch: 66%;
   font-weight: 820;
   text-transform: uppercase;
@@ -73,10 +74,10 @@ h1 { font-size: clamp(2.9rem, 13vw, 6rem); }
 h2 { font-size: clamp(2.2rem, 8.5vw, 4.25rem); }
 h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15; }
 
-.wrap { width: var(--large); margin-inline: auto; }
+.wrap { width: var(--large); margin-left: auto; margin-right: auto; }
 .label {
   font-family: var(--f-mono);
-  font-size: .7rem;
+  font-size: .75rem;
   font-weight: 500;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -99,9 +100,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   transition: transform .15s var(--ease), box-shadow .15s var(--ease), background-color .15s, color .15s;
 }
 .btn:hover { text-decoration: none; }
-.btn:hover .ico { transform: translateX(3px); }
 .btn-signal { background: var(--signal); box-shadow: 4px 4px 0 var(--encre); }
-.btn-signal:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--encre); }
 .btn-signal:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--encre); }
 .btn-ligne:hover { background: var(--encre); color: var(--papier); }
 .btn-encre { background: var(--encre); color: var(--papier); }
@@ -113,13 +112,13 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .entete {
   position: sticky; top: 0; z-index: 40;
   background: rgb(243 239 231 / .94);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
   backdrop-filter: saturate(1.2) blur(10px);
   border-bottom: 1px solid var(--trait-2);
 }
 .entete-in { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.25rem; min-height: 4rem; }
 .logo { display: inline-flex; align-items: center; gap: .6rem; margin-right: auto; text-decoration: none; min-height: 2.75rem; }
 .logo-mark { width: 2.25rem; height: 2.25rem; transition: transform .7s var(--ease); }
-.logo:hover .logo-mark { transform: rotate(144deg); }
 .logo-txt { display: flex; flex-direction: column; align-items: flex-start; font-stretch: 64%; font-weight: 850; text-transform: uppercase; font-size: 1.32rem; line-height: .86; letter-spacing: .01em; }
 .logo-txt span { background: var(--signal); padding: .06em .22em .02em; margin-top: .08em; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .1rem 1.1rem; }
@@ -140,7 +139,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 /* Mobile avec JS : menu plein écran */
 @media (max-width: 1119px) {
   /* backdrop-filter piégerait le menu « position: fixed » dans la hauteur de l'en-tête */
-  .entete { backdrop-filter: none; background: var(--papier); }
+  .entete { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--papier); }
   .js .nav-toggle {
     display: inline-flex; align-items: center; gap: .6rem; min-height: 2.75rem; padding: .4rem .9rem;
     font: 600 .72rem/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase;
@@ -154,7 +153,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   .nav-toggle[aria-expanded="true"] .nav-toggle-barres::after { top: calc(50% - 1px); transform: rotate(-45deg); }
 
   .js .nav {
-    position: fixed; inset: 4rem 0 0; z-index: 39; overflow-y: auto;
+    position: fixed; top: 4rem; right: 0; bottom: 0; left: 0; z-index: 39; overflow-y: auto;
     display: flex; flex-direction: column; justify-content: space-between; gap: 2rem;
     padding: 1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
     background: var(--encre); color: var(--papier);
@@ -183,7 +182,6 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   .section-tete { grid-template-columns: 7fr 5fr; align-items: end; column-gap: 3rem; }
   .section-tete .section-num { grid-column: 1 / -1; }
 }
-.filet { border: 0; border-top: 2px solid var(--encre); margin: 0; }
 
 /* ---------- Héros (accueil) ---------- */
 .hero { padding-block: clamp(2rem, 6vw, 4.5rem) clamp(2.5rem, 6vw, 4.5rem); }
@@ -191,7 +189,9 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 @media (min-width: 1000px) { .hero-grid { grid-template-columns: 5fr 7fr; align-items: center; gap: 3.5rem; } }
 .hero h1 { font-size: inherit; text-transform: none; line-height: inherit; font-stretch: inherit; font-weight: inherit; }
 .surtitre { display: block; margin-bottom: 1.25rem; color: var(--gris); }
-.accroche { display: block; font-size: clamp(3.3rem, 15.5vw, 6.4rem); font-stretch: 62%; font-weight: 860; line-height: .84; text-transform: uppercase; letter-spacing: -.01em; }
+.accroche { display: block; font-size: clamp(2.6rem, 12.5vw, 4.2rem); font-stretch: 62%; font-weight: 860; line-height: .84; text-transform: uppercase; letter-spacing: -.01em; }
+.accroche > span { display: block; }
+@media (min-width: 1000px) { .accroche { font-size: min(4.2rem, 5.2vw); } }
 .accroche em { font-style: normal; background: var(--signal); padding: 0 .07em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .hero .chapo { margin-top: 1.5rem; }
 
@@ -203,7 +203,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 }
 .plan-dessin { position: relative; }
 .plan svg { display: block; width: 100%; height: auto; color: var(--encre); overflow: visible; }
-.plan svg :is(line, path, circle) { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.plan svg line, .plan svg path, .plan svg circle { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .plan .rayon { stroke-width: .9; }
 .plan .pneu { stroke-width: 5; }
 .plan .jante { stroke-width: 1.6; }
@@ -398,6 +398,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .filtres-groupe { display: inline-flex; flex-wrap: wrap; border: 2px solid var(--encre); border-radius: var(--rayon); overflow: hidden; }
 .filtres [aria-pressed] { min-height: 2.75rem; padding: .4rem .95rem; border: 0; border-right: 2px solid var(--encre); background: transparent; color: var(--encre); font: 600 .72rem var(--f-mono); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
 .filtres [aria-pressed]:last-child { border-right: 0; }
+.filtres [aria-pressed]:focus-visible { outline-offset: -5px; }
 .filtres [aria-pressed="true"] { background: var(--encre); color: var(--papier); }
 .filtres label { display: inline-flex; gap: .6rem; align-items: center; }
 .filtres select { min-height: 2.75rem; max-width: 100%; padding: .3rem 2rem .3rem .7rem; border: 2px solid var(--encre); border-radius: var(--rayon); background: var(--blanc); font: 600 .9rem var(--f-texte); color: var(--encre); }
@@ -405,10 +406,8 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 @media (min-width: 600px) { .velos { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .velos { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
 .velo { display: flex; flex-direction: column; background: var(--blanc); border: 2px solid var(--encre); transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
-.velo:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--encre); }
 .velo-img { position: relative; aspect-ratio: 560 / 655; overflow: hidden; border-bottom: 2px solid var(--encre); background: var(--papier-2) url("velo-neutre.svg") center / 55% no-repeat; }
 .velo-img img { display: block; width: 100%; height: 100%; object-fit: contain; background: var(--blanc); transition: transform .4s var(--ease); }
-.velo:hover .velo-img img { transform: scale(1.04); }
 .velo-remise { position: absolute; top: .75rem; left: .75rem; padding: .3rem .55rem; background: var(--signal); border: 2px solid var(--encre); font: 700 .8rem/1 var(--f-mono); }
 .velo-corps { display: flex; flex-direction: column; gap: .75rem; flex: 1; padding: 1.1rem 1.1rem 1.25rem; }
 .velo-corps p { margin: 0; }
@@ -426,6 +425,9 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .montage { display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--signal); border: 2px solid var(--encre); }
 @media (min-width: 900px) { .montage { grid-template-columns: 1fr auto; align-items: center; } }
 .montage h2 { font-size: clamp(2rem, 7vw, 3.2rem); }
+.montage .actions { margin: 0; }
+.montage.clair { background: var(--blanc); box-shadow: 6px 6px 0 var(--signal); }
+.espace-haut { margin-top: 1.5rem; }
 .montage p { margin: .75rem 0 0; font-weight: 600; }
 
 /* ---------- Pages juridiques ---------- */
@@ -457,10 +459,19 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
 .pied-bas .label { margin: 0; }
 
 /* ---------- Barre d'appel (mobile) ---------- */
-.barre-appel { position: fixed; inset: auto 0 0; z-index: 30; display: flex; gap: .6rem; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: var(--encre); }
+.barre-appel { position: fixed; right: 0; bottom: 0; left: 0; z-index: 30; display: flex; gap: .6rem; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: var(--encre); }
 .barre-appel .btn { flex: 1; }
 .barre-appel .btn-ligne { color: var(--papier); border-color: var(--papier); }
 @media (min-width: 1120px) { .barre-appel { display: none; } body { padding-bottom: 0; } }
+
+/* Survols qui déplacent un élément : seulement avec une souris (sur écran tactile l'effet resterait « collé »). */
+@media (hover: hover) {
+  .btn:hover .ico { transform: translateX(3px); }
+  .btn-signal:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--encre); }
+  .logo:hover .logo-mark { transform: rotate(144deg); }
+  .velo:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--encre); }
+  .velo:hover .velo-img img { transform: scale(1.04); }
+}
 
 /* ==========================================================================
    Mouvement — uniquement si le visiteur n'a pas demandé à le réduire.
@@ -470,7 +481,8 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
   html { scroll-behavior: smooth; }
 
   /* Le vélo se dessine */
-  .plan .t { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracer 1.3s var(--ease) var(--d, .2s) forwards; }
+  /* fill backwards : à la fin, le trait redevient plein même si pathLength n'est pas géré */
+  .plan .t { animation: tracer 1.3s var(--ease) var(--d, .2s) backwards; }
   .plan .f { opacity: 0; animation: fondu .6s ease 1.2s forwards; }
   .plan .disque.f { animation-name: fondu-disque; }
   .plan .onde { animation: onde 2.4s ease-out 2s infinite; }
@@ -486,7 +498,7 @@ h3 { font-stretch: 84%; font-weight: 700; font-size: 1.25rem; line-height: 1.15;
     .pignon-deco { animation: tourne linear both; animation-timeline: scroll(root); }
   }
 }
-@keyframes tracer { to { stroke-dashoffset: 0; } }
+@keyframes tracer { from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
 @keyframes fondu { to { opacity: 1; } }
 @keyframes fondu-disque { to { opacity: .55; } }
 @keyframes onde { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(3); } }

@@ -11,7 +11,7 @@
     {
       "nom": "Entretien",
       "prestations": [
-        { "nom": "Révision basique", "prix": 40, "phare": true, "repere": "cadre" },
+        { "nom": "Révision basique", "detail": "[À COMPLÉTER : contenu de la révision basique, ex. réglage freins et vitesses, nettoyage et graissage de la chaîne, contrôle des serrages et de la pression]", "prix": 40, "phare": true, "repere": "cadre" },
         { "nom": "Révision Plus", "detail": "complète : roulements, boîtier de pédalier, direction, transmission, freins. Récupération le lendemain.", "prix": 120, "phare": true },
         { "nom": "Pose de guidoline", "prix": 12 }
       ]

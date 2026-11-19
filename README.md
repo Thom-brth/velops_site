@@ -242,6 +242,6 @@ Logo : pédalier + nom en texte (`src/_includes/icones.njk`, `src/assets/favicon
 | **CGV atelier** | `pieces_client`, `velo_non_recupere` (politique ; cf. loi du 31 décembre 1903 sur les objets abandonnés chez les artisans), encadré officiel de garantie légale de conformité (décret n° 2022-946), `garantie_reparations`, `assureur`, médiateur |
 | **Confidentialité** — `src/confidentialite.md` | durée de conservation des échanges, fournisseur de messagerie |
 | **Collecte** — `config/bikestocks.json` | `user_agent` (e-mail de contact) ; à confirmer : `prix_min`/`prix_max` (600–3 500 € de l'exemple), `marques_bonus` (BH, Orbea, Scott, Cannondale de l'exemple), catégories exclues en plus des électriques (enfants, urbains, pliants de l'exemple) |
-| **Ton du site** | **tutoiement** retenu partout (c'était `[À COMPLÉTER : choix]`), cohérent avec le « tu déposes, je répare » de la consigne. Les pages juridiques restent à la 3ᵉ personne (« le client »). Passer au vouvoiement = reprendre les textes des `src/*.njk` et de `data/faq.json`. |
+| **Ton du site** | **vouvoiement** partout depuis la revue du 19/11/2026 (demande de clientèle exigeante). Les pages juridiques restent à la 3ᵉ personne (« le client »). |
 
 Les trois pages juridiques **doivent être relues par l'exploitant** (idéalement par un juriste ou la CMA) avant la mise en ligne. Un commentaire le rappelle en tête de chaque fichier.

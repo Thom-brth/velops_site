@@ -1,5 +1,6 @@
 ---
 layout: legal.njk
+date: 2026-11-18
 title: "Conditions générales de vente – atelier"
 description: "Conditions générales de vente des prestations de l'atelier vélo Brignais Cycle : devis, prix, délais, paiement, garanties, médiation."
 ---

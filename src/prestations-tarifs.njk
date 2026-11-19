@@ -1,8 +1,9 @@
 ---
 layout: base.njk
 title: "Prestations & tarifs"
+titre_seo: "Tarifs réparation et révision vélo à Brignais"
 surtitre: "Tarifs atelier"
-chapo: "Les prix sont affichés avant que tu viennes : pas de surprise sur la facture."
+chapo: "Les prix sont affichés avant votre venue : pas de surprise sur la facture."
 description: "Tarifs de l'atelier vélo Brignais Cycle : révision 40 €, Révision Plus 120 €, crevaison 10 €, tubeless 25 € par roue. Main-d'œuvre 7,50 € les 10 minutes. Devis gratuit."
 ---
 {%- from "tarifs.njk" import lignes -%}
@@ -58,7 +59,7 @@ description: "Tarifs de l'atelier vélo Brignais Cycle : révision 40 €, Révi
   <header class="section-tete">
     <span class="section-num label">03 — Hors atelier</span>
     <h2 id="hors">Ce que je ne fais pas (encore).</h2>
-    <p class="chapo">Pour ces interventions, mieux vaut un atelier équipé pour : je préfère te le dire tout de suite.</p>
+    <p class="chapo">Pour ces interventions, mieux vaut un atelier équipé pour : je préfère vous le dire tout de suite.</p>
   </header>
   <ul class="hors apparait">
     {%- for n in tarifs.non_proposees %}
@@ -79,7 +80,7 @@ description: "Tarifs de l'atelier vélo Brignais Cycle : révision 40 €, Révi
     </div>
     <div class="bloc apparait">
       <h3>Montage de vélos achetés sur BikeStocks</h3>
-      <p>Tu as commandé un vélo chez BikeStocks ? Je le monte et je le règle à réception : {{ site.velos.prix_montage }}.</p>
+      <p>Vous avez commandé un vélo chez BikeStocks ? Je le monte et je le règle à réception : {{ site.velos.prix_montage }}.</p>
     </div>
   </div>
 </section>

@@ -8,10 +8,10 @@
       <h2 id="rdv-titre">Un appel, un créneau, c'est réparé.</h2>
       <div class="actions">
         <a class="btn btn-encre" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
-        <a class="btn btn-ligne" href="sms:{{ tel }}">SMS</a>
+        <a class="btn btn-ligne" href="{{ site | smsHref }}">SMS</a>
         <a class="btn btn-ligne" href="mailto:{{ site.email }}">E-mail</a>
       </div>
-      <p class="label">{{ site.lieu_public }}</p>
+      <p class="label">{{ site.rappel }}</p>
     </div>
     <dl class="horaires">
       {%- for c in site.creneaux %}

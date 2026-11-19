@@ -3,7 +3,6 @@ layout: base.njk
 title: "Brignais Cycle · Atelier vélo à Brignais, sur rendez-vous"
 description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vous. Prix affichés : révision dès 40 €, crevaison 10 €. Dépose, réparation et restitution dans le même créneau."
 ---
-{%- from "velo.njk" import carte -%}
 {%- from "tarifs.njk" import lignes -%}
 {%- from "icones.njk" import fleche -%}
 {%- set tel = site.telephone | telHref -%}
@@ -16,8 +15,10 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
 } -%}
 {%- set reperes = [] -%}
 {%- set phares = [] -%}
+{%- set revision = [] -%}
 {%- for cat in tarifs.categories %}{% for p in cat.prestations %}
   {%- if p.phare %}{% set _ = phares.push(p) %}{% endif %}
+  {%- if p.nom == "Révision basique" %}{% set _ = revision.push(p) %}{% endif %}
   {%- if positions[p.repere] %}{% set _ = reperes.push({ p: p, pos: positions[p.repere] }) %}{% endif %}
 {%- endfor %}{% endfor -%}
 
@@ -31,9 +32,9 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
       <p class="chapo">Route, gravel, VTT : entretien et réparation dans le même créneau. Prix affichés, devis gratuit, pièces facturées à part.</p>
       <div class="actions">
         <a class="btn btn-signal" href="tel:{{ tel }}">Appeler {{ fleche() }}</a>
-        <a class="btn btn-ligne" href="sms:{{ tel }}">Envoyer un SMS</a>
+        <a class="btn btn-ligne" href="{{ site | smsHref }}">Envoyer un SMS</a>
       </div>
-      <p class="label gris">{{ site.lieu_public }}</p>
+      <p class="label gris">{{ site.rappel }}</p>
     </div>
 
     <figure class="plan">
@@ -59,9 +60,10 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
   </div>
 </section>
 
+<p class="sr-only">Communes desservies : {{ site.zone | join(", ") }}.</p>
 <div class="defile" aria-hidden="true">
   <div class="defile-piste">
-    {%- for i in [1, 2] %}{% for cat in tarifs.categories %}<span>{{ cat.nom }}</span>{% endfor %}<span>Route</span><span>Gravel</span><span>VTT</span>{% endfor %}
+    {%- for i in [1, 2] %}{% for z in site.zone %}<span>{{ z }}</span>{% endfor %}<span>Route · Gravel · VTT</span>{% endfor %}
   </div>
 </div>
 
@@ -73,9 +75,9 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
   </header>
   <ol class="faits">
     <li class="apparait">
-      <p class="fait-chiffre">{{ tarifs.main_oeuvre.prix_tranche | euros }}</p>
+      <p class="fait-chiffre">Dès {{ revision[0].prix | euros }}</p>
       <p class="fait-titre label">Des prix clairs</p>
-      <p>les {{ tarifs.main_oeuvre.minutes }} minutes de main-d'œuvre ({{ tarifs.main_oeuvre.taux_horaire | euros }}/h). Pièces sur une ligne à part, devis gratuit avant toute intervention.</p>
+      <p>pour la révision basique. Main-d'œuvre à {{ tarifs.main_oeuvre.prix_tranche | euros }} les {{ tarifs.main_oeuvre.minutes }} minutes ({{ tarifs.main_oeuvre.taux_horaire | euros }}/h), pièces sur une ligne à part, devis gratuit avant toute intervention.</p>
     </li>
     <li class="apparait">
       <p class="fait-chiffre">1 créneau</p>
@@ -85,7 +87,7 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
     <li class="apparait">
       <p class="fait-chiffre">1 mécano</p>
       <p class="fait-titre label">Un mécanicien passionné</p>
-      <p>Celui qui te répond au téléphone est celui qui répare ton vélo. Pas d'intermédiaire.</p>
+      <p>Celui qui vous répond au téléphone est celui qui répare votre vélo. Pas d'intermédiaire.</p>
     </li>
   </ol>
 </section>
@@ -93,7 +95,7 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
 <section class="section wrap" aria-labelledby="tarifs-titre">
   <header class="section-tete">
     <span class="section-num label">02 — Tarifs</span>
-    <h2 id="tarifs-titre">Les plus demandés.</h2>
+    <h2 id="tarifs-titre">Les réparations les plus demandées.</h2>
     <p class="chapo">Les prix de main-d'œuvre, affichés avant de venir. Les pièces sont facturées en plus, au prix affiché.</p>
   </header>
   <div class="tableau-accueil apparait">
@@ -104,20 +106,18 @@ description: "Réparation et entretien vélo à Brignais (69530), sur rendez-vou
   </div>
 </section>
 
+{#- Les vélos restent sur leur page : ici un simple encart, sans photo ni remise (le site est d'abord un atelier). -#}
 {%- if site.SHOW_BIKES and bikes.velos.length %}
 <section class="section wrap" aria-labelledby="velos-titre">
-  <header class="section-tete">
-    <span class="section-num label">03 — Vélos à vendre</span>
-    <h2 id="velos-titre">Envie d'un vélo neuf ?</h2>
-    <p class="chapo">Une sélection de vélos en promotion chez notre partenaire BikeStocks, que je peux monter et régler à réception.</p>
-  </header>
-  <div class="velos">
-    {%- for v in bikes.velos.slice(0, 3) %}
-    {{ carte(v, site.velos) }}
-    {%- endfor %}
-  </div>
-  <div class="actions">
-    <a class="btn btn-ligne" href="/velos-a-vendre/">Toute la sélection {{ fleche() }}</a>
+  <div class="montage clair apparait">
+    <div>
+      <p class="label">Partenaire BikeStocks</p>
+      <h2 id="velos-titre">Envie d'un vélo neuf ?</h2>
+      <p>Une sélection de vélos chez notre partenaire BikeStocks, que je peux monter et régler à réception.</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-ligne" href="/velos-a-vendre/">Voir la sélection {{ fleche() }}</a>
+    </div>
   </div>
 </section>
 {%- endif %}

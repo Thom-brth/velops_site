@@ -1,7 +1,7 @@
 // Règles de sélection des vélos : fonctions pures (aucun accès réseau), testées dans tests/collecte.test.mjs.
 // Toutes les valeurs (mots-clés, poids, quotas, gamme de prix…) viennent de config/bikestocks.json.
 
-const sansAccents = (s) => String(s ?? "").normalize("NFC").normalize("NFD").replace(/[̀-ͯ]/g, "");
+const sansAccents = (s) => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "");
 export const normaliser = (s) => sansAccents(s).toLowerCase().replace(/\s+/g, " ").trim();
 const echapper = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // Mot ou expression entière (« vae » ne doit pas matcher « vaeX »), sur texte normalisé.

@@ -13,7 +13,7 @@ const bikes = json("data/bikes.json");
 const sortie = path.join(racine, "_site");
 if (!fs.existsSync(sortie)) throw new Error("Lancer d'abord npm run build");
 
-const fichiers = fs.readdirSync(sortie, { recursive: true }).map(String).filter((f) => /\.(html|xml|txt|js)$/.test(f));
+const fichiers = fs.readdirSync(sortie, { recursive: true }).map(String).filter((f) => /\.(html|xml|txt|js|css)$/.test(f));
 // Annule la typographie française du build (espaces fines, apostrophes) pour comparer avec les textes de data/*.json.
 const brut = (s) => s.replaceAll(" ", " ").replaceAll("’", "'");
 const lire = (f) => brut(fs.readFileSync(path.join(sortie, f), "utf8"));
@@ -24,12 +24,16 @@ const externe = (u) => /^(https?:)?\/\//.test(u);
 for (const f of fichiers) {
   const contenu = lire(f);
   const nom = f.replaceAll("\\", "/");
-  if (!nom.startsWith("mentions-legales/") && contenu.includes(site.adresse_legale)) erreurs.push(`${nom} : l'adresse exacte apparaît (réservée aux mentions légales)`);
+  if (site.adresse_legale && !nom.startsWith("mentions-legales/") && contenu.includes(site.adresse_legale)) erreurs.push(`${nom} : l'adresse exacte apparaît (réservée aux mentions légales)`);
   if (/document\.cookie|localStorage|sessionStorage|indexedDB/.test(contenu)) erreurs.push(`${nom} : stockage dans le navigateur`);
   if (!site.SHOW_BIKES && /velos-a-vendre|class="velo"/.test(contenu)) erreurs.push(`${nom} : trace du module vélos alors que SHOW_BIKES=false`);
+  if (/@import|url\(["']?(https?:)?\/\//.test(nom.endsWith(".css") ? contenu : "")) erreurs.push(`${nom} : ressource CSS tierce`);
   if (!nom.endsWith(".html")) continue;
   for (const [, src] of contenu.matchAll(/<script[^>]*\ssrc="([^"]+)"/g))
     if (externe(src) && !(site.goatcounter && src.startsWith("https://gc.zgo.at/"))) erreurs.push(`${nom} : script tiers ${src}`);
+  // Seules les photos BikeStocks de la page vélos sont chargées depuis un autre site (annoncé dans la politique de confidentialité).
+  for (const [, src] of contenu.matchAll(/<img[^>]*\ssrc="([^"]+)"/g))
+    if (externe(src) && !(nom.startsWith("velos-a-vendre/") && src.startsWith("https://www.bikestocks.es/"))) erreurs.push(`${nom} : image tierce ${src}`);
   for (const [, href] of contenu.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)) if (externe(href)) erreurs.push(`${nom} : feuille de style tierce ${href}`);
   if (/<iframe/i.test(contenu)) erreurs.push(`${nom} : iframe chargée sans action du visiteur`);
   const t = new Set(contenu.replace(/<script[\s\S]*?<\/script>/g, "").match(/\[À COMPLÉTER[^\]]*\]/g));

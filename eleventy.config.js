@@ -29,8 +29,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("annee", () => new Date().getFullYear());
 
   // « Tu déposes. *Je répare.* » -> le passage entre étoiles est surligné (<em>). Texte échappé avant.
+  // Une phrase par ligne (<span>), le passage entre étoiles surligné (<em>). Texte échappé avant.
   eleventyConfig.addFilter("surligne", (s) =>
-    String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\*(.+?)\*/g, "<em>$1</em>")
+    String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .split(/(?<=[.!?]\*?)\s+/)
+      .map((phrase) => `<span>${phrase.replace(/\*(.+?)\*/g, "<em>$1</em>")}</span>`)
+      .join(" ")
   );
 
   // 40 -> « 40 € », 7.5 -> « 7,50 € », texte (placeholder) -> inchangé. Prix nets, jamais HT/TTC.
@@ -44,6 +48,11 @@ export default function (eleventyConfig) {
   // « 04 78 00 00 00 » -> « +33478000000 ». Vide tant que le numéro est un placeholder.
   eleventyConfig.addFilter("telHref", (v) => (String(v).includes(TODO) ? "" : String(v).replace(/[^\d+]/g, "").replace(/^0/, "+33")));
   eleventyConfig.addFilter("isTodo", (v) => String(v).includes(TODO));
+  // Lien SMS avec message pré-rempli (data/site.json > sms_message). « ?&body= » est compris par iOS et Android.
+  eleventyConfig.addFilter("smsHref", (site) => {
+    const tel = String(site.telephone).includes(TODO) ? "" : String(site.telephone).replace(/[^\d+]/g, "").replace(/^0/, "+33");
+    return `sms:${tel}?&body=${encodeURIComponent(site.sms_message || "")}`;
+  });
 
   // {{ texte | fill(site) }} : remplace {site.cle} / {site.cle.sous_cle} dans les textes de data/*.json.
   eleventyConfig.addFilter("fill", (str, site) =>
@@ -66,6 +75,7 @@ export default function (eleventyConfig) {
     return JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BicycleStore",
+      "@id": ok(s.url) && s.url + "/#atelier",
       name: s.nom,
       description: s.description + " Sur rendez-vous uniquement.",
       url: ok(s.url),
@@ -76,7 +86,15 @@ export default function (eleventyConfig) {
       areaServed: s.zone.map((name) => ({ "@type": "City", name })),
       paymentAccepted: s.paiements.join(", "),
       currenciesAccepted: "EUR",
-      priceRange: `${Math.min(...prix)} € – ${Math.max(...prix)} €`,
+      priceRange: prix.length ? `${Math.min(...prix)} € – ${Math.max(...prix)} €` : undefined,
+      sameAs: Object.values(s.liens || {}).filter((v) => /^https?:\/\//.test(v)),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Tarifs atelier (main-d'œuvre, pièces en sus)",
+        itemListElement: tarifs.categories.flatMap((c) => c.prestations)
+          .filter((p) => typeof p.prix === "number")
+          .map((p) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: p.nom }, price: p.prix, priceCurrency: "EUR" })),
+      },
       openingHoursSpecification: s.creneaux.flatMap((c) => c.jsonld || []).map((h) => ({
         "@type": "OpeningHoursSpecification", dayOfWeek: h.jours, opens: h.ouverture, closes: h.fermeture,
       })),
